@@ -6,7 +6,7 @@ public class SystemData {
 	private static ArrayList<Refund>refunds;
 	private static SystemData instance = new SystemData();
 
-	//make the constructor private so that this class cannot be instantiated
+	//make the constructor private so that this class cannot be instantiated..
 	private SystemData(){
 		admins = new ArrayList<>();
 		users = new ArrayList<>();
