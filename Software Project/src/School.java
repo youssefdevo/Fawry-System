@@ -1,4 +1,4 @@
 
-public class School implements DonationPlace {
+public interface School extends DonationPlace {
 
 }
