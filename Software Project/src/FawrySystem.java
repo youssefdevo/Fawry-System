@@ -15,7 +15,26 @@ public class FawrySystem {
      return instance;
 	}	
 	public boolean validate_AdminAccount(String email,String password){
-		for(int i=0;i<data.g)
-		
+		ArrayList<Admin>admins = data.getAdmins();
+		for(Admin i :admins) {
+			Account check = i.getAccount();
+			if(check.getEmail()==email && check.getPassword()==password) {
+				return true;
+			}
+		}
+		return false;
+	}
+	
+	public ArrayList<Refund> requestRefunds(){
+		return data.getRefunds();
+	}
+	
+	public void accRefund(int index) {
+		// refund = acc, trans = cancelled.
+		data.acceptRefund(index);
+	}
+	public void rejecRefund(int index) {
+		// refund = acc, trans = cancelled.
+		data.rejectRefund(index);
 	}
 }

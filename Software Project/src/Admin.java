@@ -6,6 +6,8 @@ public class Admin {
 		this.acc = new Account(name,pass,mail);
 		data = SystemData.getInstance();
 	}
-	
+	public Account getAccount() {
+		return this.acc;
+	}
 	
 }

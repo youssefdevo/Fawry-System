@@ -20,16 +20,27 @@ public class SystemData {
 	}	
    
 
-	void addAdmin(Admin admin) {
-	   this.admins.add(admin);
+	public void addAdmin(Admin admin) {
+	   SystemData.admins.add(admin);
 	}
    
-	void addUser(User user) {
-	   this.users.add(user);
+	public void addUser(User user) {
+	   SystemData.users.add(user);
 	} 
-	public Arraylist<Admin> getAdmins(){
-		
-		return Admins;
+	
+	public void addRefund(Refund refund) {
+		   SystemData.refunds.add(refund);
 	}
-
+	
+	public ArrayList<Admin> getAdmins(){
+		return admins;
+	}
+	
+	public ArrayList<Refund> getRefunds(){
+		return refunds;
+	}
+	
+	public void acceptRefund(int index) {
+		
+	}
 }
