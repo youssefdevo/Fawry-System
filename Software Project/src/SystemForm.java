@@ -60,15 +60,19 @@ public class SystemForm {
 		
 		if(request == 1) {
 			service = new MobileRecharge();
+			service.mobileRecharageForm();
 		}
 		else if(request == 2) {
 			service = new InternetPayment();
+			service.internetForm();
 		}
 		else if(request == 3) {
 			service = new Landline();
+			service.landLineForm();
 		}
 		else if(request == 4) {
 			service = new Donation();
+			service.donationForm();
 		}	
 	}
 
