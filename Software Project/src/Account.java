@@ -6,7 +6,7 @@ public class Account {
 	private String email;
 	
 	//Constructor
-	Account(String name,String pass,String mail){
+	Account(String name,String mail,String pass){
 		
 		this.setUsername(name);
 		this.setPassword(pass);

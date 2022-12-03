@@ -25,16 +25,30 @@ public class FawrySystem {
 		return false;
 	}
 	
+	public boolean validate_UserAccount(String email,String password) {
+		ArrayList<User> users = data.getUsers();
+		for(User i :users) {
+			Account check = i.getAccount();
+			if(check.getEmail()==email && check.getPassword()==password) {
+				return true;
+			}
+		}
+		return false;
+	}
 	public ArrayList<Refund> requestRefunds(){
 		return data.getRefunds();
 	}
 	
 	public void accRefund(int index) {
-		// refund = acc, trans = cancelled.
+		
 		data.acceptRefund(index);
 	}
 	public void rejecRefund(int index) {
-		// refund = acc, trans = cancelled.
+		
 		data.rejectRefund(index);
+	}
+	
+	public void addUser(User user) {
+		data.addUser(user);
 	}
 }

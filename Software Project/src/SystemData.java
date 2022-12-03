@@ -36,11 +36,21 @@ public class SystemData {
 		return admins;
 	}
 	
+	public ArrayList<User> getUsers(){
+		return users;
+	}
+	
 	public ArrayList<Refund> getRefunds(){
 		return refunds;
 	}
-	
 	public void acceptRefund(int index) {
+		// refund = delete, transaction = cancelled.
+		refunds.get(index-1).getTrans().setState("Cancelled");
+		refunds.remove(index-1);
 		
+	}
+	public void rejectRefund(int index){
+		// refund = delete, transaction = still completed.
+		refunds.remove(index-1);
 	}
 }
