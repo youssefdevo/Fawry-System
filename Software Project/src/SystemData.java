@@ -26,6 +26,10 @@ public class SystemData {
    
 	void addUser(User user) {
 	   this.users.add(user);
+	} 
+	public Arraylist<Admin> getAdmins(){
+		
+		return Admins;
 	}
 
 }
