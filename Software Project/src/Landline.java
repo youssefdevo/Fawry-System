@@ -10,10 +10,13 @@ public class Landline implements Service {
 		if(request==1)
 		{
 			receipt = new MonthlyReceipt();
+			receipt.landLineReceiptForm();
 		}
 		else if(request==2)
 		{
 			receipt = new QuarterReceipt();
+			receipt.landLineReceiptForm();
+
 		}
 		
 	}

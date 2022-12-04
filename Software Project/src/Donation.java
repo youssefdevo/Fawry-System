@@ -9,18 +9,21 @@ public class Donation implements Service {
 		int request = in.nextInt();
 		if(request==1)
 		{
-			place=new School();
-			place.schoolForm();
+			School s = null;
+			place=(DonationPlace)s;
+			place.donationForm();
 		}
 		else if(request==2)
 		{
-			place=new NGOs();
-			place.NGOForm();
+			NGOs n = null;
+			place=(DonationPlace)n;
+			place.donationForm();
 		}
 		else if(request==3)
 		{
-			place=new Hospital();
-			place.hospitalsForm();
+			Hospital h = null;
+			place=(DonationPlace)h;
+			place.donationForm();
 		}
 	
 		
