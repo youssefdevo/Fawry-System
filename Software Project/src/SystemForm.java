@@ -58,24 +58,35 @@ public class SystemForm {
 		System.out.println("4- Donations.");
 		System.out.println("5- View Discount.");
 		System.out.println("6- Refund Request.");
+		System.out.println("7- Log out");
 
 		int request = in.nextInt();
 		
 		if(request == 1) {
 			service = new MobileRecharge();
 			service.serviceForm();
+
+			selectPayment();
+			//Payment.pay();
 		}
 		else if(request == 2) {
 			service = new InternetPayment();
 			service.serviceForm();
+
+			selectPayment();
+			//Payment.pay();
 		}
 		else if(request == 3) {
 			service = new Landline();
 			service.serviceForm();
+			selectPayment();
+			//Payment.pay();
 		}
 		else if(request == 4) {
 			service = new Donation();
 			service.serviceForm();
+			selectPayment(); 
+			//Payment.pay();
 		}
 		else if(request==5)
 		{
@@ -85,8 +96,9 @@ public class SystemForm {
 		{
 			
 		}
-		selectPayment();
-		//Payment.pay();
+		else if(request == 7) {
+			start();
+		}
 	}
 	public void selectPayment()
 	{

@@ -1,9 +1,8 @@
 
 public class Cash implements Payment{
 
-	public void pay() {
-		// TODO Auto-generated method stub
-		
+	public void pay(double amount) {
+		System.out.println("Transaction completed successfully");
 	}
 
 }

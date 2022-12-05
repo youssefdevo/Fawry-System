@@ -3,7 +3,7 @@ import java.util.Scanner;
 
 public class Etisalat_Internet implements Etisalat,Provider{
 	private Scanner in  = new Scanner(System.in);
-	private int amount;
+	private double amount;
 	public void etisalat_InternetFrom()
 	{
 		System.out.print("--Hello in Etisalat Internet--");
@@ -20,7 +20,7 @@ public class Etisalat_Internet implements Etisalat,Provider{
 	{
 		etisalat_InternetFrom();
 	}
-	public int getAmount()
+	public double getAmount()
 	{
 		return amount;
 	}

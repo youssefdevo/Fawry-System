@@ -11,7 +11,7 @@ public class Vodafone_Internet implements Vodafone,Provider{
 		String email=in.next();
 		System.out.print("Please Enter Your Password: ");
 		String password=in.next();
-		System.out.print("Please Enter : ");
+		System.out.print("Please Enter amount: ");
 		amount=in.nextInt();
 	}
 	

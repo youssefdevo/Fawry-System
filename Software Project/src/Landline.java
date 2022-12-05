@@ -5,7 +5,7 @@ public class Landline implements Service {
 	private LandlineReceipt   receipt;
 	public void landlineForm()
 	{
-		System.out.println("1- Monthly receipt.\n 2- Quarter receipt.");
+		System.out.println("1- Monthly receipt.\n2- Quarter receipt.");
 		int request = in.nextInt();
 		if(request==1)
 		{
@@ -24,8 +24,8 @@ public class Landline implements Service {
 	{
 		landlineForm();
 	}
-	@Override
-	public int getAmount() {
+	
+	public double getAmount() {
 		return receipt.getAmount();
 	}
 }

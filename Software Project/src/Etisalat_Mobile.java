@@ -3,7 +3,7 @@ import java.util.Scanner;
 
 public class Etisalat_Mobile implements Etisalat,Provider{
 	private Scanner in  = new Scanner(System.in);
-	private int amount;
+	private double amount;
 	public void etisalat_MobileFrom()
 	{
 		System.out.print("--Hello in Etisalat Mobile Recharge--");
@@ -18,7 +18,7 @@ public class Etisalat_Mobile implements Etisalat,Provider{
 	{
 		etisalat_MobileFrom();
 	}
-	public int getAmount()
+	public double getAmount()
 	{
 		return amount;
 	}

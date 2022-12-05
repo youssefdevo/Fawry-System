@@ -3,11 +3,11 @@ import java.util.Scanner;
 
 public class MonthlyReceipt implements LandlineReceipt {
 	private Scanner in = new Scanner(System.in);
-	private int amount;
+	private double amount;
 	public void monthlyReceoptForm()
 	{
 		System.out.println("you have pay for monthly rececpit :");
-		amount=in.nextInt();
+		amount=in.nextDouble();
 		System.out.println("Successfully");
 
 		
@@ -16,7 +16,7 @@ public class MonthlyReceipt implements LandlineReceipt {
 	{
 		monthlyReceoptForm();
 	}
-	public int getAmount()
+	public double getAmount()
 	{
 		return amount;
 	}

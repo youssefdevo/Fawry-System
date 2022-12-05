@@ -1,6 +1,7 @@
 
 public interface Payment {
 
-	public void pay();
+	public void pay(double amount);
+	
 
 }
