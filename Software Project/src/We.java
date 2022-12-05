@@ -1,4 +1,5 @@
 
-public class We implements Provider{
+public interface We extends Provider{
+	public int getAmount();
 
 }

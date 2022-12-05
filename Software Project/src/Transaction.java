@@ -23,7 +23,7 @@ public class Transaction {
 		this.amount = amount;
 	}
 	
-	public String setState() {
+	public String getState() {
 		return state;
 	}
 	
@@ -35,16 +35,16 @@ public class Transaction {
 		return username;
 	}
 	
-	public void setUsername(String username) {
-		this.username = username;
+	public void setUsername(String name) {
+		this.username = name;
 	}
 	
 	public String getService_type() {
 		return service_type;
 	}
 		
-	public void setService_type(String service_type) {
-		this.service_type = service_type;
+	public void setService_type(String type) {
+		this.service_type = type;
 	}
 	
 		

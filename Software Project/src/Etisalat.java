@@ -1,4 +1,5 @@
 
-public class Etisalat implements Provider{
+public interface Etisalat extends Provider{
+	public int getAmount();
 
 }

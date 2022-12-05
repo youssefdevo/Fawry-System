@@ -5,6 +5,7 @@ public class SystemForm {
 	private Scanner in  = new Scanner(System.in);
 	private FawrySystem controller = FawrySystem.getInstance();
 	private Service service;
+	private Payment payment;
 	public void start() {
 		System.out.println("1- Admin (press 1)\n 2- User (press 2).\n");
 		int request = in.nextInt();
@@ -55,25 +56,56 @@ public class SystemForm {
 		System.out.println("2- Internet Payment services");
 		System.out.println("3- Landline services.");
 		System.out.println("4-  Donations.");
-		System.out.println("5-  My Discount.");
+		System.out.println("5-  View Discount.");
+		System.out.println("6-  Refund Request.");
+
 		int request = in.nextInt();
 		
 		if(request == 1) {
 			service = new MobileRecharge();
-			service.mobileRecharageForm();
+			service.serviceForm();
 		}
 		else if(request == 2) {
 			service = new InternetPayment();
-			service.internetForm();
+			service.serviceForm();
 		}
 		else if(request == 3) {
 			service = new Landline();
-			service.landLineForm();
+			service.serviceForm();
 		}
 		else if(request == 4) {
 			service = new Donation();
-			service.donationForm();
-		}	
+			service.serviceForm();
+		}
+		else if(request==5)
+		{
+			
+		}
+		else if(request==6)
+		{
+			
+		}
+		selectPayment();
+		//Payment.pay();
+	}
+	public void selectPayment()
+	{
+		System.out.println("1- CreditCard");
+		System.out.println("2- Cash");
+		System.out.println("3- Wallet.");
+		int request = in.nextInt();
+		if(request==1)
+		{
+			payment=new CreditCard();
+		}
+		else if(request==2)
+		{
+			payment=new Cash();
+		}
+		else if(request==3)
+		{
+			payment=new Wallet();
+		}
 	}
 
 	

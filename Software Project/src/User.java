@@ -2,9 +2,9 @@ import java.util.ArrayList;
 
 public class User {
 	
-	private Account myAcc;
+	private Account myAccount;
 	private int overall_discount;
-	private int wallet;
+	private Wallet wallet;
 	private static ArrayList<Transaction> transactions;
 	
 	User(Account acc){
@@ -13,10 +13,10 @@ public class User {
 	}
 	
 	public Account getAccount() {
-		return myAcc;
+		return myAccount;
 	}
 	public void setAccount(Account myAcc) {
-		this.myAcc = myAcc;
+		this.myAccount = myAcc;
 	}
 	public int getOverall_discount() {
 		return overall_discount;
@@ -24,11 +24,8 @@ public class User {
 	public void setOverall_discount(int overall_discount) {
 		this.overall_discount = overall_discount;
 	}
-	public int getWallet() {
-		return wallet;
-	}
-	public void setWallet(int wallet) {
-		this.wallet = wallet;
+	public void chargeMyWallet(CreditCard card,double amount){
+		wallet.chargingWallet(card, amount);
 	}
 	public static ArrayList<Transaction> getTransactions() {
 		return transactions;

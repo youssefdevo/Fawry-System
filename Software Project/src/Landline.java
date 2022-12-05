@@ -20,4 +20,12 @@ public class Landline implements Service {
 		}
 		
 	}
+	public void serviceForm()
+	{
+		landlineForm();
+	}
+	@Override
+	public int getAmount() {
+		return receipt.getAmount();
+	}
 }

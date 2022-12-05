@@ -3,7 +3,7 @@ import java.util.Scanner;
 public class Donation implements Service {
 	private Scanner in  = new Scanner(System.in);
 	private DonationPlace place;
-	public void mobileRecharageForm()
+	public void donationForm()
 	{
 		System.out.println("1- Schools.\n 2- NGOs. \n 3- Hospitals.");
 		int request = in.nextInt();
@@ -25,7 +25,9 @@ public class Donation implements Service {
 			place=(DonationPlace)h;
 			place.donationForm();
 		}
-	
-		
+	}
+	public void serviceForm()
+	{
+		donationForm();
 	}
 }

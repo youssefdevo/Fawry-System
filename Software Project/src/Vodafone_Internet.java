@@ -1,8 +1,9 @@
 import java.util.Scanner;
 
 
-public class Vodafone_Internet extends Vodafone{
+public class Vodafone_Internet implements Vodafone,Provider{
 	private Scanner in  = new Scanner(System.in);
+	private int amount;
 	public void vodafone_InternetFrom()
 	{
 		System.out.print("--Hello in Vodafone Internet--");
@@ -11,12 +12,16 @@ public class Vodafone_Internet extends Vodafone{
 		System.out.print("Please Enter Your Password: ");
 		String password=in.next();
 		System.out.print("Please Enter : ");
-		int cost=in.nextInt();
+		amount=in.nextInt();
 	}
 	
 	public void providerForm()
 	{
 		vodafone_InternetFrom();
+	}
+	public int getAmount()
+	{
+		return amount;
 	}
 	
 }

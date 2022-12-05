@@ -1,4 +1,5 @@
 
-public class Orange implements Provider{
+public interface Orange extends Provider{
+	public int getAmount();
 
 }

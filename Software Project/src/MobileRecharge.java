@@ -30,5 +30,10 @@ public class MobileRecharge implements Service {
 		}
 		
 	}
+	public void serviceForm()
+	{
+		mobileRecharageForm();
+	}
+	
 	
 }

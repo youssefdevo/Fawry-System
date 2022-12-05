@@ -30,5 +30,9 @@ public class InternetPayment implements Service {
 		}
 		
 	}
+	public void serviceForm()
+	{
+		internetForm();
+	}
 
 }
