@@ -11,7 +11,8 @@ public class SystemData {
 	private SystemData(){
 		admins = new ArrayList<>();
 		users = new ArrayList<>();
-		services=new ArrayList<>();
+		services = new ArrayList<>();
+		refunds  = new ArrayList<>();
 		Admin defultAdmin = new Admin("admin","admin@gmail.com","123");
 		admins.add(defultAdmin);
 	}
@@ -38,7 +39,7 @@ public class SystemData {
 		return admins;
 	}
 	
-	public ArrayList<User> getUsers(){
+	public static ArrayList<User> getUsers(){
 		return users;
 	}
 	
@@ -49,17 +50,21 @@ public class SystemData {
 		// refund = delete, transaction = cancelled.
 		refunds.get(index-1).getTrans().setState("Cancelled");
 		refunds.remove(index-1);
+
+		
 		
 	}
 	public void rejectRefund(int index){
 		// refund = delete, transaction = still completed.
+		refunds.get(index-1).getTrans().setState("Completed");
 		refunds.remove(index-1);
 	}
 	public void addService(Service s)
 	{
 		services.add(s);
 	}
-	public ArrayList<Service> getServices(){
+	public static ArrayList<Service> getServices(){
 		return services;
 	}
+	
 }

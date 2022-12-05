@@ -1,7 +1,7 @@
 
-public class Specific implements Discount{
+public class Specific extends Discount{
 	//Discount discount;
-	public int discount_amount=0;
+
 	public void setDiscount(int dis)
 	{
 		discount_amount=dis;
@@ -12,7 +12,11 @@ public class Specific implements Discount{
 	}
 	public double applyDiscount()
 	{
-		return discount_amount;
+		return getDiscount_amount();
+	}
+	@Override
+	protected void wrapDiscount(Discount discount) {
+		
 	}
 
 }

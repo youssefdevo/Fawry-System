@@ -47,5 +47,11 @@ public class Transaction {
 		this.service_type = type;
 	}
 	
+	public void printTransaction() {
+		System.out.println("User name: "+this.getUsername()+".");
+		System.out.println("Service type: "+this.getService_type()+".");
+		System.out.println("Amount: "+this.getAmount()+".");
+		System.out.println("Transaction state: "+this.getState()+".");
+	}
 		
 }

@@ -12,7 +12,7 @@ public class Admin {
 	}
 	
 	public void notifySpecific(String serviceName,Discount discount) {
-		for(Service s:data.getServices()) {
+		for(Service s:SystemData.getServices()) {
 			String name = s.getName();
 			name = name.toLowerCase();
 			serviceName = serviceName.toLowerCase();
@@ -22,7 +22,7 @@ public class Admin {
 		}
 	}
 	public void notifyOverAll(Discount dis) {
-		for(User u:data.getUsers()) {
+		for(User u:SystemData.getUsers()) {
 			if(u.getTransactions().size()==0)
 				u.updateDiscount(dis);
 		}

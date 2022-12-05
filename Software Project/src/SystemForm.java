@@ -7,6 +7,7 @@ public class SystemForm {
 	private Service service;
 	private Payment payment;
 	public void start() {
+		
 		System.out.println("1- Admin (press 1)\n2- User (press 2).");
 		int request = in.nextInt();
 		if(request == 1) {
@@ -19,7 +20,11 @@ public class SystemForm {
 				userLogin();
 			}
 			else if(request == 2) {
-				userSignup();			}
+				userSignup();			
+			}
+			else {
+				start();
+			}
 		}
 	}
 	
@@ -27,7 +32,7 @@ public class SystemForm {
 	
 	public void adminForm() {
 		System.out.println("1- List all refunds.\n"
-				+ "2- Add Discount");
+				+ "2- Add Discount\n3- log out.");
 				
 		int request = in.nextInt();
 		if(request == 1) {
@@ -36,9 +41,14 @@ public class SystemForm {
 				printRefund(r);
 			}
 			refundAction(refunds);
+			adminForm();
 		}
 		else if (request == 2) {
 			discountForm();
+			adminForm();
+		}
+		else if(request == 3) {
+			start();
 		}
 		else {
 			adminForm();
@@ -79,6 +89,15 @@ public class SystemForm {
 		}
 		else if(request==6)
 		{
+			controller.viewTransactions();
+			int index = in.nextInt();
+			int size = controller.getCurrentUser().getTransactions().size();
+			if(index>size || index < 1 ) {
+				System.out.println("invalid request..");
+				userForm();
+			}
+			makeRefund(index-1);
+			userForm();
 			
 		}
 		else if(request == 7) {
@@ -86,15 +105,7 @@ public class SystemForm {
 		}
 	}
 	
-	public void completeProcess() {
-		service.serviceForm();
-		selectPayment(); 
-		double price = payment.price();
-		System.out.println("The cost of " + service.getName()+"= " + price);
-		payment.pay(price);
-		completeTransaction(service.getName() ,price);
-		userForm();
-	}
+	
 	public void selectPayment()
 	{
 		System.out.println("1- CreditCard");
@@ -103,16 +114,25 @@ public class SystemForm {
 		int request = in.nextInt();
 		if(request==1)
 		{
-			payment=new CreditCard(service);
+			payment=new CreditCard(service,controller.getCurrentUser());
 		}
 		else if(request==2)
 		{
-			payment=new Cash(service);
+			payment=new Cash(service,controller.getCurrentUser());
 		}
 		else if(request==3)
 		{
-			payment=new Wallet(service);
+			payment=new Wallet(service,controller.getCurrentUser());
 		}
+	}
+	public void completeProcess() {
+		service.serviceForm();
+		//selectPayment(); 
+		//double price = payment.price();
+		//System.out.println("The cost of " + service.getName()+"= " + price);
+		//payment.pay(price);
+		completeTransaction(service.getName() ,5);
+		userForm();
 	}
 
 	public void completeTransaction(String type ,double amount) {
@@ -120,14 +140,10 @@ public class SystemForm {
 	}
 	public void printRefund(Refund r) {
 		Transaction trans = r.getTrans();
-		printTransaction(trans);
+		trans.printTransaction();
 	}
 	
-	public void printTransaction(Transaction t) {
-		System.out.println("User name: "+t.getUsername()+".");
-		System.out.println("Service type: "+t.getService_type()+".");
-		System.out.println("Amount: "+t.getAmount()+".");
-	}
+	
 	public void refundAction(ArrayList<Refund> refunds) {
 		System.out.println("please select from 1 to "+ refunds.size() + "to select the refund\n or 0 to back.");
 		int request = in.nextInt();
@@ -241,7 +257,9 @@ public class SystemForm {
 		start();
 	}
 	
-	
+	public void makeRefund(int index) {
+		controller.addRefund(index);
+	}
 }
 
 

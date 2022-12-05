@@ -1,13 +1,13 @@
-import java.awt.Component;
-import java.awt.Rectangle;
-import java.awt.event.PaintEvent;
-
 
 public class Cash extends Payment{
 
-	Cash(Service s) {
-		super(s);
+	
+	
+
+	public Cash(Service service, User currentUser) {
+		super(service,currentUser);
 	}
+
 	public void pay(double amount) {
 		System.out.println("Transaction completed successfully\n\n");
 	}

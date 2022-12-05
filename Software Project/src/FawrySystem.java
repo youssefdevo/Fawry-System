@@ -8,9 +8,14 @@ public class FawrySystem {
   
 	private static FawrySystem instance = new FawrySystem();
 
-	//make the constructor private so that this class cannot be instantiated..
 	private FawrySystem(){
 		data=SystemData.getInstance();
+		Service s1=new MobileRecharge(); 
+		data.addService(s1);
+		Service s2=new InternetPayment() ; 
+		data.addService(s2);
+		Service s3=new Landline(); 
+		data.addService(s3);
 	}
 
   //Get the only object available
@@ -22,7 +27,7 @@ public class FawrySystem {
 		ArrayList<Admin>admins = data.getAdmins();
 		for(Admin i :admins) {
 			if(i.getAccount().getUsername().equals(username) && i.getAccount().getPassword().equals(password)) {
-				this.setCurrentAdmin(currentAdmin);
+				this.setCurrentAdmin(i);
 				return true;
 			}
 		}
@@ -46,6 +51,7 @@ public class FawrySystem {
 	public void accRefund(int index) {
 		
 		data.acceptRefund(index);
+		currentUser.getWallet().addBalance(currentUser.getTransactions().get(index).getAmount());
 	}
 	public void rejecRefund(int index) {
 		
@@ -68,15 +74,7 @@ public class FawrySystem {
 		Transaction transaction = new Transaction(currentUser.getAccount().getUsername(),type,amount);
 		currentUser.addTransaction(transaction);
 	}
-	public void addservices()
-	{
-		Service s1=new MobileRecharge(); 
-		data.addService(s1);
-		Service s2=new InternetPayment() ; 
-		data.addService(s2);
-		Service s3=new Landline(); 
-		data.addService(s3);
-	}
+	
 
 	public void viewDiscounts() {
 		for(Service d:data.getServices())
@@ -103,5 +101,19 @@ public class FawrySystem {
 		this.currentAdmin = currentAdmin;
 	}
 
+	public void viewTransactions() {
+		int c = 1;
+		for(Transaction t:currentUser.getTransactions()) {
+			System.out.print((c++)+"- ");
+			t.printTransaction();
+		}
+	}
+
+	public void addRefund(int index) {
+		currentUser.getTransactions().get(index).setState("Pending");
+		Refund r = new Refund(currentUser.getTransactions().get(index));
+		data.addRefund(r);
+		
+	}
 	
 }

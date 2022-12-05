@@ -2,14 +2,13 @@
 public class Wallet extends Payment {
 	private CreditCard creditcard;
 	private double balance;
-	Wallet(Service s)
-	{
-		super(s);
-		balance=0;
-	}
+	
 	Wallet()
 	{
 		balance=0;
+	}
+	Wallet(Service service, User currentUser) {
+		super(service,currentUser);
 	}
 	public void pay(double amount) {
 			
@@ -36,6 +35,9 @@ public class Wallet extends Payment {
 	}
 	public void setBalance(double balance) {
 		this.balance = balance;
+	}
+	public void addBalance(double b) {
+		balance+=b;
 	}
 
 }

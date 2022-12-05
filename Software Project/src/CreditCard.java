@@ -2,12 +2,12 @@ import java.util.Scanner;
 
 
 public class CreditCard extends Payment{
-	CreditCard(Service s) {
-		super(s);
-		// TODO Auto-generated constructor stub
-	}
+	
 	private String creditCardNumber;
 	private Scanner in = new Scanner(System.in);
+	public CreditCard(Service service, User currentUser) {
+		super(service,currentUser);
+	}
 	public void pay(double amount) {
 		System.out.println("Enter the credit card number:");
 		// TODO Auto-generated method stub

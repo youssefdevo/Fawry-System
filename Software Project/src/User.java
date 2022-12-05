@@ -40,5 +40,7 @@ public class User {
 		transactions.add(trans);
 	}
 
-	
+	public Wallet getWallet() {
+		return wallet;
+	}
 }

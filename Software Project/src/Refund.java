@@ -3,8 +3,9 @@ public class Refund {
 	private Transaction trans;
 	private String state;
 	
-	Refund(){
+	Refund(Transaction t){
 		state = "Pending";
+		this.trans = t;
 	}
 	public Transaction getTrans() {
 		return trans;
