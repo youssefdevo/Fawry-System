@@ -10,7 +10,7 @@ public class SystemData {
 	private SystemData(){
 		admins = new ArrayList<>();
 		users = new ArrayList<>();
-		Admin defultAdmin = new Admin("admin","123","admin@gmail.com");
+		Admin defultAdmin = new Admin("admin","admin@gmail.com","123");
 		admins.add(defultAdmin);
 	}
 

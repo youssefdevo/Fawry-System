@@ -7,13 +7,13 @@ public class SystemForm {
 	private Service service;
 	private Payment payment;
 	public void start() {
-		System.out.println("1- Admin (press 1)\n 2- User (press 2).\n");
+		System.out.println("1- Admin (press 1)\n2- User (press 2).");
 		int request = in.nextInt();
 		if(request == 1) {
 			adminLogin();
 		}
 		else if(request == 2) {
-			System.out.println("1- Log in (press 1)\n 2- Sign Up (press 2).\n");
+			System.out.println("1- Log in (press 1)\n2- Sign Up (press 2).");
 			int enter = in.nextInt();
 			if(enter == 1) {
 				userLogin();
@@ -27,7 +27,7 @@ public class SystemForm {
 	
 	public void adminForm() {
 		System.out.println("1- List all refunds.\n"
-				+ " 2- Add Discount");
+				+ "2- Add Discount");
 				
 		int request = in.nextInt();
 		if(request == 1) {
@@ -55,9 +55,9 @@ public class SystemForm {
 		System.out.println("1- Mobile recharge services");
 		System.out.println("2- Internet Payment services");
 		System.out.println("3- Landline services.");
-		System.out.println("4-  Donations.");
-		System.out.println("5-  View Discount.");
-		System.out.println("6-  Refund Request.");
+		System.out.println("4- Donations.");
+		System.out.println("5- View Discount.");
+		System.out.println("6- Refund Request.");
 
 		int request = in.nextInt();
 		
@@ -153,13 +153,14 @@ public class SystemForm {
 	}
 	
 	public void adminLogin() {
-		System.out.print("Enter E-mail: ");
-		String email = in.nextLine();
+		Scanner in2 = new Scanner(System.in);
+		System.out.println("Enter Username: ");
+		String username = in2.nextLine();
 		
-		System.out.print("Enter Password: ");
-		String password = in.nextLine();
+		System.out.println("Enter Password: ");
+		String password = in2.nextLine();
 		
-		if(controller.validate_AdminAccount(email,password)) {
+		if(controller.validate_AdminAccount(username,password)) {
 			System.out.println("Logged in successfully.");
 			adminForm();
 		}
@@ -169,14 +170,16 @@ public class SystemForm {
 		}
 	}
 	
+	@SuppressWarnings("resource")
 	public void userLogin() {
-		System.out.print("Enter E-mail: ");
-		String email = in.nextLine();
+		Scanner in2 = new Scanner(System.in);
+		System.out.println("Enter Username:");
+		String username = in2.nextLine();
 		
-		System.out.print("Enter Password: ");
-		String password = in.nextLine();
+		System.out.println("Enter Password:");
+		String password = in2.nextLine();
 		
-		if(controller.validate_UserAccount(email,password)) {
+		if(controller.validate_UserAccount(username,password)) {
 			System.out.println("Logged in successfully.");
 			userForm();
 		}
@@ -186,17 +189,20 @@ public class SystemForm {
 		}
 	}
 	
+	@SuppressWarnings("resource")
 	public void userSignup() {
+		Scanner in2 = new Scanner(System.in);
 		String username, mail, password;
 		System.out.println("Enter username: ");
-		username = in.nextLine();
+		username = in2.nextLine();
 		System.out.println("Enter E-mail: ");
-		mail = in.nextLine();
+		mail = in2.nextLine();
 		System.out.println("Enter Password: ");
-		password = in.nextLine();
+		password = in2.nextLine();
 		Account account = new Account(username,mail,password);
 		User user = new User(account);
 		controller.addUser(user);
+		start();
 	}
 	
 	
