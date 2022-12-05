@@ -1,7 +1,11 @@
 import java.util.Scanner;
 
 
-public class CreditCard implements Payment{
+public class CreditCard extends Payment{
+	CreditCard(Service s) {
+		super(s);
+		// TODO Auto-generated constructor stub
+	}
 	private String creditCardNumber;
 	private Scanner in = new Scanner(System.in);
 	public void pay(double amount) {

@@ -1,10 +1,11 @@
 
-public class Wallet implements Payment {
+public class Wallet extends Payment {
 	private CreditCard creditcard;
 	private double balance;
-	Wallet(){
-		setBalance(0);
-		
+	Wallet(Service s)
+	{
+		super(s);
+		balance=0;
 	}
 	public void pay(double amount) {
 			
