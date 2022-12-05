@@ -30,4 +30,8 @@ public class Donation implements Service {
 	{
 		donationForm();
 	}
+	@Override
+	public double getAmount() {
+		return place.getAmount();
+	}
 }

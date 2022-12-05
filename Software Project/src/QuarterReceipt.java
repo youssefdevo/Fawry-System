@@ -3,7 +3,7 @@ import java.util.Scanner;
 
 public class QuarterReceipt implements LandlineReceipt {
 	private Scanner in = new Scanner(System.in);
-	private int amount;
+	private double amount;
 	public void quarterReceoptForm()
 	{
 		System.out.println("you have pay for monthly rececpit :");
@@ -16,7 +16,7 @@ public class QuarterReceipt implements LandlineReceipt {
 	{
 		quarterReceoptForm();
 	}
-	public int getAmount()
+	public double getAmount()
 	{
 		return amount;
 	}

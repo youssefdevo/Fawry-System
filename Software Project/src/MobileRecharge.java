@@ -35,5 +35,8 @@ public class MobileRecharge implements Service {
 		mobileRecharageForm();
 	}
 	
+	public double getAmount() {
+		return provider.getAmount();
+	}
 	
 }

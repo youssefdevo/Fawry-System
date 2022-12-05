@@ -34,5 +34,9 @@ public class InternetPayment implements Service {
 	{
 		internetForm();
 	}
+	@Override
+	public double getAmount() {
+		return provider.getAmount();
+	}
 
 }

@@ -67,26 +67,30 @@ public class SystemForm {
 			service.serviceForm();
 
 			selectPayment();
-			//Payment.pay();
+			payment.pay(service.getAmount());
+			completeTransaction("Mobile Recharge" ,service.getAmount());
 		}
 		else if(request == 2) {
 			service = new InternetPayment();
 			service.serviceForm();
 
 			selectPayment();
-			//Payment.pay();
+			payment.pay(service.getAmount());
+			completeTransaction("Internet Payment" ,service.getAmount());
 		}
 		else if(request == 3) {
 			service = new Landline();
 			service.serviceForm();
 			selectPayment();
-			//Payment.pay();
+			payment.pay(service.getAmount());
+			completeTransaction("Landline" ,service.getAmount());
 		}
 		else if(request == 4) {
 			service = new Donation();
 			service.serviceForm();
 			selectPayment(); 
-			//Payment.pay();
+			payment.pay(service.getAmount());
+			completeTransaction("Donation" ,service.getAmount());
 		}
 		else if(request==5)
 		{
@@ -100,6 +104,8 @@ public class SystemForm {
 			start();
 		}
 	}
+	
+	
 	public void selectPayment()
 	{
 		System.out.println("1- CreditCard");
@@ -120,7 +126,9 @@ public class SystemForm {
 		}
 	}
 
-	
+	public void completeTransaction(String type ,double amount) {
+		controller.addTransaction(type,amount);
+	}
 	public void printRefund(Refund r) {
 		Transaction trans = r.getTrans();
 		printTransaction(trans);

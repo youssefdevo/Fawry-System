@@ -33,5 +33,9 @@ public class User {
 	public static void setTransactions(ArrayList<Transaction> transactions) {
 		User.transactions = transactions;
 	}
+	public void addTransaction(Transaction trans) {
+		transactions.add(trans);
+	}
+
 	
 }

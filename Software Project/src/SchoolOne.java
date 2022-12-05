@@ -3,6 +3,7 @@ import java.util.Scanner;
 
 public class SchoolOne implements School, DonationPlace {
 	private Scanner in = new Scanner(System.in);
+	private double amount;
 	public void donationForm()
 	{
 		schoolForm();
@@ -14,10 +15,12 @@ public class SchoolOne implements School, DonationPlace {
 	public void schoolOneForm()
 	{
 		System.out.println("Place Enter amount of Donation :");
-		int amount = in.nextInt();
+		amount = in.nextDouble();
 		System.out.println("Thanks for your Donation.");
-
-		
+	}
+	@Override
+	public double getAmount() {
+		return amount;
 	}
 
 }

@@ -31,6 +31,7 @@ public class FawrySystem {
 		ArrayList<User> users = data.getUsers();
 		for(User i :users) {
 			if(i.getAccount().getUsername().equals(username) && i.getAccount().getPassword().equals(password)) {
+				this.setCurrentUser(i);
 				return true;
 			}
 		}
@@ -51,5 +52,18 @@ public class FawrySystem {
 	
 	public void addUser(User user) {
 		data.addUser(user);
+	}
+
+	public User getCurrentUser() {
+		return currentUser;
+	}
+
+	public void setCurrentUser(User currentUser) {
+		this.currentUser = currentUser;
+	}
+
+	public void addTransaction(String type, double amount) {
+		Transaction transaction = new Transaction(currentUser.getAccount().getUsername(),type,amount);
+		currentUser.addTransaction(transaction);
 	}
 }
