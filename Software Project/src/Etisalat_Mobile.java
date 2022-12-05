@@ -6,11 +6,11 @@ public class Etisalat_Mobile implements Etisalat,Provider{
 	private double amount;
 	public void etisalat_MobileFrom()
 	{
-		System.out.print("--Hello in Etisalat Mobile Recharge--");
-		System.out.print("Please Enter your phone number: ");
+		System.out.println("--Hello in Etisalat Mobile Recharge--");
+		System.out.println("Please Enter your phone number: ");
 		String phone=in.next();
-		System.out.print("Please Enter The value of the balance that you want to charge: ");
-		amount=in.nextInt();
+		System.out.println("Please Enter The value of the balance that you want to charge: ");
+		amount=in.nextDouble();
 
 		
 	}

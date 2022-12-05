@@ -2,7 +2,7 @@ import java.util.ArrayList;
 
 
 public class FawrySystem {
-   SystemData data;
+  private   SystemData data;
 	private static FawrySystem instance = new FawrySystem();
 
 	//make the constructor private so that this class cannot be instantiated..

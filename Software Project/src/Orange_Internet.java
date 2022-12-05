@@ -3,16 +3,16 @@ import java.util.Scanner;
 
 public class Orange_Internet implements Orange,Provider{
 	private Scanner in  = new Scanner(System.in);
-	private int amount;
+	private double amount;
 	public void orange_InternetFrom()
 	{
-		System.out.print("--Hello in Orange Internet--");
-		System.out.print("Please Enter your E-mail: ");
+		System.out.println("--Hello in Orange Internet--");
+		System.out.println("Please Enter your E-mail: ");
 		String email=in.next();
-		System.out.print("Please Enter Your Password: ");
+		System.out.println("Please Enter Your Password: ");
 		String password=in.next();
-		System.out.print("Please Enter : ");
-		amount=in.nextInt();
+		System.out.println("Please Enter : ");
+		amount=in.nextDouble();
 		
 	}
 	
@@ -20,7 +20,7 @@ public class Orange_Internet implements Orange,Provider{
 	{
 		orange_InternetFrom();
 	}
-	public int getAmount()
+	public double getAmount()
 	{
 		return amount;
 	}
