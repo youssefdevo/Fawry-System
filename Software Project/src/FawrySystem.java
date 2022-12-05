@@ -8,7 +8,7 @@ public class FawrySystem {
   
 	private static FawrySystem instance = new FawrySystem();
 
-	private FawrySystem(){
+	FawrySystem(){
 		data=SystemData.getInstance();
 	}
 
@@ -108,9 +108,6 @@ public class FawrySystem {
 		Refund r = new Refund(currentUser.getTransactions().get(index));
 		data.addRefund(r);
 		
-	}
-	public void ff() {
-		System.out.println("ur balance = " + currentUser.getWallet().getBalance());
 	}
 
 	public void chargeWallet(double amount) {

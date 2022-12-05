@@ -136,7 +136,6 @@ public class SystemForm {
 		{
 			payment=new Wallet(service,controller.getCurrentUser());
 		}
-		controller.ff();
 	}
 	public void completeProcess() {
 		service.serviceForm();

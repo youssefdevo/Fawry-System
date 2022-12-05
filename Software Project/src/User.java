@@ -4,7 +4,7 @@ public class User {
 	
 	private Account myAccount;
 	private Discount overall_discount;
-	private static Wallet wallet;
+	private  Wallet wallet;
 	private static ArrayList<Transaction> transactions;
 	
 	
