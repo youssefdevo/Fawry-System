@@ -3,6 +3,8 @@ import java.util.ArrayList;
 
 public class FawrySystem {
   private   SystemData data;
+  private User currentUser;
+  
 	private static FawrySystem instance = new FawrySystem();
 
 	//make the constructor private so that this class cannot be instantiated..
