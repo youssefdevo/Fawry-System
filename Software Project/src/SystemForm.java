@@ -98,7 +98,7 @@ public class SystemForm {
 		}
 		else if(request==5)
 		{
-			
+			controller.viewDiscounts();
 		}
 		else if(request==6)
 		{

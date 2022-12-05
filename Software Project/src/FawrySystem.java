@@ -66,4 +66,22 @@ public class FawrySystem {
 		Transaction transaction = new Transaction(currentUser.getAccount().getUsername(),type,amount);
 		currentUser.addTransaction(transaction);
 	}
+	public void addservices()
+	{
+		Service s1=new MobileRecharge(); 
+		data.addService(s1);
+		Service s2=new InternetPayment() ; 
+		data.addService(s2);
+		Service s3=new Landline(); 
+		data.addService(s3);
+	}
+
+	public void viewDiscounts() {
+		for(Service d:data.getServices())
+		{
+			if(d.getName()=="Donation")continue;
+			System.out.println(d.getName()+": "+d.getDiscount().getDiscount_amount());
+		}
+		
+	}
 }

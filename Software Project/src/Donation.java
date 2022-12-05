@@ -1,8 +1,13 @@
 import java.util.Scanner;
 
 public class Donation implements Service {
+	private String name;
 	private Scanner in  = new Scanner(System.in);
 	private DonationPlace place;
+	Donation ()
+	{
+		name="Donation";
+	}
 	public void donationForm()
 	{
 		System.out.println("1- Schools.\n 2- NGOs. \n 3- Hospitals.");
@@ -46,6 +51,21 @@ public class Donation implements Service {
 	@Override
 	public double getAmount() {
 		return place.getAmount();
+	}
+	@Override
+	public Discount getDiscount() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+	@Override
+	public void setDiscount(Discount discount) {
+		// TODO Auto-generated method stub
+		
+	}
+	@Override
+	public String getName() {
+		// TODO Auto-generated method stub
+		return name;
 	}
 	
 	

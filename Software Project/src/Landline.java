@@ -1,8 +1,13 @@
 import java.util.Scanner;
 
 public class Landline implements Service {
+	private String name;
 	private Scanner in  = new Scanner(System.in);
 	private LandlineReceipt   receipt;
+	Landline()
+	{
+		name="Landline";
+	}
 	public void landlineForm()
 	{
 		System.out.println("1- Monthly receipt.\n2- Quarter receipt.");
@@ -27,5 +32,20 @@ public class Landline implements Service {
 	
 	public double getAmount() {
 		return receipt.getAmount();
+	}
+	@Override
+	public Discount getDiscount() {
+		// TODO Auto-generated method stub
+		return receipt.getDiscount();
+	}
+	@Override
+	public void setDiscount(Discount discount) {
+		receipt.setDiscount(discount);
+		
+	}
+	@Override
+	public String getName() {
+		// TODO Auto-generated method stub
+		return name;
 	}
 }

@@ -5,11 +5,13 @@ public class SystemData {
 	private static ArrayList<User>users;
 	private static ArrayList<Refund>refunds;
 	private static SystemData instance = new SystemData();
+	private static ArrayList<Service>services;
 
 	//make the constructor private so that this class cannot be instantiated..
 	private SystemData(){
 		admins = new ArrayList<>();
 		users = new ArrayList<>();
+		services=new ArrayList<>();
 		Admin defultAdmin = new Admin("admin","admin@gmail.com","123");
 		admins.add(defultAdmin);
 	}
@@ -52,5 +54,12 @@ public class SystemData {
 	public void rejectRefund(int index){
 		// refund = delete, transaction = still completed.
 		refunds.remove(index-1);
+	}
+	public void addService(Service s)
+	{
+		services.add(s);
+	}
+	public ArrayList<Service> getServices(){
+		return services;
 	}
 }

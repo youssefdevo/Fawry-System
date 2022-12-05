@@ -2,8 +2,14 @@ import java.util.Scanner;
 
 
 public class MobileRecharge implements Service {
+	private String name;
 	private Scanner in  = new Scanner(System.in);
 	private Provider provider ;
+	private Discount discount;
+	MobileRecharge()
+	{
+		name="MobileRecharge";
+	}
 	public void mobileRecharageForm()
 	{
 		System.out.println("1-WE.\n 2-Etisalat. \n 3-Orange. \n 4-Vodafone");
@@ -38,5 +44,17 @@ public class MobileRecharge implements Service {
 	public double getAmount() {
 		return provider.getAmount();
 	}
+	public Discount getDiscount() {
+		return discount;
+	}
+	public void setDiscount(Discount discount) {
+		this.discount = discount;
+	}
+	@Override
+	public String getName() {
+		// TODO Auto-generated method stub
+		return name;
+	}
+	
 	
 }
