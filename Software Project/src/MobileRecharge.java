@@ -47,7 +47,7 @@ public class MobileRecharge implements Service {
 	public Discount getDiscount() {
 		return discount;
 	}
-	public void setDiscount(Discount discount) {
+	public void updateDiscount(Discount discount) {
 		this.discount = discount;
 	}
 	@Override

@@ -8,9 +8,8 @@ public class Cash extends Payment{
 	Cash(Service s) {
 		super(s);
 	}
-
 	public void pay(double amount) {
-		System.out.println("Transaction completed successfully");
+		System.out.println("Transaction completed successfully\n\n");
 	}
 
 }

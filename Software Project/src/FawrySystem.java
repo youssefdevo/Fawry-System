@@ -2,8 +2,9 @@ import java.util.ArrayList;
 
 
 public class FawrySystem {
-  private   SystemData data;
+  private SystemData data;
   private User currentUser;
+  private Admin currentAdmin; 
   
 	private static FawrySystem instance = new FawrySystem();
 
@@ -21,6 +22,7 @@ public class FawrySystem {
 		ArrayList<Admin>admins = data.getAdmins();
 		for(Admin i :admins) {
 			if(i.getAccount().getUsername().equals(username) && i.getAccount().getPassword().equals(password)) {
+				this.setCurrentAdmin(currentAdmin);
 				return true;
 			}
 		}
@@ -84,4 +86,22 @@ public class FawrySystem {
 		}
 		
 	}
+
+	public void setOverAll(Discount dis) {
+		currentAdmin.notifyOverAll(dis);
+	}
+	
+	public void setSpecific(String name, Discount dis) {
+		currentAdmin.notifySpecific(name, dis);
+	}
+	
+	public Admin getCurrentAdmin() {
+		return currentAdmin;
+	}
+
+	public void setCurrentAdmin(Admin currentAdmin) {
+		this.currentAdmin = currentAdmin;
+	}
+
+	
 }

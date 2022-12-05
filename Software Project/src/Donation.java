@@ -58,7 +58,7 @@ public class Donation implements Service {
 		return null;
 	}
 	@Override
-	public void setDiscount(Discount discount) {
+	public void updateDiscount(Discount discount) {
 		// TODO Auto-generated method stub
 		
 	}

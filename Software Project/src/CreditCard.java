@@ -13,7 +13,7 @@ public class CreditCard extends Payment{
 		// TODO Auto-generated method stub
 		creditCardNumber = in.nextLine();
 
-		System.out.println("Transaction completed successfully");
+		System.out.println("Transaction completed successfully\n\n");
 	}
 
 }

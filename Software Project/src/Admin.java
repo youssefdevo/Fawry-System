@@ -2,6 +2,7 @@
 public class Admin {
 	private Account acc;
 	private SystemData data;
+	
 	Admin(String name,String mail,String password){
 		this.acc = new Account(name,mail,password);
 		data = SystemData.getInstance();
@@ -10,4 +11,20 @@ public class Admin {
 		return this.acc;
 	}
 	
+	public void notifySpecific(String serviceName,Discount discount) {
+		for(Service s:data.getServices()) {
+			String name = s.getName();
+			name = name.toLowerCase();
+			serviceName = serviceName.toLowerCase();
+			if(serviceName.contains(name)) {
+				s.updateDiscount(discount);
+			}
+		}
+	}
+	public void notifyOverAll(Discount dis) {
+		for(User u:data.getUsers()) {
+			if(u.getTransactions().size()==0)
+				u.updateDiscount(dis);
+		}
+	}
 }

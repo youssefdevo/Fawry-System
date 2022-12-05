@@ -7,13 +7,17 @@ public class Wallet extends Payment {
 		super(s);
 		balance=0;
 	}
+	Wallet()
+	{
+		balance=0;
+	}
 	public void pay(double amount) {
 			
 		 if(balance>=amount) {
-			 System.out.println("Transaction completed successfully");
+			 System.out.println("Transaction completed successfully\n\n");
 		 }
 		 else {
-			System.out.println("there is no enough money");
+			System.out.println("there is no enough money\n\n");
 		 }
 		
 	}

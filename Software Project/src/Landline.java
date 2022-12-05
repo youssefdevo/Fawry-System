@@ -39,7 +39,7 @@ public class Landline implements Service {
 		return receipt.getDiscount();
 	}
 	@Override
-	public void setDiscount(Discount discount) {
+	public void updateDiscount(Discount discount) {
 		receipt.setDiscount(discount);
 		
 	}

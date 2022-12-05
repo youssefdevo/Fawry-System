@@ -3,7 +3,7 @@ import java.util.ArrayList;
 public class User {
 	
 	private Account myAccount;
-	private int overall_discount;
+	private Discount overall_discount;
 	private Wallet wallet;
 	private static ArrayList<Transaction> transactions;
 	
@@ -12,6 +12,7 @@ public class User {
 		this.setAccount(acc);
 		transactions = new ArrayList<>();
 		wallet  =  new Wallet();
+		this.overall_discount = new OverAll();
 	}
 	
 	public Account getAccount() {
@@ -20,16 +21,16 @@ public class User {
 	public void setAccount(Account myAcc) {
 		this.myAccount = myAcc;
 	}
-	public int getOverall_discount() {
+	public Discount getOverall_discount() {
 		return overall_discount;
 	}
-	public void setOverall_discount(int overall_discount) {
+	public void updateDiscount(Discount overall_discount) {
 		this.overall_discount = overall_discount;
 	}
 	public void chargeMyWallet(CreditCard card,double amount){
 		wallet.chargingWallet(card, amount);
 	}
-	public static ArrayList<Transaction> getTransactions() {
+	public ArrayList<Transaction> getTransactions() {
 		return transactions;
 	}
 	public static void setTransactions(ArrayList<Transaction> transactions) {

@@ -50,7 +50,7 @@ public class InternetPayment implements Service {
 		return discount;
 	}
 	@Override
-	public void setDiscount(Discount discount) {
+	public void updateDiscount(Discount discount) {
 		this.discount=discount;
 		
 	}

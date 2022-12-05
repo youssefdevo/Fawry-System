@@ -2,6 +2,7 @@
 public abstract class Payment {
 	private Service service;
 	private Discount discount;
+	Payment(){}
 	Payment(Service s)
 	{
 		this.service=s;

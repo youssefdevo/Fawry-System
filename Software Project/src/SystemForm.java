@@ -45,12 +45,7 @@ public class SystemForm {
 		}
 		
 	}
-	/*
-	 * 
-	 * 1- Mobile recharge services.
-	 * 
-	 * 
-	 * */
+	
 	public void userForm() {
 		System.out.println("1- Mobile recharge services");
 		System.out.println("2- Internet Payment services");
@@ -64,37 +59,19 @@ public class SystemForm {
 		
 		if(request == 1) {
 			service = new MobileRecharge();
-			service.serviceForm();
-
-			selectPayment();
-			payment.pay(service.getAmount());
-			completeTransaction("Mobile Recharge" ,service.getAmount());
-			userForm();
+			completeProcess();
 		}
 		else if(request == 2) {
 			service = new InternetPayment();
-			service.serviceForm();
-		
-			selectPayment();
-			payment.pay(service.getAmount());
-			completeTransaction("Internet Payment" ,service.getAmount());
-			userForm();
+			completeProcess();
 		}
 		else if(request == 3) {
 			service = new Landline();
-			service.serviceForm();
-			selectPayment();
-			payment.pay(service.getAmount());
-			completeTransaction("Landline" ,service.getAmount());
-			userForm();
+			completeProcess();
 		}
 		else if(request == 4) {
 			service = new Donation();
-			service.serviceForm();
-			selectPayment(); 
-			payment.pay(service.getAmount());
-			completeTransaction("Donation" ,service.getAmount());
-			userForm();
+			completeProcess();
 		}
 		else if(request==5)
 		{
@@ -109,7 +86,15 @@ public class SystemForm {
 		}
 	}
 	
-	
+	public void completeProcess() {
+		service.serviceForm();
+		selectPayment(); 
+		double price = payment.price();
+		System.out.println("The cost of " + service.getName()+"= " + price);
+		payment.pay(price);
+		completeTransaction(service.getName() ,price);
+		userForm();
+	}
 	public void selectPayment()
 	{
 		System.out.println("1- CreditCard");
@@ -118,15 +103,15 @@ public class SystemForm {
 		int request = in.nextInt();
 		if(request==1)
 		{
-			payment=new CreditCard();
+			payment=new CreditCard(service);
 		}
 		else if(request==2)
 		{
-			payment=new Cash();
+			payment=new Cash(service);
 		}
 		else if(request==3)
 		{
-			payment=new Wallet();
+			payment=new Wallet(service);
 		}
 	}
 
@@ -173,7 +158,34 @@ public class SystemForm {
 	}
 	
 	public void discountForm() {
-		
+		Scanner in2 = new Scanner(System.in);
+		Discount dis;
+		System.out.println("1- Overall Discount\n2- Specific Discount");
+		int req = in.nextInt();
+		if(req == 1) {
+			dis = new OverAll();
+			System.out.println("Enter the discount value: ");
+			int value = in2.nextInt();
+			//set discount value.
+			dis.setDiscount(value);
+			controller.setOverAll(dis);
+		}
+		else if(req == 2) {
+			dis = new Specific();
+			System.out.println("Enter the service name you want to apply discount: ");
+			String name = in2.nextLine();
+			System.out.println("Enter the discount value: ");
+			int value = in2.nextInt();
+			//set discount value.
+			dis.setDiscount(value);
+			
+			controller.setSpecific(name,dis);
+		}
+		else {
+			System.out.println("invalid input\n\n");
+			discountForm();
+		}
+	
 	}
 	
 	public void adminLogin() {
@@ -231,17 +243,6 @@ public class SystemForm {
 	
 	
 }
-/*
- * Discount -> users
- * 
- * Sign up ,over all  null.
- *  
- * 
- * 
- * 
- * 
- * */
-
 
 
 
