@@ -3,8 +3,9 @@ import java.util.Scanner;
 
 public class MonthlyReceipt implements LandlineReceipt {
 	private Scanner in = new Scanner(System.in);
-	private Discount discount;
 	private double amount;
+	
+	
 	public void monthlyReceoptForm()
 	{
 		System.out.println("you have pay for monthly rececpit :");
@@ -21,12 +22,5 @@ public class MonthlyReceipt implements LandlineReceipt {
 	{
 		return amount;
 	}
-	public void setDiscount(Discount discount) {
-		this.discount=discount;
-	}
-	@Override
-	public Discount getDiscount() {
-		return discount;
-	}
-
+	
 }

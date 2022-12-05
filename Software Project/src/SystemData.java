@@ -59,7 +59,7 @@ public class SystemData {
 		refunds.get(index-1).getTrans().setState("Completed");
 		refunds.remove(index-1);
 	}
-	public void addService(Service s)
+	public static void addService(Service s)
 	{
 		services.add(s);
 	}

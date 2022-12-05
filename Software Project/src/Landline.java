@@ -4,6 +4,7 @@ public class Landline implements Service {
 	private String name;
 	private Scanner in  = new Scanner(System.in);
 	private LandlineReceipt   receipt;
+	private Discount discount;
 	Landline()
 	{
 		name="Landline";
@@ -36,11 +37,11 @@ public class Landline implements Service {
 	@Override
 	public Discount getDiscount() {
 		// TODO Auto-generated method stub
-		return receipt.getDiscount();
+		return discount;
 	}
 	@Override
 	public void updateDiscount(Discount discount) {
-		receipt.setDiscount(discount);
+		this.discount = discount;
 		
 	}
 	@Override

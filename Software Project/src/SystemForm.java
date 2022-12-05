@@ -127,10 +127,10 @@ public class SystemForm {
 	}
 	public void completeProcess() {
 		service.serviceForm();
-		//selectPayment(); 
-		//double price = payment.price();
-		//System.out.println("The cost of " + service.getName()+"= " + price);
-		//payment.pay(price);
+		selectPayment(); 
+		double price = payment.price();
+		System.out.println("The cost of " + service.getName()+"= " + price);
+		payment.pay(price);
 		completeTransaction(service.getName() ,5);
 		userForm();
 	}
@@ -196,6 +196,7 @@ public class SystemForm {
 			dis.setDiscount(value);
 			
 			controller.setSpecific(name,dis);
+			
 		}
 		else {
 			System.out.println("invalid input\n\n");

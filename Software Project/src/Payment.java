@@ -14,7 +14,7 @@ public abstract class Payment {
 	public abstract void pay(double amount);
 	public double price()
 	{
-		double dis=(service.getAmount() * discount.applyDiscount())/100;
+		double dis=(service.getAmount())/100;
 		double total =service.getAmount() - dis;
 		return total;
 	}	
