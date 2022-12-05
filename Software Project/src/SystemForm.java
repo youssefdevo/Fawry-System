@@ -69,14 +69,16 @@ public class SystemForm {
 			selectPayment();
 			payment.pay(service.getAmount());
 			completeTransaction("Mobile Recharge" ,service.getAmount());
+			userForm();
 		}
 		else if(request == 2) {
 			service = new InternetPayment();
 			service.serviceForm();
-
+		
 			selectPayment();
 			payment.pay(service.getAmount());
 			completeTransaction("Internet Payment" ,service.getAmount());
+			userForm();
 		}
 		else if(request == 3) {
 			service = new Landline();
@@ -84,6 +86,7 @@ public class SystemForm {
 			selectPayment();
 			payment.pay(service.getAmount());
 			completeTransaction("Landline" ,service.getAmount());
+			userForm();
 		}
 		else if(request == 4) {
 			service = new Donation();
@@ -91,6 +94,7 @@ public class SystemForm {
 			selectPayment(); 
 			payment.pay(service.getAmount());
 			completeTransaction("Donation" ,service.getAmount());
+			userForm();
 		}
 		else if(request==5)
 		{
@@ -186,7 +190,7 @@ public class SystemForm {
 		}
 		else {
 			System.out.println("Invalid account, Please try again..");
-			adminLogin();
+			start();
 		}
 	}
 	
@@ -205,7 +209,7 @@ public class SystemForm {
 		}
 		else {
 			System.out.println("Invalid account, Please try again..");
-			userLogin();
+			start();
 		}
 	}
 	

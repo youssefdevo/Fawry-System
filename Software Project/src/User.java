@@ -7,9 +7,11 @@ public class User {
 	private Wallet wallet;
 	private static ArrayList<Transaction> transactions;
 	
+	
 	User(Account acc){
 		this.setAccount(acc);
-		
+		transactions = new ArrayList<>();
+		wallet  =  new Wallet();
 	}
 	
 	public Account getAccount() {

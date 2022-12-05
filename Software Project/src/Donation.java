@@ -9,21 +9,34 @@ public class Donation implements Service {
 		int request = in.nextInt();
 		if(request==1)
 		{
-			School s = null;
-			place=(DonationPlace)s;
+			
+			System.out.println("1- School one");
+			int request2 = in.nextInt();
+			if(request2==1) {
+				place= new SchoolOne(); 
+			}
 			place.donationForm();
 		}
 		else if(request==2)
 		{
-			NGOs n = null;
-			place=(DonationPlace)n;
+			System.out.println("1- NGOs one");
+			int request2 = in.nextInt();
+			if(request2==1) {
+				place= new NGOsOne(); 
+			}
 			place.donationForm();
 		}
 		else if(request==3)
 		{
-			Hospital h = null;
-			place=(DonationPlace)h;
+			System.out.println("1- Hospital one");
+			int request2 = in.nextInt();
+			if(request2==1) {
+				place= new HospitalOne(); 
+			}
 			place.donationForm();
+		}
+		else {
+			donationForm();
 		}
 	}
 	public void serviceForm()
@@ -34,4 +47,6 @@ public class Donation implements Service {
 	public double getAmount() {
 		return place.getAmount();
 	}
+	
+	
 }
