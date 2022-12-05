@@ -10,7 +10,6 @@ public class FawrySystem {
 
 	private FawrySystem(){
 		data=SystemData.getInstance();
-		
 	}
 
   //Get the only object available
@@ -46,7 +45,7 @@ public class FawrySystem {
 	public void accRefund(int index) {
 		
 		data.acceptRefund(index);
-		currentUser.getWallet().addBalance(currentUser.getTransactions().get(index).getAmount());
+		currentUser.getWallet().addBalance(currentUser.getTransactions().get(index-1).getAmount());
 	}
 	public void rejecRefund(int index) {
 		
@@ -108,6 +107,15 @@ public class FawrySystem {
 		currentUser.getTransactions().get(index).setState("Pending");
 		Refund r = new Refund(currentUser.getTransactions().get(index));
 		data.addRefund(r);
+		
+	}
+	public void ff() {
+		System.out.println("ur balance = " + currentUser.getWallet().getBalance());
+	}
+
+	public void chargeWallet(double amount) {
+		currentUser.chargeMyWallet(amount);
+		System.out.println("your balance now = " + currentUser.getWallet().getBalance());
 		
 	}
 	

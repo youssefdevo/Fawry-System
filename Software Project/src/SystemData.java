@@ -48,16 +48,16 @@ public class SystemData {
 	}
 	public void acceptRefund(int index) {
 		// refund = delete, transaction = cancelled.
-		refunds.get(index-1).getTrans().setState("Cancelled");
-		refunds.remove(index-1);
+		refunds.get((index-1)).getTrans().setState("Cancelled");
+		refunds.remove((index-1));
 
 		
 		
 	}
 	public void rejectRefund(int index){
 		// refund = delete, transaction = still completed.
-		refunds.get(index-1).getTrans().setState("Completed");
-		refunds.remove(index-1);
+		refunds.get((index-1)).getTrans().setState("Completed");
+		refunds.remove((index-1));
 	}
 	public static void addService(Service s)
 	{

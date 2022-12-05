@@ -4,7 +4,7 @@ public class User {
 	
 	private Account myAccount;
 	private Discount overall_discount;
-	private Wallet wallet;
+	private static Wallet wallet;
 	private static ArrayList<Transaction> transactions;
 	
 	
@@ -27,8 +27,8 @@ public class User {
 	public void updateDiscount(Discount overall_discount) {
 		this.overall_discount = overall_discount;
 	}
-	public void chargeMyWallet(CreditCard card,double amount){
-		wallet.chargingWallet(card, amount);
+	public void chargeMyWallet(double amount){
+		wallet.chargingWallet(amount);
 	}
 	public ArrayList<Transaction> getTransactions() {
 		return transactions;

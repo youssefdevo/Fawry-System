@@ -2,7 +2,9 @@
 public class OverAll extends Discount{
 	
 	Discount discount;
-	OverAll(){}
+	OverAll(){
+		discount = new Specific();
+	}
 	OverAll(Discount d){
 		this.discount = d;
 	}
@@ -19,7 +21,10 @@ public class OverAll extends Discount{
 	}
 	
 	public double applyDiscount() {
-		double total_discount=discount_amount + discount.applyDiscount();
+		double total_discount=discount_amount;
+		if(discount!=null) {
+			total_discount+=discount.applyDiscount();
+		}
 		return total_discount;
 	}
 

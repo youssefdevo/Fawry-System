@@ -1,7 +1,7 @@
 
 public class Wallet extends Payment {
 	private CreditCard creditcard;
-	private double balance;
+	private  double balance;
 	
 	Wallet()
 	{
@@ -20,8 +20,7 @@ public class Wallet extends Payment {
 		 }
 		
 	}
-	public void chargingWallet(CreditCard card,double amount){
-		this.setCreditcard(card);
+	public void chargingWallet(double amount){
 		setBalance(getBalance() + amount);
 	}
 	public CreditCard getCreditcard() {
