@@ -8,11 +8,11 @@ public class OverAll extends Discount{
 	OverAll(Discount d){
 		this.discount = d;
 	}
-	public void setDiscount(int dis)
+	public void setDiscount(double dis)
 	{
 		discount_amount = dis;
 	}
-	public int getDiscount_amount()
+	public double getDiscount_amount()
 	{
 		return discount_amount;
 	}

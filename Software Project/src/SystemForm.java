@@ -6,118 +6,128 @@ public class SystemForm {
 	private FawrySystem controller = FawrySystem.getInstance();
 	private Service service;
 	private Payment payment;
-	public void start() {
+	
+//	public void start() {
+//		
+//		System.out.println("1- Admin (press 1)\n2- User (press 2).\n3- Exist (press 3).");
+//		int request = in.nextInt();
+//		if(request == 1) {
+//			adminLogin();
+//		}
+//		else if(request == 2) {
+//			System.out.println("1- Log in (press 1)\n2- Sign Up (press 2).");
+//			int enter = in.nextInt();
+//			if(enter == 1) {
+//				userLogin();
+//			}
+//			else if(request == 2) {
+//				userSignup();			
+//			}
+//			else if(request == 3) {
+//				return;
+//			}
+//			else {
+//				start();
+//			}
+//		}
+//	}
+	
+	
+	
+//	public void adminForm() {
+//		System.out.println("1- List all refunds.\n"
+//				+ "2- Add Discount\n3- log out.");
+//				
+//		int request = in.nextInt();
+//		if(request == 1) {
+//			ArrayList<Refund> refunds= controller.requestRefunds();
+//			
+//			
+//			
+//			for(Refund r:refunds) {
+//				printRefund(r);
+//			}
+//			refundAction(refunds);
+//			adminForm();
+//		}
+//		else if (request == 2) {
+//			discountForm();
+//			adminForm();
+//		}
+//		else if(request == 3) {
+//			start();
+//		}
+//		else {
+//			adminForm();
+//		}
 		
-		System.out.println("1- Admin (press 1)\n2- User (press 2).\n3- Exist (press 3).");
-		int request = in.nextInt();
-		if(request == 1) {
-			adminLogin();
-		}
-		else if(request == 2) {
-			System.out.println("1- Log in (press 1)\n2- Sign Up (press 2).");
-			int enter = in.nextInt();
-			if(enter == 1) {
-				userLogin();
-			}
-			else if(request == 2) {
-				userSignup();			
-			}
-			else if(request == 3) {
-				return;
-			}
-			else {
-				start();
-			}
-		}
-	}
+//	}
 	
-	
-	
-	public void adminForm() {
-		System.out.println("1- List all refunds.\n"
-				+ "2- Add Discount\n3- log out.");
-				
-		int request = in.nextInt();
-		if(request == 1) {
-			ArrayList<Refund> refunds= controller.requestRefunds();
-			for(Refund r:refunds) {
-				printRefund(r);
-			}
-			refundAction(refunds);
-			adminForm();
-		}
-		else if (request == 2) {
-			discountForm();
-			adminForm();
-		}
-		else if(request == 3) {
-			start();
-		}
-		else {
-			adminForm();
-		}
-		
-	}
-	
-	public void userForm() {
-		System.out.println("1- Mobile recharge services");
-		System.out.println("2- Internet Payment services");
-		System.out.println("3- Landline services.");
-		System.out.println("4- Donations.");
-		System.out.println("5- View Discount.");
-		System.out.println("6- Refund Request.");
-		System.out.println("7- Charge your wallet.");
-		System.out.println("8- Log out");
+                                                          
+//		System.out.println("1- Mobile recharge services");
+//		System.out.println("2- Internet Payment services");
+//		System.out.println("3- Landline services.");
+//		System.out.println("4- Donations.");
+//		System.out.println("5- View Discount.");
+//		System.out.println("6- Refund Request.");
+//		System.out.println("7- Charge your wallet.");
+//		System.out.println("8- Log out");
 
-		int request = in.nextInt();
 		
-		if(request == 1) {
-			service = new MobileRecharge();
-			completeProcess(amount ,reqest);
-		}
-		else if(request == 2) {
-			service = new InternetPayment();
-			completeProcess();
-		}
-		else if(request == 3) {
-			service = new Landline();
-			completeProcess();
-		}
-		else if(request == 4) {
-			service = new Donation();
-			completeProcess();
-		}
-		else if(request==5)
-		{
-			controller.viewDiscounts();
-			userForm();
-		}
-		else if(request==6)
-		{
-			controller.viewTransactions();
-			int index = in.nextInt();
-			int size = controller.getCurrentUser().getTransactions().size();
-			if(index>size || index < 1 ) {
-				System.out.println("invalid request..\n\n");
-				userForm();
-			}
-			makeRefund(index-1);
-			userForm();
-			
-		}
-		else if(request == 7){
-			Scanner in2 = new Scanner(System.in);
-			System.out.println("Enter the amount: ");
-			double amount = in2.nextDouble();
-			controller.chargeWallet(amount);
-			userForm();
-		}
-		else if(request == 8) {
-			start();
-		}
+	//mobileRecharge/{10,"we"}
+	// 1
+	public void mobileRecharge(double amount,String request)
+	{
+		service = new MobileRecharge();
+		completeProcess(amount ,request);
 	}
-	
-	
+	// 2
+	public void internetPayment(double amount,String request)
+	{
+		service = new InternetPayment();
+		completeProcess(amount ,request);
+	}
+	// 3
+	public void landline(double amount,String request)
+	{
+		service = new Landline();
+		completeProcess(amount ,request);
+	}
+	// 4
+	public void donation(double amount,String request)
+	{
+		service = new Donation();
+		completeProcess(amount ,request);
+	}
+	// 5
+	public void viewDiscounts()
+	{
+		controller.viewDiscounts();
+	}
+	// 6
+	public void viewTransactions()
+	{
+		controller.viewTransactions();
+	}
+	// 7
+	public void chargeWallet(double amount)
+	{
+		controller.chargeWallet(amount);
+	}
+	public String completeProcess(double amount,String request) {
+		service.serviceForm( amount, request);
+		selectPayment(); 
+		double price = payment.price();
+		payment.pay(price);
+		completeTransaction(service.getName() ,price);
+		
+		return "\nThe cost of " + service.getName()+"= " + price + "\n";
+	}
+
+	public void completeTransaction(String type ,double amount) {
+		controller.addTransaction(type,amount);
+	}
+
 	public void selectPayment()
 	{
 		System.out.println("1- CreditCard");
@@ -137,45 +147,40 @@ public class SystemForm {
 			payment=new Wallet(service,controller.getCurrentUser());
 		}
 	}
-	public void completeProcess(double amount,String request) {
-		service.serviceForm( amount, request);
-		selectPayment(); 
-		double price = payment.price();
-		System.out.println("\nThe cost of " + service.getName()+"= " + price + "\n");
-		payment.pay(price);
-		completeTransaction(service.getName() ,price);
-		userForm();
+	
+	
+	
+	// list of refund -------------------
+	public void listallrefunds()
+	{
+		ArrayList<Refund> refunds= controller.requestRefunds();
+		for(Refund r:refunds) {
+			printRefund(r);
+		}
+		//refundAction(refunds);
 	}
-
-	public void completeTransaction(String type ,double amount) {
-		controller.addTransaction(type,amount);
-	}
-	public void printRefund(Refund r) {
+	public void printRefund(Refund r) 
+	{
 		Transaction trans = r.getTrans();
 		trans.printTransaction();
 	}
+	//-------------------------------------
 	
 	
-	public void refundAction(ArrayList<Refund> refunds) {
-		System.out.println("please select number from 1 to "+ refunds.size() + " to select the refund,\n or 0 to back.\n");
-		int request = in.nextInt();
-		if(request == 0) {
-			adminForm();
-		}
-		else if(request >= 1 && request <= refunds.size()){
-			System.out.println("press 1 to accept, 2 to reject.");
-			int request2 = in.nextInt();
-			if(request2 == 1) {
-				acceptRefund(request);
+	public void refundAction(ArrayList<Refund> refunds ,int index,int state ) {
+		//System.out.println("please select number from 1 to "+ refunds.size() + " to select the refund,\n or 0 to back.\n");
+		if(index >= 1 && index <= refunds.size()){
+//			System.out.println("press 1 to accept, 2 to reject.");
+			if(state  == 1) {
+				acceptRefund(index);
 			}
-			else if(request2 == 2) {
-				rejectRefund(request);
+			else if(state  == 2) {
+				rejectRefund(index);
 			}
 		}
-		else {
-			System.out.println("invalid input, please try again.\n");
-			adminForm();
-		}
+//		else {
+//			System.out.println("invalid input, please try again.\n");
+//		}
 	}
 	
 	public void acceptRefund(int index) {
@@ -185,92 +190,110 @@ public class SystemForm {
 		controller.rejecRefund(index);
 	}
 	
-	public void discountForm() {
-		Scanner in2 = new Scanner(System.in);
-		Discount dis;
-		System.out.println("1- Overall Discount\n2- Specific Discount");
-		int req = in.nextInt();
-		if(req == 1) {
-			dis = new OverAll();
-			System.out.println("Enter the discount value: ");
-			int value = in2.nextInt();
-			//set discount value.
-			dis.setDiscount(value);
-			controller.setOverAll(dis);
-		}
-		else if(req == 2) {
-			dis = new Specific();
-			System.out.println("Enter the service name you want to apply discount: ");
-			String name = in2.nextLine();
-			System.out.println("Enter the discount value: ");
-			int value = in2.nextInt();
-			//set discount value.
-			dis.setDiscount(value);
+//	public void addDiscountForm(int requset ,double value) { 
+//		Discount dis;
+//		Scanner in2 = new Scanner(System.in);
+//		System.out.println("1- Overall Discount\n2- Specific Discount");
+//		if(requset == 1) {
+//			dis = new OverAll();
+//			
+//			System.out.println("Enter the discount value: ");
+//			int value = in2.nextInt();
+//			//set discount value.
+//			
+//			dis.setDiscount(value);
+//			controller.setOverAll(dis);
+//		}
+//		else if(requset == 2) {
+//			dis = new Specific();
 			
-			controller.setSpecific(name,dis);
+//			System.out.println("Enter the service name you want to apply discount: ");
+//			String name = in2.nextLine();
+//			System.out.println("Enter the discount value: ");
+//			int value = in2.nextInt();
 			
-		}
-		else {
-			System.out.println("invalid input\n\n");
-			discountForm();
-		}
+			//set discount value.
+//			dis.setDiscount(value);
+//			
+//			controller.setSpecific(name,dis);
+//			
+//		}
+//		else {
+//			System.out.println("invalid input\n\n");
+//			discountForm();
+//		}
+//	
+//	}
 	
+	//admin
+	public void addOvarallDiscount(double value)
+	{ 
+		Discount dis=new OverAll();			
+		dis.setDiscount(value);
+		controller.setOverAll(dis);
+	}
+	//admin
+	public void addSpacivicDiscount(String name ,double value)
+	{ 
+		Discount dis=new Specific();
+		dis.setDiscount(value);
+		controller.setSpecific(name,dis);
 	}
 	
-	public void adminLogin() {
-		Scanner in2 = new Scanner(System.in);
-		System.out.println("Enter Username: ");
-		String username = in2.nextLine();
-		
-		System.out.println("Enter Password: ");
-		String password = in2.nextLine();
-		
+	public String adminLogin(String username , String password) {
+//		Scanner in2 = new Scanner(System.in);
+//		System.out.println("Enter Username: ");
+//		String username = in2.nextLine();
+//		
+//		System.out.println("Enter Password: ");
+//		String password = in2.nextLine();
+//		
 		if(controller.validate_AdminAccount(username,password)) {
-			System.out.println("Logged in successfully.");
-			adminForm();
+			return "Logged in successfully.";
 		}
 		else {
-			System.out.println("Invalid account, Please try again..");
-			start();
+			return "Invalid account, Please try again..";
 		}
 	}
 	
 	@SuppressWarnings("resource")
-	public void userLogin() {
-		Scanner in2 = new Scanner(System.in);
-		System.out.println("Enter Username:");
-		String username = in2.nextLine();
-		
-		System.out.println("Enter Password:");
-		String password = in2.nextLine();
+	public String userLogin(String username , String password ) {
+//		Scanner in2 = new Scanner(System.in);
+//		System.out.println("Enter Username:");
+//		String username = in2.nextLine();
+//		
+//		System.out.println("Enter Password:");
+//		String password = in2.nextLine();
 		
 		if(controller.validate_UserAccount(username,password)) {
-			System.out.println("Logged in successfully.\n");
-			userForm();
+			return "Logged in successfully.\n";
 		}
 		else {
-			System.out.println("Invalid account, Please try again..\n");
-			start();
+			return "Invalid account, Please try again..\n";
 		}
 	}
 	
 	@SuppressWarnings("resource")
-	public void userSignup() {
-		Scanner in2 = new Scanner(System.in);
-		String username, mail, password;
-		System.out.println("Enter username: ");
-		username = in2.nextLine();
-		System.out.println("Enter E-mail: ");
-		mail = in2.nextLine();
-		System.out.println("Enter Password: ");
-		password = in2.nextLine();
+	public void userSignup(String username, String mail, String password) {
+//		Scanner in2 = new Scanner(System.in);
+//		String username, mail, password;
+//		System.out.println("Enter username: ");
+//		username = in2.nextLine();
+//		System.out.println("Enter E-mail: ");
+//		mail = in2.nextLine();
+//		System.out.println("Enter Password: ");
+//		password = in2.nextLine();
+		
 		Account account = new Account(username,mail,password);
 		User user = new User(account);
 		controller.addUser(user);
-		start();
 	}
 	
 	public void makeRefund(int index) {
+		int size = controller.getCurrentUser().getTransactions().size();
+		if(index>size || index < 1 ) {
+			System.out.println("invalid request..\n\n");
+		}
 		controller.addRefund(index);
 	}
 }

@@ -69,7 +69,6 @@ public class FawrySystem {
 		currentUser.addTransaction(transaction);
 	}
 	
-
 	public void viewDiscounts() {
 		for(Service d:data.getServices())
 		{
