@@ -1,5 +1,5 @@
 
 public interface DonationPlace {
-	public void donationForm();
+	public String donationForm(double amuont);
 	public double getAmount();
 }

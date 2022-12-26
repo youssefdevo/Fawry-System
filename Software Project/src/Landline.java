@@ -4,31 +4,36 @@ public class Landline implements Service {
 	private String name;
 	private Scanner in  = new Scanner(System.in);
 	private LandlineReceipt   receipt;
+	private double amount;
 	private Discount discount;
 	Landline()
 	{
 		name="Landline";
 	}
-	public void landlineForm()
+	public String landlineForm(double amount ,String request)
 	{
-		System.out.println("1- Monthly receipt.\n2- Quarter receipt.");
-		int request = in.nextInt();
-		if(request==1)
+		this.amount=amount;
+		  request=request.toLowerCase();
+	
+		if(request=="monthly")
 		{
 			receipt = new MonthlyReceipt();
-			receipt.landLineReceiptForm();
+			
+			 return receipt.landLineReceiptForm(amount,request);
 		}
-		else if(request==2)
+		else if(request=="quarter")
 		{
 			receipt = new QuarterReceipt();
-			receipt.landLineReceiptForm();
+			 return receipt.landLineReceiptForm(amount,request);
 
 		}
+		return "Not found";
+		
 		
 	}
-	public void serviceForm()
+	public String  serviceForm(double amount, String request)
 	{
-		landlineForm();
+		 return landlineForm(amount,request);
 	}
 	
 	public double getAmount() {

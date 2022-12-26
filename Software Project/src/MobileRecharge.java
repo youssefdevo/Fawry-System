@@ -5,41 +5,51 @@ public class MobileRecharge implements Service {
 	private String name;
 	private Scanner in  = new Scanner(System.in);
 	private Provider provider ;
+	private double amount ;
 	private Discount discount;
 	MobileRecharge()
 	{
 		name="MobileRecharge";
-	}
-	public void mobileRecharageForm()
-	{
-		System.out.println("1-WE.\n2-Etisalat.\n3-Orange.\n4-Vodafone");
-		int request = in.nextInt();
-		if(request==1)
-		{
-			provider=new We_Mobile();
-		}
-		else if(request==2)
-		{
-			provider=new Etisalat_Mobile();
-		}
-		else if(request==3)
-		{
-			provider=new Orange_Mobile();
-		}
-		else if(request==4)
-		{
-			provider=new Vodafone_Mobile();
-		}
-		provider.providerForm();
+		
 		
 	}
-	public void serviceForm()
+	public String mobileRecharageForm(double amount,String  request)
+	{	 
+		this.amount=amount;
+	  request=request.toLowerCase();
+		if(request=="we")
+		{
+			return "WE";
+		}
+		else if(request=="etisalat")
+			
+		{
+			return "Etisalat";
+
+		}
+		else if(request=="orange")
+		{			
+			return "Orange";
+
+		}
+		else if(request=="vodafone")
+		{
+			return "Vodafone";
+
+		}
+		provider.providerForm();
+		return "Not found";
+		
+		
+	}
+	
+	public String   serviceForm(double amount  ,String request  )
 	{
-		mobileRecharageForm();
+		 return mobileRecharageForm( amount ,  request);
 	}
 	
 	public double getAmount() {
-		return provider.getAmount();
+		return amount;
 	}
 	public Discount getDiscount() {
 		return discount;

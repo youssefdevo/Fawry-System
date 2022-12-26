@@ -1,6 +1,6 @@
 
 public interface LandlineReceipt {
-	public void landLineReceiptForm();
+	public String landLineReceiptForm(double amount,String request);
 	public double getAmount();
 	
 	

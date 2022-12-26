@@ -5,40 +5,43 @@ public class InternetPayment implements Service {
 	private String name;
 	private Scanner in  = new Scanner(System.in);
 	private Provider provider ;
+	private double amount;
 	private Discount discount;
 	InternetPayment()
 	{
 		name="InternetPayment";
 	}
-	public void internetForm()
+	public String internetForm(double amount,String request )
 	{
-		System.out.println("1-WE.\n 2-Etisalat. \n 3-Orange. \n 4-Vodafone");
-		int request = in.nextInt();
-		if(request==1)
-		{
-			provider=new We_Internet();
+		this.amount=amount;
+		  request=request.toLowerCase();
+			if(request=="we")
+			{
+				return "WE";
+			}
+			else if(request=="etisalat")
+				
+			{
+				return "Etisalat";
+
+			}
+			else if(request=="orange")
+			{			
+				return "Orange";
+
+			}
+			else if(request=="vodafone")
+			{
+				return "Vodafone";
+
+			}
 			provider.providerForm();
-		}
-		else if(request==2)
-		{
-			provider=new Etisalat_Internet();
-			provider.providerForm();
-		}
-		else if(request==3)
-		{
-			provider=new Orange_Internet();
-			provider.providerForm();
-		}
-		else if(request==4)
-		{
-			provider=new Vodafone_Internet();
-			provider.providerForm();
-		}
+			return "Not found";
 		
 	}
-	public void serviceForm()
+	public String  serviceForm(double amount,String request)
 	{
-		internetForm();
+		 return internetForm(amount,request);
 	}
 	@Override
 	public double getAmount() {

@@ -73,7 +73,7 @@ public class SystemForm {
 		
 		if(request == 1) {
 			service = new MobileRecharge();
-			completeProcess();
+			completeProcess(amount ,reqest);
 		}
 		else if(request == 2) {
 			service = new InternetPayment();
@@ -137,8 +137,8 @@ public class SystemForm {
 			payment=new Wallet(service,controller.getCurrentUser());
 		}
 	}
-	public void completeProcess() {
-		service.serviceForm();
+	public void completeProcess(double amount,String request) {
+		service.serviceForm( amount, request);
 		selectPayment(); 
 		double price = payment.price();
 		System.out.println("\nThe cost of " + service.getName()+"= " + price + "\n");

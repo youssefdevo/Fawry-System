@@ -4,49 +4,43 @@ public class Donation implements Service {
 	private String name;
 	private Scanner in  = new Scanner(System.in);
 	private DonationPlace place;
+	private double amount;
 	Donation ()
 	{
 		name="Donation";
 	}
-	public void donationForm()
+	public String  donationForm(double amount,String request)
 	{
-		System.out.println("1- Schools.\n 2- NGOs. \n 3- Hospitals.");
-		int request = in.nextInt();
-		if(request==1)
+		
+		  this.amount=amount;
+		  request=request.toLowerCase();
+		
+		if(request=="schools")
 		{
+		          
+	           place = new School();
+			 return place.donationForm(amount);
+		}
+		else if(request=="ngos")
+		{
+			 place = new NGOs();
+			return place.donationForm(amount);
+		
+		}
+		else if(request=="Hospital")
+		{
+			 place = new Hospital();   
+			 return place.donationForm(amount);
+
 			
-			System.out.println("1- School one");
-			int request2 = in.nextInt();
-			if(request2==1) {
-				place= new SchoolOne(); 
-			}
-			place.donationForm();
 		}
-		else if(request==2)
-		{
-			System.out.println("1- NGOs one");
-			int request2 = in.nextInt();
-			if(request2==1) {
-				place= new NGOsOne(); 
-			}
-			place.donationForm();
-		}
-		else if(request==3)
-		{
-			System.out.println("1- Hospital one");
-			int request2 = in.nextInt();
-			if(request2==1) {
-				place= new HospitalOne(); 
-			}
-			place.donationForm();
-		}
-		else {
-			donationForm();
-		}
+		
+			return "Not found";
+		
 	}
-	public void serviceForm()
+	public String  serviceForm(double amount,String request)
 	{
-		donationForm();
+		 return donationForm(amount,request);
 	}
 	@Override
 	public double getAmount() {

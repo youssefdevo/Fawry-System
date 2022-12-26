@@ -5,17 +5,17 @@ public class QuarterReceipt implements LandlineReceipt {
 	private Scanner in = new Scanner(System.in);
 	private double amount;
 	
-	public void quarterReceoptForm()
+	public String quarterReceoptForm(double amuont ,String request )
 	{
-		System.out.println("you have pay for monthly rececpit :");
-		amount=in.nextInt();
-		System.out.println("Successfully");
-
+		this.amount=amount;
+		 return "Successfully paid for Quarter rececpit :";
+		
 	}
-	public void landLineReceiptForm()
+	public String landLineReceiptForm(double amuont ,String request)
 	{
-		quarterReceoptForm();
+		 return quarterReceoptForm(amuont,request);
 	}
+	
 	public double getAmount()
 	{
 		return amount;

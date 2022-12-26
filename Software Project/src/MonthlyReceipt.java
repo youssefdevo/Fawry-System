@@ -6,17 +6,15 @@ public class MonthlyReceipt implements LandlineReceipt {
 	private double amount;
 	
 	
-	public void monthlyReceoptForm()
+	public String monthlyReceoptForm(double amuont ,String request )
 	{
-		System.out.println("you have pay for monthly rececpit :");
-		amount=in.nextDouble();
-		System.out.println("Successfully");
-
-		
+		this.amount=amount;
+		 return "Successfully paid for monthly rececpit :";
+	
 	}
-	public void landLineReceiptForm()
+	public String landLineReceiptForm(double amuont ,String request)
 	{
-		monthlyReceoptForm();
+		 return monthlyReceoptForm(amuont,request);
 	}
 	public double getAmount()
 	{
