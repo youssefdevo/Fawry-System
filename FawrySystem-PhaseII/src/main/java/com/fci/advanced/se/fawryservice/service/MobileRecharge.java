@@ -1,12 +1,12 @@
 package com.fci.advanced.se.fawryservice.service;
-import java.util.Scanner;
-
+import com.fci.advanced.se.fawryservice.provider.Etisalat;
+import com.fci.advanced.se.fawryservice.provider.Orange;
 import com.fci.advanced.se.fawryservice.provider.Provider;
-
+import com.fci.advanced.se.fawryservice.provider.Vodafone;
+import com.fci.advanced.se.fawryservice.provider.We;
 
 public class MobileRecharge implements Service {
 	private String name;
-	private Scanner in  = new Scanner(System.in);
 	private Provider provider ;
 	private double amount ;
 	private Discount discount;
@@ -14,41 +14,37 @@ public class MobileRecharge implements Service {
 	{
 		name="MobileRecharge";
 		
-		
 	}
-	public String mobileRecharageForm(double amount,String  request)
+	public void mobileRecharageForm(double amount,String  request)
 	{	 
 		this.amount=amount;
 	  request=request.toLowerCase();
 		if(request=="we")
 		{
-			return "WE";
+			this.setProvider(new We());
 		}
 		else if(request=="etisalat")
 			
 		{
-			return "Etisalat";
+			this.setProvider(new Etisalat());
 
 		}
 		else if(request=="orange")
 		{			
-			return "Orange";
+			this.setProvider(new Orange());
 
 		}
 		else if(request=="vodafone")
 		{
-			return "Vodafone";
+			this.setProvider(new Vodafone());
 
 		}
-		provider.providerForm();
-		return "Not found";
-		
-		
+	
 	}
 	
-	public String   serviceForm(double amount  ,String request  )
+	public void serviceForm(double amount  ,String requests)
 	{
-		 return mobileRecharageForm( amount ,  request);
+		 mobileRecharageForm( amount ,  requests);
 	}
 	
 	public double getAmount() {
@@ -64,6 +60,12 @@ public class MobileRecharge implements Service {
 	public String getName() {
 		// TODO Auto-generated method stub
 		return name;
+	}
+	public Provider getProvider() {
+		return provider;
+	}
+	public void setProvider(Provider provider) {
+		this.provider = provider;
 	}
 	
 	

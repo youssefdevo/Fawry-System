@@ -1,6 +1,10 @@
 package com.fci.advanced.se.fawryservice.provider;
 
-public interface Vodafone extends Provider{
-	public double getAmount();
+import java.util.ArrayList;
+
+import com.fci.advanced.se.fawryservice.service.Service;
+
+public class Vodafone implements Provider{
+	public ArrayList<Service> services;
 
 }

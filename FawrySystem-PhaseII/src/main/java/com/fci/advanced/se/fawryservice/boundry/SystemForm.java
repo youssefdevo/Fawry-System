@@ -1,9 +1,15 @@
 package com.fci.advanced.se.fawryservice.boundry;
 import java.util.ArrayList;
-import java.util.Scanner;
+
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RestController;
 
 import com.fci.advanced.se.fawryservice.controllers.FawrySystem;
 import com.fci.advanced.se.fawryservice.entities.Account;
+import com.fci.advanced.se.fawryservice.entities.Person;
 import com.fci.advanced.se.fawryservice.entities.Refund;
 import com.fci.advanced.se.fawryservice.entities.Transaction;
 import com.fci.advanced.se.fawryservice.entities.User;
@@ -20,8 +26,9 @@ import com.fci.advanced.se.fawryservice.service.OverAll;
 import com.fci.advanced.se.fawryservice.service.Service;
 import com.fci.advanced.se.fawryservice.service.Specific;
 
+
+@RestController
 public class SystemForm {
-	private Scanner in  = new Scanner(System.in);
 	private FawrySystem controller = FawrySystem.getInstance();
 	private Service service;
 	private Payment payment;
@@ -95,28 +102,38 @@ public class SystemForm {
 		
 	//mobileRecharge/{10,"we"}
 	// 1
-	public void mobileRecharge(double amount,String request)
+	@PostMapping(value = "/mobilerecharge")
+	public String mobileRecharge(@RequestBody MobileRecharge mb )
 	{
+		double amount = 20;
+		String request = "we";
+		String payType = "cash";
 		service = new MobileRecharge();
-		completeProcess(amount ,request);
+		return completeProcess(amount ,request,payType);
 	}
+	
+	 @GetMapping(value = "/mobilerechargee")
+	    public String getService(){
+	        return "Youssef";
+	    }
+	
 	// 2
 	public void internetPayment(double amount,String request)
 	{
 		service = new InternetPayment();
-		completeProcess(amount ,request);
+		//completeProcess(amount ,request);
 	}
 	// 3
 	public void landline(double amount,String request)
 	{
 		service = new Landline();
-		completeProcess(amount ,request);
+		//completeProcess(amount ,request);
 	}
 	// 4
 	public void donation(double amount,String request)
 	{
 		service = new Donation();
-		completeProcess(amount ,request);
+		//completeProcess(amount ,request);
 	}
 	// 5
 	public void viewDiscounts()
@@ -133,9 +150,9 @@ public class SystemForm {
 	{
 		controller.chargeWallet(amount);
 	}
-	public String completeProcess(double amount,String request) {
+	public String completeProcess(double amount,String request, String payType) {
 		service.serviceForm( amount, request);
-		selectPayment(); 
+		selectPayment(payType); 
 		double price = payment.price();
 		payment.pay(price);
 		completeTransaction(service.getName() ,price);
@@ -147,21 +164,21 @@ public class SystemForm {
 		controller.addTransaction(type,amount);
 	}
 
-	public void selectPayment()
+	public void selectPayment(String payType)
 	{
-		System.out.println("1- CreditCard");
+		/*System.out.println("1- CreditCard");
 		System.out.println("2- Cash");
-		System.out.println("3- Wallet.");
-		int request = in.nextInt();
-		if(request==1)
+		System.out.println("3- Wallet.");*/
+		payType = payType.toLowerCase();
+		if(payType=="credit card")
 		{
 			payment=new CreditCard(service,controller.getCurrentUser());
 		}
-		else if(request==2)
+		else if(payType=="cash")
 		{
 			payment=new Cash(service,controller.getCurrentUser());
 		}
-		else if(request==3)
+		else if(payType=="wallet")
 		{
 			payment=new Wallet(service,controller.getCurrentUser());
 		}
