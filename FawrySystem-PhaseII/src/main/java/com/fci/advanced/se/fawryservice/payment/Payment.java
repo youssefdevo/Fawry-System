@@ -1,3 +1,7 @@
+package com.fci.advanced.se.fawryservice.payment;
+import Discount;
+import Service;
+import User;
 
 public abstract class Payment {
 	private Service service;

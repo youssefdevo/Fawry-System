@@ -1,3 +1,6 @@
+package com.fci.advanced.se.fawryservice.payment;
+import Service;
+import User;
 
 public class Wallet extends Payment {
 	private CreditCard creditcard;

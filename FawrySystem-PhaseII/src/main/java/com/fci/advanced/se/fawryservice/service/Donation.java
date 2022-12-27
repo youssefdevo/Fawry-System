@@ -1,3 +1,4 @@
+package com.fci.advanced.se.fawryservice.service;
 import java.util.Scanner;
 
 public class Donation implements Service {

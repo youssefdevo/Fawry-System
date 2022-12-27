@@ -1,3 +1,4 @@
+package com.fci.advanced.se.fawryservice.service;
 
 public class NGOs implements DonationPlace{
 

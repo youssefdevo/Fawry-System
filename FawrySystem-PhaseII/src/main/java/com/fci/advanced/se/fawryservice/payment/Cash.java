@@ -1,3 +1,6 @@
+package com.fci.advanced.se.fawryservice.payment;
+import Service;
+import User;
 
 public class Cash extends Payment{
 

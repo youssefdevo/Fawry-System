@@ -1,5 +1,7 @@
 import java.util.ArrayList;
 
+import com.fci.advanced.se.fawryservice.payment.Wallet;
+
 public class User {
 	
 	private Account myAccount;

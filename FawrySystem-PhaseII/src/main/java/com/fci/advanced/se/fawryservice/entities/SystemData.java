@@ -1,3 +1,4 @@
+package com.fci.advanced.se.fawryservice.entities;
 import java.util.ArrayList;
 
 public class SystemData {
