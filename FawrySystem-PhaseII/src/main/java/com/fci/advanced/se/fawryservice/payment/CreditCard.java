@@ -1,6 +1,9 @@
 package com.fci.advanced.se.fawryservice.payment;
 import java.util.Scanner;
 
+import com.fci.advanced.se.fawryservice.entities.User;
+import com.fci.advanced.se.fawryservice.service.Service;
+
 
 public class CreditCard extends Payment{
 	

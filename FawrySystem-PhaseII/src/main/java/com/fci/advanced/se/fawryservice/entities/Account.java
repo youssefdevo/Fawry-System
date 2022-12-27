@@ -1,3 +1,4 @@
+package com.fci.advanced.se.fawryservice.entities;
 
 public class Account {
 	
@@ -6,7 +7,7 @@ public class Account {
 	private String email;
 	
 	//Constructor
-	Account(String name,String mail,String pass){
+	public Account(String name,String mail,String pass){
 		
 		this.setUsername(name);
 		this.setPassword(pass);

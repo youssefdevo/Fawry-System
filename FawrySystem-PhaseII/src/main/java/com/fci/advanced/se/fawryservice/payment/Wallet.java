@@ -1,16 +1,17 @@
 package com.fci.advanced.se.fawryservice.payment;
-import Service;
-import User;
+import com.fci.advanced.se.fawryservice.entities.User;
+import com.fci.advanced.se.fawryservice.service.Service;
+
 
 public class Wallet extends Payment {
 	private CreditCard creditcard;
 	private  double balance;
 	
-	Wallet()
+	public Wallet()
 	{
 		balance=0;
 	}
-	Wallet(Service service, User currentUser) {
+	public Wallet(Service service, User currentUser) {
 		super(service,currentUser);
 	}
 	public void pay(double amount) {

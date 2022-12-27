@@ -3,6 +3,22 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 import com.fci.advanced.se.fawryservice.controllers.FawrySystem;
+import com.fci.advanced.se.fawryservice.entities.Account;
+import com.fci.advanced.se.fawryservice.entities.Refund;
+import com.fci.advanced.se.fawryservice.entities.Transaction;
+import com.fci.advanced.se.fawryservice.entities.User;
+import com.fci.advanced.se.fawryservice.payment.Cash;
+import com.fci.advanced.se.fawryservice.payment.CreditCard;
+import com.fci.advanced.se.fawryservice.payment.Payment;
+import com.fci.advanced.se.fawryservice.payment.Wallet;
+import com.fci.advanced.se.fawryservice.service.Discount;
+import com.fci.advanced.se.fawryservice.service.Donation;
+import com.fci.advanced.se.fawryservice.service.InternetPayment;
+import com.fci.advanced.se.fawryservice.service.Landline;
+import com.fci.advanced.se.fawryservice.service.MobileRecharge;
+import com.fci.advanced.se.fawryservice.service.OverAll;
+import com.fci.advanced.se.fawryservice.service.Service;
+import com.fci.advanced.se.fawryservice.service.Specific;
 
 public class SystemForm {
 	private Scanner in  = new Scanner(System.in);

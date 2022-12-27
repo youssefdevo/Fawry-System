@@ -7,7 +7,7 @@ public class Landline implements Service {
 	private LandlineReceipt   receipt;
 	private double amount;
 	private Discount discount;
-	Landline()
+	public Landline()
 	{
 		name="Landline";
 	}

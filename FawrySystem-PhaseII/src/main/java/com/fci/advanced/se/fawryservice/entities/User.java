@@ -1,6 +1,9 @@
+package com.fci.advanced.se.fawryservice.entities;
 import java.util.ArrayList;
 
 import com.fci.advanced.se.fawryservice.payment.Wallet;
+import com.fci.advanced.se.fawryservice.service.Discount;
+import com.fci.advanced.se.fawryservice.service.OverAll;
 
 public class User {
 	
@@ -10,7 +13,7 @@ public class User {
 	private static ArrayList<Transaction> transactions;
 	
 	
-	User(Account acc){
+	public User(Account acc){
 		this.setAccount(acc);
 		transactions = new ArrayList<>();
 		wallet  =  new Wallet();

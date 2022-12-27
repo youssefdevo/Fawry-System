@@ -1,5 +1,4 @@
 package com.fci.advanced.se.fawryservice.service;
-import Discount;
 
 public interface Service {
 	public String serviceForm(double amount,String request);

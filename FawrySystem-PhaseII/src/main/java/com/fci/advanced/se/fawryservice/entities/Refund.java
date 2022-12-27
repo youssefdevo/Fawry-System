@@ -1,9 +1,10 @@
+package com.fci.advanced.se.fawryservice.entities;
 
 public class Refund {
 	private Transaction trans;
 	private String state;
 	
-	Refund(Transaction t){
+	public Refund(Transaction t){
 		state = "Pending";
 		this.trans = t;
 	}

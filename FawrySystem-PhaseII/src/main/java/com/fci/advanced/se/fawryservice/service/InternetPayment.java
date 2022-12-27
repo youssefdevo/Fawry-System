@@ -1,6 +1,8 @@
 package com.fci.advanced.se.fawryservice.service;
 import java.util.Scanner;
 
+import com.fci.advanced.se.fawryservice.provider.Provider;
+
 
 public class InternetPayment implements Service {
 	private String name;
@@ -8,7 +10,7 @@ public class InternetPayment implements Service {
 	private Provider provider ;
 	private double amount;
 	private Discount discount;
-	InternetPayment()
+	public InternetPayment()
 	{
 		name="InternetPayment";
 	}

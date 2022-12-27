@@ -1,13 +1,18 @@
+package com.fci.advanced.se.fawryservice.controllers;
+import com.fci.advanced.se.fawryservice.entities.Account;
 import com.fci.advanced.se.fawryservice.entities.SystemData;
+import com.fci.advanced.se.fawryservice.entities.User;
+import com.fci.advanced.se.fawryservice.service.Discount;
 import com.fci.advanced.se.fawryservice.service.InternetPayment;
 import com.fci.advanced.se.fawryservice.service.Landline;
 import com.fci.advanced.se.fawryservice.service.MobileRecharge;
 import com.fci.advanced.se.fawryservice.service.Service;
 
+
 public class Admin {
 	private Account acc;
 	
-	Admin(String name,String mail,String password){
+	public Admin(String name,String mail,String password){
 		this.acc = new Account(name,mail,password);
 	}
 	public Account getAccount() {

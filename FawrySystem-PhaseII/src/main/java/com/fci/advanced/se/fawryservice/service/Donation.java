@@ -6,7 +6,7 @@ public class Donation implements Service {
 	private Scanner in  = new Scanner(System.in);
 	private DonationPlace place;
 	private double amount;
-	Donation ()
+	public Donation ()
 	{
 		name="Donation";
 	}

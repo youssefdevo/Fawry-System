@@ -1,3 +1,4 @@
+package com.fci.advanced.se.fawryservice.entities;
 
 public class Transaction {
 	private String service_type;
@@ -7,7 +8,7 @@ public class Transaction {
 	
 	
 	
-	Transaction(String username,String serviceType,double amount){
+	public Transaction(String username,String serviceType,double amount){
 		this.setUsername(username);
 		this.setService_type(serviceType);
 		this.setAmount(amount);

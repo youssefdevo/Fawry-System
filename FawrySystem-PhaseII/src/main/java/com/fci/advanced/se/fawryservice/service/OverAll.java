@@ -1,8 +1,9 @@
+package com.fci.advanced.se.fawryservice.service;
 
 public class OverAll extends Discount{
 	
 	Discount discount;
-	OverAll(){
+	public OverAll(){
 		discount = new Specific();
 	}
 	OverAll(Discount d){

@@ -1,3 +1,4 @@
+package com.fci.advanced.se.fawryservice.service;
 
 public abstract class Discount {
 	public double discount_amount = 0;
@@ -6,5 +7,5 @@ public abstract class Discount {
 	public abstract double getDiscount_amount();
 	public abstract double applyDiscount();
 	//public void wrapDiscount(Discount d);
-	protected abstract void wrapDiscount(Discount discount);
+	public abstract void wrapDiscount(Discount discount);
 }

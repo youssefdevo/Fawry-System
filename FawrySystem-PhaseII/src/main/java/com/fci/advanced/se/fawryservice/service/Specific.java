@@ -1,3 +1,4 @@
+package com.fci.advanced.se.fawryservice.service;
 
 public class Specific extends Discount{
 	//Discount discount;
@@ -15,7 +16,7 @@ public class Specific extends Discount{
 		return getDiscount_amount();
 	}
 	@Override
-	protected void wrapDiscount(Discount discount) {
+	public void wrapDiscount(Discount discount) {
 		
 	}
 

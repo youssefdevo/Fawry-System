@@ -1,6 +1,9 @@
 package com.fci.advanced.se.fawryservice.entities;
 import java.util.ArrayList;
 
+import com.fci.advanced.se.fawryservice.controllers.Admin;
+import com.fci.advanced.se.fawryservice.service.Service;
+
 public class SystemData {
 	private static ArrayList<Admin>admins;
 	private static ArrayList<User>users;
