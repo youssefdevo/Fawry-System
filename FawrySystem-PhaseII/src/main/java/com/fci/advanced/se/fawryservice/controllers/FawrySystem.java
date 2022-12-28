@@ -129,9 +129,9 @@ public class FawrySystem {
 		
 	}
 
-	public void chargeWallet(double amount) {
+	public String chargeWallet(double amount) {
 		currentUser.chargeMyWallet(amount);
-		System.out.println("your balance now = " + currentUser.getWallet().getBalance());
+		return "your balance now = " + currentUser.getWallet().getBalance();
 		
 	}
 	

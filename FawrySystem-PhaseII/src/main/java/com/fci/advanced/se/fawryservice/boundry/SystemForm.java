@@ -225,14 +225,6 @@ public class SystemForm {
 			return "Invalid account, Please try again..";
 		}
 	}
-	
-	public void makeRefund(int index) {
-		int size = controller.getCurrentUser().getTransactions().size();
-		if(index>size || index < 1 ) {
-			System.out.println("invalid request..\n\n");
-		}
-		controller.addRefund(index);
-	}
 
 	 @GetMapping(value = "/getuseracc")
 	    public Account getUserAccount(){
@@ -315,7 +307,7 @@ public class SystemForm {
 			return controller.viewDiscounts();
 		}
 	
-	    
+	   
 
 		// 6
 	    @GetMapping(value = "/viewTransactions")
@@ -325,20 +317,27 @@ public class SystemForm {
 		}
 		
 		
-	 // 7
-		public void chargeWallet(double amount)
+	//  7
+	  @PostMapping(value = "/chargewallet/{amount}")
+		public String chargeWallet(@PathVariable("amount") double amount)
 		{
-			controller.chargeWallet(amount);
+			 return controller.chargeWallet(amount);
 		}
 		
 		
+		// 8
+		 @PostMapping(value = "/makerefund/{index}")
+		public String makeRefund(@PathVariable("index") int index) {
+			int size = controller.getCurrentUser().getTransactions().size();
+			if(index>size || index < 1 ) {
+				 return "invalid request..\n\n";
+			}
+			controller.addRefund(index);
+			return "Refund has been requested";
+		}
+
 		
-		
-		
-		
-		
-		
-		
+	
 		
 		 //admin add discounts
 	    @PostMapping(value = "/addOvarallDiscount/{value}")
