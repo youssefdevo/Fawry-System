@@ -1,6 +1,7 @@
 package com.fci.advanced.se.fawryservice.controllers;
 import java.util.ArrayList;
 
+import com.fci.advanced.se.fawryservice.entities.Account;
 import com.fci.advanced.se.fawryservice.entities.Refund;
 import com.fci.advanced.se.fawryservice.entities.SystemData;
 import com.fci.advanced.se.fawryservice.entities.Transaction;
@@ -38,7 +39,8 @@ public class FawrySystem {
 	}
 	
 	public boolean validate_UserAccount(String username,String password) {
-		ArrayList<User> users = data.getUsers();
+		
+		ArrayList<User> users = SystemData.getUsers();
 		for(User i :users) {
 			if(i.getAccount().getUsername().equals(username) && i.getAccount().getPassword().equals(password)) {
 				this.setCurrentUser(i);
@@ -61,8 +63,20 @@ public class FawrySystem {
 		data.rejectRefund(index);
 	}
 	
-	public void addUser(User user) {
+	public String addUser(Account acc) {
+		String email = acc.getEmail();
+		String uname = acc.getUsername();
+		for(User i :SystemData.getUsers()) {
+			if(i.getAccount().getEmail().equals(email)) 
+				return "this email in already exit";
+			
+			if(i.getAccount().getUsername().equals(uname)) 
+				return "this user name in already exit";
+			
+		}
+		User user = new User(acc);
 		data.addUser(user);
+		return "Signed up succussfully";
 	}
 
 	public User getCurrentUser() {

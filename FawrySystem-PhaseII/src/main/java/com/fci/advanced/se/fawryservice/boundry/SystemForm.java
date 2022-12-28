@@ -102,23 +102,7 @@ public class SystemForm {
 //		System.out.println("8- Log out");
 
 		
-	//mobileRecharge/{10,"we"}
-	// 1
-	@PostMapping(value = "/mobilerecharge")
-	public String mobileRecharge(@RequestBody MobileRecharge mb )
-	{
-		
-	double amount = 20;
-		String request = "we";
-		String payType = "cash";
-		 service =  mb;
-	 return completeProcess(amount,request,payType);
 	
-	}
-	 @GetMapping(value = "/mobilerechargee")
-	    public String getService(){
-	        return "Youssef";
-	    }
 	
 	// 2
 	public void internetPayment(double amount,String request)
@@ -173,15 +157,15 @@ public class SystemForm {
 		System.out.println("2- Cash");
 		System.out.println("3- Wallet.");*/
 		payType = payType.toLowerCase();
-		if(payType=="credit card")
+		if(payType.contains("creditcard"))
 		{
 			payment=new CreditCard(service,controller.getCurrentUser());
 		}
-		else if(payType=="cash")
+		else if(payType.contains("cash"))
 		{
 			payment=new Cash(service,controller.getCurrentUser());
 		}
-		else if(payType=="wallet")
+		else if(payType.contains("wallet"))
 		{
 			payment=new Wallet(service,controller.getCurrentUser());
 		}
@@ -295,46 +279,6 @@ public class SystemForm {
 		}
 	}
 	
-	@SuppressWarnings("resource")
-	public String userLogin(String username , String password ) {
-//		Scanner in2 = new Scanner(System.in);
-//		System.out.println("Enter Username:");
-//		String username = in2.nextLine();
-//		
-//		System.out.println("Enter Password:");
-//		String password = in2.nextLine();
-		
-		if(controller.validate_UserAccount(username,password)) {
-			return "Logged in successfully.\n";
-		}
-		else {
-			return "Invalid account, Please try again..\n";
-		}
-	}
-
-	 @GetMapping(value = "/getuser")
-	    public User getUser(){
-	        return controller.getCurrentUser();
-	    }
-	
-	
-	@SuppressWarnings("resource")
-	@PostMapping(value = "/usersignup")
-	public void userSignup(@RequestBody Account acc) {
-//		Scanner in2 = new Scanner(System.in);
-//		String username, mail, password;
-//		System.out.println("Enter username: ");
-//		username = in2.nextLine();
-//		System.out.println("Enter E-mail: ");
-//		mail = in2.nextLine();
-//		System.out.println("Enter Password: ");
-//		password = in2.nextLine();
-		
-	//	Account account = new Account(username,mail,password);
-		User user = new User(acc);
-		controller.addUser(user);
-	}
-	
 	public void makeRefund(int index) {
 		int size = controller.getCurrentUser().getTransactions().size();
 		if(index>size || index < 1 ) {
@@ -342,6 +286,57 @@ public class SystemForm {
 		}
 		controller.addRefund(index);
 	}
+
+	 @GetMapping(value = "/getuseracc")
+	    public Account getUserAccount(){
+	        return controller.getCurrentUser().getAccount();
+	    }
+	
+	@PostMapping(value = "/usersignup")
+	public String userSignup(@RequestBody Account acc) {
+		return controller.addUser(acc);
+	}
+	
+	
+	@PostMapping(value = "/userlogin")
+	public String userLogin(@RequestBody Account acc) {
+		
+		if(controller.validate_UserAccount(acc.getUsername(),acc.getPassword())) {
+			return "User Logged in successfully.\n";
+		}
+		else {
+			return "Invalid account, Please try again..\n";
+		}
+	}
+	
+	@PostMapping(value = "/adminlogin")
+	public String adminLogin(@RequestBody Account acc) {
+		if(controller.validate_AdminAccount(acc.getUsername(),acc.getPassword())) {
+			return "Admin Logged in successfully.";
+		}
+		else {
+			return "Invalid account, Please try again..";
+		}
+	}
+	
+	
+	
+	
+	//mobileRecharge/{10,"we"}
+		// 1
+		@PostMapping(value = "/mobilerecharge/{provider}/{paymentMethod}")
+	public String mobileRecharge(@RequestBody MobileRecharge mb ,@PathVariable("paymentMethod") String pay,@PathVariable("provider") String prov)
+	{
+			this.service = mb;
+			return completeProcess(mb.getAmount(),prov,pay);
+	
+	}
+	 @GetMapping(value = "/mobilerechargee")
+	public String getService(){
+	        return "Youssef";
+	}
+	
+	
 }
 
 

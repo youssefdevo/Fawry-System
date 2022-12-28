@@ -7,4 +7,9 @@ import com.fci.advanced.se.fawryservice.service.Service;
 public class Vodafone implements Provider{
 	public ArrayList<Service> services;
 
+	@Override
+	public String getName() {
+		return "Vodafone";
+	}
+
 }
