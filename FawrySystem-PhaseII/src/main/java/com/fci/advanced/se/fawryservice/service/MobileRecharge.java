@@ -10,6 +10,10 @@ public class MobileRecharge implements Service {
 	private Provider provider ;
 	private double amount ;
 	private Discount discount;
+	
+	public MobileRecharge() {
+		this.name = "Mobile Recharge";
+	}
 	public void mobileRecharageForm(double amount,String  request)
 	{	 
 		this.amount=amount;

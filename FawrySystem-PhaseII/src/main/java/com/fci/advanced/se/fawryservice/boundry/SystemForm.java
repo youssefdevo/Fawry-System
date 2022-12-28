@@ -5,16 +5,11 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
-
 import com.fci.advanced.se.fawryservice.controllers.FawrySystem;
 import com.fci.advanced.se.fawryservice.entities.Account;
-import com.fci.advanced.se.fawryservice.entities.Person;
 import com.fci.advanced.se.fawryservice.entities.Refund;
 import com.fci.advanced.se.fawryservice.entities.Transaction;
-import com.fci.advanced.se.fawryservice.entities.User;
 import com.fci.advanced.se.fawryservice.payment.Cash;
 import com.fci.advanced.se.fawryservice.payment.CreditCard;
 import com.fci.advanced.se.fawryservice.payment.Payment;
@@ -27,7 +22,6 @@ import com.fci.advanced.se.fawryservice.service.MobileRecharge;
 import com.fci.advanced.se.fawryservice.service.OverAll;
 import com.fci.advanced.se.fawryservice.service.Service;
 import com.fci.advanced.se.fawryservice.service.Specific;
-
 
 @RestController
 public class SystemForm {
@@ -107,29 +101,16 @@ public class SystemForm {
 	
 	
 	
-	// 5
-	public void viewDiscounts()
-	{
-		controller.viewDiscounts();
-	}
-	// 6
-	public void viewTransactions()
-	{
-		controller.viewTransactions();
-	}
-	// 7
-	public void chargeWallet(double amount)
-	{
-		controller.chargeWallet(amount);
-	}
+	
+	
 	public String completeProcess(double amount,String request, String payType) {
 		service.serviceForm( amount, request);
 		selectPayment(payType); 
 		double price = payment.price();
-		payment.pay(price);
+		String pay = payment.pay(price);
 		completeTransaction(service.getName() ,price);
 		
-		return "\nThe cost of " + service.getName()+"= " + price + "\n";
+		return "\nThe cost of " + service.getName()+"= " + price + "\n" + pay;
 	}
 
 	public void completeTransaction(String type ,double amount) {
@@ -233,29 +214,10 @@ public class SystemForm {
 //	
 //	}
 	
-	//admin
-	public void addOvarallDiscount(double value)
-	{ 
-		Discount dis=new OverAll();			
-		dis.setDiscount(value);
-		controller.setOverAll(dis);
-	}
-	//admin
-	public void addSpacivicDiscount(String name ,double value)
-	{ 
-		Discount dis=new Specific();
-		dis.setDiscount(value);
-		controller.setSpecific(name,dis);
-	}
+	
 	
 	public String adminLogin(String username , String password) {
-//		Scanner in2 = new Scanner(System.in);
-//		System.out.println("Enter Username: ");
-//		String username = in2.nextLine();
-//		
-//		System.out.println("Enter Password: ");
-//		String password = in2.nextLine();
-//		
+		
 		if(controller.validate_AdminAccount(username,password)) {
 			return "Logged in successfully.";
 		}
@@ -338,7 +300,7 @@ public class SystemForm {
 		}
 		
 		// 4
-	 @PostMapping(value = "/landline/{receipt}/{paymentMethod}")
+	    @PostMapping(value = "/landline/{receipt}/{paymentMethod}")
 		public String landline(@RequestBody Landline li ,@PathVariable("paymentMethod") String pay,@PathVariable("receipt") String receipt)
 		{
 			 this.service = li;
@@ -346,8 +308,55 @@ public class SystemForm {
 		}
 	 
 
-
+	   // 5  user view discounts.
+	    @GetMapping(value = "/viewDiscounts")
+		public ArrayList<String> viewDiscounts()
+		{
+			return controller.viewDiscounts();
+		}
 	
+	    
+
+		// 6
+	    @GetMapping(value = "/viewTransactions")
+		public ArrayList<Transaction> viewTransactions()
+		{
+			return controller.viewTransactions();
+		}
+		
+		
+	 // 7
+		public void chargeWallet(double amount)
+		{
+			controller.chargeWallet(amount);
+		}
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		 //admin add discounts
+	    @PostMapping(value = "/addOvarallDiscount/{value}")
+		public void addOvarallDiscount(@PathVariable("value") double value)
+		{ 
+			Discount dis=new OverAll();			
+			dis.setDiscount(value);
+			controller.setOverAll(dis);
+		}
+	    
+		//admin add discounts
+	    @PostMapping(value = "/addSpecificDiscount/{serviceName}/{value}")
+		public void addSpecificDiscount(@PathVariable("serviceName") String name, @PathVariable("value")double value)
+		{
+			Discount dis=new Specific();
+			dis.setDiscount(value);
+			controller.setSpecific(name,dis);
+		}
 }
 
 

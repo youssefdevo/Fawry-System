@@ -17,7 +17,7 @@ public abstract class Payment {
 		discount = u.getOverall_discount();
 		discount.wrapDiscount(s.getDiscount());
 	}
-	public abstract void pay(double amount);
+	public abstract String pay(double amount);
 	public double price()
 	{
 		double dis=(service.getAmount()*discount.applyDiscount())/100;

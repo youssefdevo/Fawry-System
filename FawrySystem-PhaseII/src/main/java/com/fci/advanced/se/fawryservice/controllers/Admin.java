@@ -31,17 +31,17 @@ public class Admin {
 			}
 		}
 		if(!found) {
-			if(serviceName.equals("internet")) {
+			if(serviceName.contains("internet")) {
 				Service s = new InternetPayment();
 				s.updateDiscount(discount);
 				SystemData.addService(s);
 			}
-			else if(serviceName.equals("mobile")) {
+			else if(serviceName.contains("mobile")) {
 				Service s = new MobileRecharge();
 				s.updateDiscount(discount);
 				SystemData.addService(s);
 			}
-			else if(serviceName.equals("landline")) {
+			else if(serviceName.contains("landline")) {
 				Service s = new Landline();
 				s.updateDiscount(discount);
 				SystemData.addService(s);

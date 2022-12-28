@@ -15,7 +15,7 @@ public class FawrySystem {
   private SystemData data;
   private User currentUser;
   private Admin currentAdmin; 
-  
+  public static int ids = 0;
 	private static FawrySystem instance = new FawrySystem();
 
 	FawrySystem(){
@@ -92,13 +92,14 @@ public class FawrySystem {
 		currentUser.addTransaction(transaction);
 	}
 	
-	public void viewDiscounts() {
-		for(Service d:data.getServices())
+	public ArrayList<String> viewDiscounts() {
+		ArrayList<String> disc = new ArrayList<>();
+		for(Service d:SystemData.getServices())
 		{
 			if(d.getName()=="Donation")continue;
-			System.out.println(d.getName()+": "+ d.getDiscount().getDiscount_amount() + " %");
+			disc.add(d.getName()+": "+ d.getDiscount().getDiscount_amount() + " %");
 		}
-		
+		return disc;
 	}
 
 	public void setOverAll(Discount dis) {
@@ -117,12 +118,8 @@ public class FawrySystem {
 		this.currentAdmin = currentAdmin;
 	}
 
-	public void viewTransactions() {
-		int c = 1;
-		for(Transaction t:currentUser.getTransactions()) {
-			System.out.print((c++)+"- ");
-			t.printTransaction();
-		}
+	public ArrayList<Transaction> viewTransactions() {
+		return currentUser.getTransactions();
 	}
 
 	public void addRefund(int index) {

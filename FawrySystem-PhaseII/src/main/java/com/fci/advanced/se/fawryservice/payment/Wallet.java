@@ -14,13 +14,13 @@ public class Wallet extends Payment {
 	public Wallet(Service service, User currentUser) {
 		super(service,currentUser);
 	}
-	public void pay(double amount) {
+	public String pay(double amount) {
 			
 		 if(balance>=amount) {
-			 System.out.println("Transaction completed successfully\n\n");
+			 return "Transaction completed successfully (paied via Wallet).";
 		 }
 		 else {
-			System.out.println("there is no enough money\n\n");
+			return "there is no enough money in your wallet\n\n";
 		 }
 		
 	}
