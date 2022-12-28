@@ -2,14 +2,13 @@ package com.fci.advanced.se.fawryservice.service;
 
 public class  Hospital implements DonationPlace {
 	 private double amount;
-	    public String donationForm(double amount)
+	    public void donationForm(double amount)
 	    {
-	        return  HospitalsForm( amount );
+	          HospitalsForm( amount );
 	    }
-	    public String HospitalsForm(double amount)
+	    public void HospitalsForm(double amount)
 	    {
 	    	this.amount=amount;
-	        return  "Thanks for your Donation for Hospitals.";
 	    }
 	    
 	    public double getAmount() {

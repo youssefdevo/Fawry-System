@@ -104,24 +104,9 @@ public class SystemForm {
 		
 	
 	
-	// 2
-	public void internetPayment(double amount,String request)
-	{
-		service = new InternetPayment();
-		//completeProcess(amount ,request);
-	}
-	// 3
-	public void landline(double amount,String request)
-	{
-		service = new Landline();
-		//completeProcess(amount ,request);
-	}
-	// 4
-	public void donation(double amount,String request)
-	{
-		service = new Donation();
-		//completeProcess(amount ,request);
-	}
+	
+	
+	
 	// 5
 	public void viewDiscounts()
 	{
@@ -324,7 +309,7 @@ public class SystemForm {
 	
 	//mobileRecharge/{10,"we"}
 		// 1
-		@PostMapping(value = "/mobilerecharge/{provider}/{paymentMethod}")
+	@PostMapping(value = "/mobilerecharge/{provider}/{paymentMethod}")
 	public String mobileRecharge(@RequestBody MobileRecharge mb ,@PathVariable("paymentMethod") String pay,@PathVariable("provider") String prov)
 	{
 			this.service = mb;
@@ -335,7 +320,33 @@ public class SystemForm {
 	public String getService(){
 	        return "Youssef";
 	}
+	 
+	// 2
+	 @PostMapping(value = "/internetpaymment/{provider}/{paymentMethod}")
+	public String internetPayment(@RequestBody InternetPayment ip ,@PathVariable("paymentMethod") String pay,@PathVariable("provider") String prov)
+	{
+		 this.service = ip;
+			return completeProcess(ip.getAmount(),prov,pay);
+	}
 	
+	// 3
+	 @PostMapping(value = "/donation/{place}/{paymentMethod}")
+		public String donation(@RequestBody Donation d ,@PathVariable("paymentMethod") String pay,@PathVariable("place") String place)
+		{
+			 this.service = d;
+			return completeProcess(d.getAmount(),place,pay);
+		}
+		
+		// 4
+	 @PostMapping(value = "/landline/{receipt}/{paymentMethod}")
+		public String landline(@RequestBody Landline li ,@PathVariable("paymentMethod") String pay,@PathVariable("receipt") String receipt)
+		{
+			 this.service = li;
+			return completeProcess(li.getAmount(),receipt,pay);
+		}
+	 
+
+
 	
 }
 

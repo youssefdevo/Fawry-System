@@ -1,51 +1,45 @@
 package com.fci.advanced.se.fawryservice.service;
 import java.util.Scanner;
 
+import com.fci.advanced.se.fawryservice.provider.Provider;
+import com.fci.advanced.se.fawryservice.provider.We;
+
 public class Donation implements Service {
 	private String name;
-	private Scanner in  = new Scanner(System.in);
 	private DonationPlace place;
 	private double amount;
 	public Donation ()
 	{
 		name="Donation";
 	}
-	public String  donationForm(double amount,String request)
-	{
-		
-		  this.amount=amount;
-		  request=request.toLowerCase();
-		
-		if(request=="schools")
+	public void donationForm(double amount,String  request)
+	{	 
+		this.amount=amount;
+	  request=request.toLowerCase();
+		if(request.equals("school"))
 		{
-		          
-	           place = new School();
-			 return place.donationForm(amount);
+			this.setPlace(new School());
 		}
-		else if(request=="ngos")
+		else if(request.equals("hospital"))
 		{
-			 place = new NGOs();
-			return place.donationForm(amount);
-		
-		}
-		else if(request=="Hospital")
-		{
-			 place = new Hospital();   
-			 return place.donationForm(amount);
+			this.setPlace(new Hospital());
 
-			
 		}
-		
-			return "Not found";
-		
+		else if(request.equals("ngos"))
+		{			
+			this.setPlace(new NGOs());
+
+		}
+
 	}
-	public String  serviceForm(double amount,String request)
+	public void serviceForm(double amount  ,String requests)
 	{
-		 return donationForm(amount,request);
+		donationForm ( amount ,  requests);
 	}
+	
 	@Override
 	public double getAmount() {
-		return place.getAmount();
+		return amount;
 	}
 	@Override
 	public Discount getDiscount() {
@@ -61,6 +55,12 @@ public class Donation implements Service {
 	public String getName() {
 		// TODO Auto-generated method stub
 		return name;
+	}
+	public  DonationPlace getPlace() {
+		return place;
+	}
+	public void setPlace(DonationPlace  place) {
+		this.place = place;
 	}
 	
 	

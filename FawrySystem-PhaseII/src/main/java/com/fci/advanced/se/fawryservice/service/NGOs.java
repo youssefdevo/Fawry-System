@@ -3,14 +3,14 @@ package com.fci.advanced.se.fawryservice.service;
 public class NGOs implements DonationPlace{
 
 	  private double amount;
-	    public String donationForm(double amount)
+	    public void donationForm(double amount)
 	    {
-	        return  NGOsForm( amount );
+	         NGOsForm( amount );
 	    }
-	    public String NGOsForm(double amount)
+	    public void NGOsForm(double amount)
 	    {
 	    	this.amount=amount;
-	        return  "Thanks for your Donation for NGOs.";
+	      
 	    }
 	    
 	    public double getAmount() {

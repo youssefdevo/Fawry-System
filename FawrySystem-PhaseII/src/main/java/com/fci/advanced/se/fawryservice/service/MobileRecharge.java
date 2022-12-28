@@ -13,7 +13,7 @@ public class MobileRecharge implements Service {
 	public void mobileRecharageForm(double amount,String  request)
 	{	 
 		this.amount=amount;
-	  request=request.toLowerCase();
+	   request=request.toLowerCase();
 		if(request=="we")
 		{
 			this.setProvider(new We());

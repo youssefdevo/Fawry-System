@@ -2,15 +2,15 @@ package com.fci.advanced.se.fawryservice.service;
 
 public class School implements DonationPlace {
     private double amount;
-    public String donationForm(double amount)
+    public void donationForm(double amount)
     {
-        return  schoolForm( amount );
+          schoolForm( amount );
     }
-    public String schoolForm(double amount)
+    public void schoolForm(double amount)
     {
     	this.amount=amount;
       
-        return  "Thanks for your Donation for Schools.";
+       // return  "Thanks for your Donation for Schools.";
     }
     
     public double getAmount() {
