@@ -12,7 +12,8 @@ public class MobileRecharge implements Service {
 	private Discount discount;
 	public MobileRecharge()
 	{
-		name="MobileRecharge";
+		//name="MobileRecharge";
+	//	this.discount=null;
 		
 	}
 	public void mobileRecharageForm(double amount,String  request)
@@ -41,7 +42,6 @@ public class MobileRecharge implements Service {
 		}
 	
 	}
-	
 	public void serviceForm(double amount  ,String requests)
 	{
 		 mobileRecharageForm( amount ,  requests);

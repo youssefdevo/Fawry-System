@@ -5,6 +5,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.fci.advanced.se.fawryservice.controllers.FawrySystem;
@@ -105,13 +107,14 @@ public class SystemForm {
 	@PostMapping(value = "/mobilerecharge")
 	public String mobileRecharge(@RequestBody MobileRecharge mb )
 	{
-		double amount = 20;
+		
+	double amount = 20;
 		String request = "we";
 		String payType = "cash";
-		service = new MobileRecharge();
-		return completeProcess(amount ,request,payType);
-	}
+		 service =  mb;
+	 return completeProcess(amount,request,payType);
 	
+	}
 	 @GetMapping(value = "/mobilerechargee")
 	    public String getService(){
 	        return "Youssef";
@@ -308,9 +311,16 @@ public class SystemForm {
 			return "Invalid account, Please try again..\n";
 		}
 	}
+
+	 @GetMapping(value = "/getuser")
+	    public User getUser(){
+	        return controller.getCurrentUser();
+	    }
+	
 	
 	@SuppressWarnings("resource")
-	public void userSignup(String username, String mail, String password) {
+	@PostMapping(value = "/usersignup")
+	public void userSignup(@RequestBody Account acc) {
 //		Scanner in2 = new Scanner(System.in);
 //		String username, mail, password;
 //		System.out.println("Enter username: ");
@@ -320,8 +330,8 @@ public class SystemForm {
 //		System.out.println("Enter Password: ");
 //		password = in2.nextLine();
 		
-		Account account = new Account(username,mail,password);
-		User user = new User(account);
+	//	Account account = new Account(username,mail,password);
+		User user = new User(acc);
 		controller.addUser(user);
 	}
 	
