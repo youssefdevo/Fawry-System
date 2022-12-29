@@ -33,23 +33,29 @@ public class Admin {
 				found = true;
 			}
 		}
-//		if(!found) {
-//			if(serviceName.contains("internet")) {
+		if(!found) {
+			if(serviceName.contains("internet")) {
 //				Service s = new InternetPayment();
-//				s.updateDiscount(discount);
-//				SystemData.addService(s);
-//			}
-//			else if(serviceName.contains("mobile")) {
+				Service s= new Specific(new InternetPayment());
+				s.setDiscount(discount);
+				SystemData.addService(s);
+			}
+			else if(serviceName.contains("mobile")) {
 //				Service s = new MobileRecharge();
-//				s.updateDiscount(discount);
-//				SystemData.addService(s);
-//			}
-//			else if(serviceName.contains("landline")) {
+				Service s= new Specific(new MobileRecharge());
+				s.setDiscount(discount);
+				SystemData.addService(s);
+			}
+			else if(serviceName.contains("landline")) {
 //				Service s = new Landline();
 //				s.updateDiscount(discount);
 //				SystemData.addService(s);
-//			}
-//		}
+				Service s= new Specific(new Landline());
+				s.setDiscount(discount);
+				SystemData.addService(s);
+				
+			}
+		}
 	}
 //	public void notifyOverAll(Discount dis) {
 //		for(User u:SystemData.getUsers()) {

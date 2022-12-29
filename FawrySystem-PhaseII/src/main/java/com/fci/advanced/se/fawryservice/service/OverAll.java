@@ -2,9 +2,9 @@ package com.fci.advanced.se.fawryservice.service;
 
 public class OverAll extends Discount{
 	
-	public OverAll(Service service)
+	public OverAll()
 	{
-		this.service=service;
+		//this.service=service;
 		discount_amount=0;
 	}
 	

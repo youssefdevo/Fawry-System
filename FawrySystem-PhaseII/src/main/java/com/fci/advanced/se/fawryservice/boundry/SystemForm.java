@@ -296,22 +296,23 @@ public class SystemForm {
 	
 	
 	 //admin add discounts
-	@PostMapping(value = "/addOvarallDiscount/{value}")
-	public String addOvarallDiscount(@PathVariable("value") double value)
-	{ 
-		Discount dis=new OverAll();			
-		dis.setDiscount(value);
-		controller.setOverAll(dis);
-		return "added successfully";
-	}
+//	@PostMapping(value = "/addOvarallDiscount/{value}")
+//	public String addOvarallDiscount(@PathVariable("value") double value)
+//	{ 
+//		Discount dis=new OverAll();			
+//		dis.setDiscount(value);
+//		controller.setOverAll(dis);
+//		return "added successfully";
+//	}
 	
 	//admin add discounts
 	@PostMapping(value = "/addSpecificDiscount/{serviceName}/{value}")
 	public String addSpecificDiscount(@PathVariable("serviceName") String name, @PathVariable("value")double value)
 	{
-		Discount dis=new Specific();
-		dis.setDiscount(value);
-		controller.setSpecific(name,dis);
+//		ser dis=new Specific();
+//		dis.setDiscount(value);
+//		controller.setSpecific(name,dis);
+		controller.setSpecific(name,value);
 		return "added successfully";
 	}
 	//admin view refunds

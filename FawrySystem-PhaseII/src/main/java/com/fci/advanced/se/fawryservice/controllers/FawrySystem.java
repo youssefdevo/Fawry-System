@@ -98,16 +98,16 @@ public class FawrySystem {
 		for(Service d:SystemData.getServices())
 		{
 			if(d.getName()=="Donation")continue;
-			disc.add(d.getName()+": "+ d.getDiscount().getDiscount_amount() + " %");
+			disc.add(d.getName()+": "+ d.getAmount() + " %");
 		}
 		return disc;
 	}
 
-	public void setOverAll(Discount dis) {
-		currentAdmin.notifyOverAll(dis);
-	}
+//	public void setOverAll(Discount dis) {
+//		currentAdmin.notifyOverAll(dis);
+//	}
 	
-	public void setSpecific(String name, Discount dis) {
+	public void setSpecific(String name, double dis) {
 		currentAdmin.notifySpecific(name, dis);
 	}
 	
