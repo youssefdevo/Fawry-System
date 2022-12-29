@@ -6,10 +6,10 @@ import com.fci.advanced.se.fawryservice.service.Discount;
 import com.fci.advanced.se.fawryservice.service.OverAll;
 
 public class User {
-	
+
 	private Account myAccount;
-	private Discount overall_discount;
 	private  Wallet wallet;
+	private Discount overall_discount;
 	private static ArrayList<Transaction> transactions;
 	
 	

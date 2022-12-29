@@ -16,6 +16,7 @@ public class FawrySystem {
   private User currentUser;
   private Admin currentAdmin; 
   public static int ids = 0;
+  public static int refundID = 1;
 	private static FawrySystem instance = new FawrySystem();
 
 	FawrySystem(){
@@ -122,10 +123,14 @@ public class FawrySystem {
 		return currentUser.getTransactions();
 	}
 
-	public void addRefund(int index) {
+	public String addRefund(int index) {
+		if(currentUser.getTransactions().get(index).getState().equals("Pending"))
+			return "this refund already exist.";
+		
 		currentUser.getTransactions().get(index).setState("Pending");
 		Refund r = new Refund(currentUser.getTransactions().get(index));
 		data.addRefund(r);
+		return "Refund has been requested";
 		
 	}
 

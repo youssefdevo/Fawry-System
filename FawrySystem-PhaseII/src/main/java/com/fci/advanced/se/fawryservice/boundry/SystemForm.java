@@ -10,6 +10,7 @@ import com.fci.advanced.se.fawryservice.controllers.FawrySystem;
 import com.fci.advanced.se.fawryservice.entities.Account;
 import com.fci.advanced.se.fawryservice.entities.Refund;
 import com.fci.advanced.se.fawryservice.entities.Transaction;
+import com.fci.advanced.se.fawryservice.entities.User;
 import com.fci.advanced.se.fawryservice.payment.Cash;
 import com.fci.advanced.se.fawryservice.payment.CreditCard;
 import com.fci.advanced.se.fawryservice.payment.Payment;
@@ -133,51 +134,15 @@ public class SystemForm {
 		}
 		else if(payType.contains("wallet"))
 		{
-			payment=new Wallet(service,controller.getCurrentUser());
+			//payment=new Wallet(service,controller.getCurrentUser());
+			payment = controller.getCurrentUser().getWallet();
+			payment.setService(service,controller.getCurrentUser());
 		}
 	}
 	
 	
-	
-	// list of refund -------------------
-	public void listallrefunds()
-	{
-		ArrayList<Refund> refunds= controller.requestRefunds();
-		for(Refund r:refunds) {
-			printRefund(r);
-		}
-		//refundAction(refunds);
-	}
-	public void printRefund(Refund r) 
-	{
-		Transaction trans = r.getTrans();
-		trans.printTransaction();
-	}
-	//-------------------------------------
-	
-	
-	public void refundAction(ArrayList<Refund> refunds ,int index,int state ) {
-		//System.out.println("please select number from 1 to "+ refunds.size() + " to select the refund,\n or 0 to back.\n");
-		if(index >= 1 && index <= refunds.size()){
-//			System.out.println("press 1 to accept, 2 to reject.");
-			if(state  == 1) {
-				acceptRefund(index);
-			}
-			else if(state  == 2) {
-				rejectRefund(index);
-			}
-		}
-//		else {
-//			System.out.println("invalid input, please try again.\n");
-//		}
-	}
-	
-	public void acceptRefund(int index) {
-		controller.accRefund(index);
-	}
-	public void rejectRefund(int index) {
-		controller.rejecRefund(index);
-	}
+
+
 	
 //	public void addDiscountForm(int requset ,double value) { 
 //		Discount dis;
@@ -214,21 +179,11 @@ public class SystemForm {
 //	
 //	}
 	
-	
-	
-	public String adminLogin(String username , String password) {
-		
-		if(controller.validate_AdminAccount(username,password)) {
-			return "Logged in successfully.";
-		}
-		else {
-			return "Invalid account, Please try again..";
-		}
-	}
 
-	 @GetMapping(value = "/getuseracc")
-	    public Account getUserAccount(){
-	        return controller.getCurrentUser().getAccount();
+
+	 @GetMapping(value = "/getuser")
+	    public User getUserAccount(){
+	        return controller.getCurrentUser();
 	    }
 	
 	@PostMapping(value = "/usersignup")
@@ -283,79 +238,113 @@ public class SystemForm {
 			return completeProcess(ip.getAmount(),prov,pay);
 	}
 	
-	// 3
-	 @PostMapping(value = "/donation/{place}/{paymentMethod}")
-		public String donation(@RequestBody Donation d ,@PathVariable("paymentMethod") String pay,@PathVariable("place") String place)
-		{
-			 this.service = d;
-			return completeProcess(d.getAmount(),place,pay);
-		}
-		
-		// 4
-	    @PostMapping(value = "/landline/{receipt}/{paymentMethod}")
-		public String landline(@RequestBody Landline li ,@PathVariable("paymentMethod") String pay,@PathVariable("receipt") String receipt)
+	    // 3
+	@PostMapping(value = "/donation/{place}/{paymentMethod}")
+	public String donation(@RequestBody Donation d ,@PathVariable("paymentMethod") String pay,@PathVariable("place") String place)
+	{
+		 this.service = d;
+		return completeProcess(d.getAmount(),place,pay);
+	}
+	
+	// 4
+	@PostMapping(value = "/landline/{receipt}/{paymentMethod}")
+	public String landline(@RequestBody Landline li ,@PathVariable("paymentMethod") String pay,@PathVariable("receipt") String receipt)
 		{
 			 this.service = li;
 			return completeProcess(li.getAmount(),receipt,pay);
 		}
 	 
-
+	
 	   // 5  user view discounts.
-	    @GetMapping(value = "/viewDiscounts")
+	@GetMapping(value = "/viewDiscounts")
 		public ArrayList<String> viewDiscounts()
 		{
 			return controller.viewDiscounts();
 		}
 	
 	   
-
+	
 		// 6
-	    @GetMapping(value = "/viewTransactions")
-		public ArrayList<Transaction> viewTransactions()
-		{
-			return controller.viewTransactions();
-		}
-		
-		
+	@GetMapping(value = "/viewTransactions")
+	public ArrayList<Transaction> viewTransactions()
+	{
+		return controller.viewTransactions();
+	}
+	
+	
 	//  7
 	  @PostMapping(value = "/chargewallet/{amount}")
-		public String chargeWallet(@PathVariable("amount") double amount)
-		{
-			 return controller.chargeWallet(amount);
-		}
-		
-		
-		// 8
-		 @PostMapping(value = "/makerefund/{index}")
-		public String makeRefund(@PathVariable("index") int index) {
-			int size = controller.getCurrentUser().getTransactions().size();
-			if(index>size || index < 1 ) {
-				 return "invalid request..\n\n";
-			}
-			controller.addRefund(index);
-			return "Refund has been requested";
-		}
-
-		
+	public String chargeWallet(@PathVariable("amount") double amount)
+	{
+		 return controller.chargeWallet(amount);
+	}
 	
+	
+	// 8
+	 @PostMapping(value = "/makerefund/{index}")
+	public String makeRefund(@PathVariable("index") int index) {
+		int size = controller.getCurrentUser().getTransactions().size();
+		if(index>size || index < 1 ) {
+			 return "invalid request..\n\n";
+		}
 		
-		 //admin add discounts
-	    @PostMapping(value = "/addOvarallDiscount/{value}")
-		public void addOvarallDiscount(@PathVariable("value") double value)
-		{ 
-			Discount dis=new OverAll();			
-			dis.setDiscount(value);
-			controller.setOverAll(dis);
+		return controller.addRefund(index);
+		
+	}
+	
+	
+	
+	
+	 //admin add discounts
+	@PostMapping(value = "/addOvarallDiscount/{value}")
+	public String addOvarallDiscount(@PathVariable("value") double value)
+	{ 
+		Discount dis=new OverAll();			
+		dis.setDiscount(value);
+		controller.setOverAll(dis);
+		return "added successfully";
+	}
+	
+	//admin add discounts
+	@PostMapping(value = "/addSpecificDiscount/{serviceName}/{value}")
+	public String addSpecificDiscount(@PathVariable("serviceName") String name, @PathVariable("value")double value)
+	{
+		Discount dis=new Specific();
+		dis.setDiscount(value);
+		controller.setSpecific(name,dis);
+		return "added successfully";
+	}
+	//admin view refunds
+	@GetMapping(value = "/ListRefunds")
+	public ArrayList<Refund> listAllRefunds()
+	{
+		return controller.requestRefunds();
+	}
+	
+	
+	//admin refund action
+	@PostMapping(value = "/refundAction/{index}/{state}")
+	public String refundAction(@PathVariable("index") int index, @PathVariable("state") int state) {
+		if(index >= 1 && index <= controller.requestRefunds().size()){
+			
+			if(state  == 1) {
+				acceptRefund(index);
+				return "Refund accepted successfully";
+			}
+			
+			else if(state  == 2) {
+				rejectRefund(index);
+				return "Refund cancelled successfully";
+			}
 		}
-	    
-		//admin add discounts
-	    @PostMapping(value = "/addSpecificDiscount/{serviceName}/{value}")
-		public void addSpecificDiscount(@PathVariable("serviceName") String name, @PathVariable("value")double value)
-		{
-			Discount dis=new Specific();
-			dis.setDiscount(value);
-			controller.setSpecific(name,dis);
-		}
+		return "Invalid ID, please try again.";
+	}
+	public void acceptRefund(int index) {
+		controller.accRefund(index);
+	}
+	public void rejectRefund(int index) {
+		controller.rejecRefund(index);
+	}
 }
 
 

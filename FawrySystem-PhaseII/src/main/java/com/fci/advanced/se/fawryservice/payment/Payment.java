@@ -7,23 +7,31 @@ import com.fci.advanced.se.fawryservice.service.Service;
 public abstract class Payment {
 	private Service service;
 	private Discount discount;
-	private User user;
 	Payment(){}
 	Payment(Service s){this.service = s;}
 	Payment(Service s,User u)
 	{
-		this.user = u;
+		
 		this.service = s;
 		discount = u.getOverall_discount();
 		discount.wrapDiscount(s.getDiscount());
 	}
+	
 	public abstract String pay(double amount);
 	public double price()
 	{
-		double dis=(service.getAmount()*discount.applyDiscount())/100;
-		double total =service.getAmount() - dis;
+		double dis=(getService().getAmount()*discount.applyDiscount())/100;
+		double total =getService().getAmount() - dis;
 		return total;
 		//return 100.0;
+	}
+	public Service getService() {
+		return service;
+	}
+	public void setService(Service service,User u) {
+		this.service = service;
+		discount=u.getOverall_discount();
+		discount.wrapDiscount(service.getDiscount());
 	}	
 	
 	

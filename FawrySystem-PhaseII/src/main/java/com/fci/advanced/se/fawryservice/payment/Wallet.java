@@ -17,10 +17,11 @@ public class Wallet extends Payment {
 	public String pay(double amount) {
 			
 		 if(balance>=amount) {
+			 balance-=amount;
 			 return "Transaction completed successfully (paied via Wallet).";
 		 }
 		 else {
-			return "there is no enough money in your wallet\n\n";
+			return "there is no enough money in your wallet.";
 		 }
 		
 	}
@@ -42,5 +43,5 @@ public class Wallet extends Payment {
 	public void addBalance(double b) {
 		balance+=b;
 	}
-
+	
 }
