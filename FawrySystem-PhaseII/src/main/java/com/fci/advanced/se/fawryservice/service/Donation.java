@@ -4,7 +4,7 @@ import java.util.Scanner;
 import com.fci.advanced.se.fawryservice.provider.Provider;
 import com.fci.advanced.se.fawryservice.provider.We;
 
-public class Donation implements Service {
+public class Donation extends Service {
 	private String name;
 	private DonationPlace place;
 	private double amount;
@@ -41,16 +41,16 @@ public class Donation implements Service {
 	public double getAmount() {
 		return amount;
 	}
-	@Override
-	public Discount getDiscount() {
-		// TODO Auto-generated method stub
-		return null;
-	}
-	@Override
-	public void updateDiscount(Discount discount) {
-		// TODO Auto-generated method stub
-		
-	}
+//	@Override
+//	public Discount getDiscount() {
+//		// TODO Auto-generated method stub
+//		return null;
+//	}
+//	@Override
+//	public void updateDiscount(Discount discount) {
+//		// TODO Auto-generated method stub
+//		
+//	}
 	@Override
 	public String getName() {
 		// TODO Auto-generated method stub
