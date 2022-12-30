@@ -1,13 +1,9 @@
 package com.fci.advanced.se.fawryservice.service;
-import java.util.Scanner;
-
-import com.fci.advanced.se.fawryservice.provider.Provider;
-import com.fci.advanced.se.fawryservice.provider.We;
-
 public class Donation implements Service {
 	private String name;
 	private DonationPlace place;
 	private double amount;
+	private static double donation_discount = 0;
 	public Donation ()
 	{
 		name="Donation";
@@ -61,6 +57,15 @@ public class Donation implements Service {
 	}
 	public void setPlace(DonationPlace  place) {
 		this.place = place;
+	}
+	
+	@Override
+	public void setDiscount_Amount(double amount) {
+		donation_discount = amount;
+	}
+	@Override
+	public double getDiscount_Amount() {
+		return donation_discount;
 	}
 	
 	

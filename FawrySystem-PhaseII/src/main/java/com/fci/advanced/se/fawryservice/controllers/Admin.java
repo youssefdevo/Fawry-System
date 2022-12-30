@@ -1,4 +1,5 @@
 package com.fci.advanced.se.fawryservice.controllers;
+
 import com.fci.advanced.se.fawryservice.entities.Account;
 import com.fci.advanced.se.fawryservice.entities.SystemData;
 import com.fci.advanced.se.fawryservice.entities.User;
@@ -9,10 +10,8 @@ import com.fci.advanced.se.fawryservice.service.MobileRecharge;
 import com.fci.advanced.se.fawryservice.service.Service;
 
 
-
 public class Admin {
 	private Account acc;
-	
 	public Admin(String name,String mail,String password){
 		this.acc = new Account(name,mail,password);
 	}
@@ -22,35 +21,41 @@ public class Admin {
 	
 	public void notifySpecific(String serviceName,Discount discount) {
 		boolean found = false;
-		for(Service s:SystemData.getServices()) {
+		SystemData data = SystemData.getInstance();
+		serviceName = serviceName.toLowerCase();
+		for(Service s: data.getServices()) {
 			String name = s.getName();
 			name = name.toLowerCase();
-			serviceName = serviceName.toLowerCase();
-			if(serviceName.contains(name)) {
-				s.updateDiscount(discount);
-				found = true;
+			if(name.contains(serviceName)) {
+				data.getServices().remove(s);
+				break;
 			}
 		}
-		if(!found) {
+	
 			if(serviceName.contains("internet")) {
 				Service s = new InternetPayment();
+				s.setDiscount_Amount(discount.getDiscount_amount());
 				s.updateDiscount(discount);
-				SystemData.addService(s);
+				data.addService(s);
 			}
 			else if(serviceName.contains("mobile")) {
 				Service s = new MobileRecharge();
+				s.setDiscount_Amount(discount.getDiscount_amount());
 				s.updateDiscount(discount);
-				SystemData.addService(s);
+				data.addService(s);
 			}
 			else if(serviceName.contains("landline")) {
 				Service s = new Landline();
+				s.setDiscount_Amount(discount.getDiscount_amount());
 				s.updateDiscount(discount);
-				SystemData.addService(s);
+				data.addService(s);
 			}
-		}
+		
+
 	}
 	public void notifyOverAll(Discount dis) {
-		for(User u:SystemData.getUsers()) {
+		SystemData data = SystemData.getInstance();
+		for(User u:data.getUsers()) {
 			if(u.getTransactions().size()==0)
 				u.updateDiscount(dis);
 		}

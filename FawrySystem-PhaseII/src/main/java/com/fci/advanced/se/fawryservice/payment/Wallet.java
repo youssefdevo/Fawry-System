@@ -5,13 +5,14 @@ import com.fci.advanced.se.fawryservice.service.Service;
 public class Wallet extends Payment {
 	private CreditCard creditcard;
 	private  double balance;
-	
+	private boolean flag;
 	public Wallet()
 	{
 		balance=0;
 	}
 	public Wallet(Service service, User currentUser) {
 		super(service,currentUser);
+		flag = true;
 	}
 	public String pay(double amount) {
 			
@@ -20,6 +21,7 @@ public class Wallet extends Payment {
 			 return "Transaction completed successfully (paied via Wallet).";
 		 }
 		 else {
+			 flag =false;
 			return "there is no enough money in your wallet.";
 		 }
 		
@@ -41,6 +43,12 @@ public class Wallet extends Payment {
 	}
 	public void addBalance(double b) {
 		balance+=b;
+	}
+	public boolean isFlag() {
+		return flag;
+	}
+	public void setFlag(boolean flag) {
+		this.flag = flag;
 	}
 	
 }

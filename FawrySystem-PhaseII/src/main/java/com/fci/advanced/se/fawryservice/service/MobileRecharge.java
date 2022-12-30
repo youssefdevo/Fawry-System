@@ -10,6 +10,7 @@ public class MobileRecharge implements Service {
 	private Provider provider ;
 	private double amount ;
 	private Discount discount;
+	private static double mobile_discount = 0;
 	
 	public MobileRecharge() {
 		this.name = "Mobile Recharge";
@@ -64,6 +65,15 @@ public class MobileRecharge implements Service {
 	}
 	public void setProvider(Provider provider) {
 		this.provider = provider;
+	}
+	@Override
+	public void setDiscount_Amount(double amount) {
+		mobile_discount = amount;
+		
+	}
+	@Override
+	public double getDiscount_Amount() {
+		return mobile_discount;
 	}
 	
 	

@@ -6,4 +6,6 @@ public interface Service {
 	public Discount getDiscount();
 	public void updateDiscount(Discount discount);
 	public String getName();
+	public void setDiscount_Amount(double amount);
+	public double getDiscount_Amount();
 }

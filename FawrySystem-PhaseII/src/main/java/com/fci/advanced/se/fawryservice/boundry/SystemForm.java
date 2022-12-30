@@ -101,9 +101,10 @@ public class SystemForm {
 	public String completeProcess(double amount,String request, String payType) {
 		service.serviceForm( amount, request);
 		selectPayment(payType); 
+		payment.setFlag(true);
 		double price = payment.price();
 		String pay = payment.pay(price);
-		completeTransaction(service.getName() ,price);
+		if(payment.isFlag())completeTransaction(service.getName() ,price);
 		
 		return "\nThe cost of " + service.getName()+"= " + price + "\n" + pay;
 	}
@@ -180,15 +181,15 @@ public class SystemForm {
 	        return controller.getCurrentUser();
 	    }
 	
-	@PostMapping(value = "/usersignup")
+	@PostMapping(value = "/user/signup")
 	public String userSignup(@RequestBody Account acc) {
 		return controller.addUser(acc);
 	}
 	
 	
-	@PostMapping(value = "/userlogin")
+	@PostMapping(value = "/user/login")
 	public String userLogin(@RequestBody Account acc) {
-		
+		controller.setCurrentAdmin(null);
 		if(controller.validate_UserAccount(acc.getUsername(),acc.getPassword())) {
 			return "User Logged in successfully.\n";
 		}
@@ -196,9 +197,15 @@ public class SystemForm {
 			return "Invalid account, Please try again..\n";
 		}
 	}
+	@PostMapping(value = "/user/logout")
+	public String userLogOut() {
+		controller.setCurrentUser(null);
+		return "User Logged out successfully";
+	}
 	
-	@PostMapping(value = "/adminlogin")
+	@PostMapping(value = "/admin/login")
 	public String adminLogin(@RequestBody Account acc) {
+		controller.setCurrentUser(null);
 		if(controller.validate_AdminAccount(acc.getUsername(),acc.getPassword())) {
 			return "Admin Logged in successfully.";
 		}
@@ -207,76 +214,88 @@ public class SystemForm {
 		}
 	}
 	
+	@PostMapping(value = "/admin/logout")
+	public String adminLogOut() {
+		controller.setCurrentAdmin(null);
+		return "Admin Logged out successfully";
+	}
 	
 	
 	
-	//mobileRecharge/{10,"we"}
 		// 1
-	@PostMapping(value = "/mobilerecharge/{provider}/{paymentMethod}")
+	@PostMapping(value = "/user/mobilerecharge/{provider}/{paymentMethod}")
 	public String mobileRecharge(@RequestBody MobileRecharge mb ,@PathVariable("paymentMethod") String pay,@PathVariable("provider") String prov)
 	{
+			if(controller.getCurrentUser()==null)return "Please login as a user first";
 			this.service = mb;
 			return completeProcess(mb.getAmount(),prov,pay);
 	
 	}
-	 @GetMapping(value = "/mobilerechargee")
-	public String getService(){
-	        return "Youssef";
-	}
-	 
+	
 	// 2
-	 @PostMapping(value = "/internetpaymment/{provider}/{paymentMethod}")
+	 @PostMapping(value = "/user/internetpaymment/{provider}/{paymentMethod}")
 	public String internetPayment(@RequestBody InternetPayment ip ,@PathVariable("paymentMethod") String pay,@PathVariable("provider") String prov)
 	{
+		 if(controller.getCurrentUser()==null)
+			 return "Please login as a user first";
 		 this.service = ip;
-			return completeProcess(ip.getAmount(),prov,pay);
+		 return completeProcess(ip.getAmount(),prov,pay);
 	}
 	
 	    // 3
-	@PostMapping(value = "/donation/{place}/{paymentMethod}")
+	@PostMapping(value = "/user/donation/{place}/{paymentMethod}")
 	public String donation(@RequestBody Donation d ,@PathVariable("paymentMethod") String pay,@PathVariable("place") String place)
 	{
+		 if(controller.getCurrentUser()==null)return "Please login as a user first";
 		 this.service = d;
-		return completeProcess(d.getAmount(),place,pay);
+		 return completeProcess(d.getAmount(),place,pay);
 	}
 	
 	// 4
-	@PostMapping(value = "/landline/{receipt}/{paymentMethod}")
+	@PostMapping(value = "/user/landline/{receipt}/{paymentMethod}")
 	public String landline(@RequestBody Landline li ,@PathVariable("paymentMethod") String pay,@PathVariable("receipt") String receipt)
 		{
-			 this.service = li;
+			if(controller.getCurrentUser()==null)return "Please login as a user first";
+			this.service = li;
 			return completeProcess(li.getAmount(),receipt,pay);
 		}
 	 
 	
 	   // 5  user view discounts.
-	@GetMapping(value = "/viewDiscounts")
+	@GetMapping(value = "/user/viewDiscounts")
 		public ArrayList<String> viewDiscounts()
 		{
-			return controller.viewDiscounts();
+			ArrayList<String>temp = new ArrayList<>();
+			temp.add("Please login as a user first");
+			if(controller.getCurrentUser()==null)
+				return temp;
+			else
+				return controller.viewDiscounts();
 		}
 	
 	   
 	
 		// 6
-	@GetMapping(value = "/viewTransactions")
+	@GetMapping(value = "/user/viewTransactions")
 	public ArrayList<Transaction> viewTransactions()
-	{
+	{		
 		return controller.viewTransactions();
 	}
 	
 	
 	//  7
-	  @PostMapping(value = "/chargewallet/{amount}")
+	  @PostMapping(value = "/user/chargewallet/{amount}")
 	public String chargeWallet(@PathVariable("amount") double amount)
 	{
-		 return controller.chargeWallet(amount);
+		  if(controller.getCurrentUser()==null)return "Please login as a user first";
+		  return controller.chargeWallet(amount);
 	}
 	
 	
 	// 8
-	 @PostMapping(value = "/makerefund/{index}")
+	 @PostMapping(value = "/user/makerefund/{index}")
 	public String makeRefund(@PathVariable("index") int index) {
+		 if(controller.getCurrentUser()==null)return "Please login as a user first";
 		int size = controller.getCurrentUser().getTransactions().size();
 		if(index>size || index < 1 ) {
 			 return "invalid request..\n\n";
@@ -287,9 +306,10 @@ public class SystemForm {
 	 
 	 
 	//admin add discounts
-	@PostMapping(value = "/addOvarallDiscount/{value}")
+	@PostMapping(value = "/admin/addOvarallDiscount/{value}")
 	public String addOvarallDiscount(@PathVariable("value") double value)
 	{ 
+		if(controller.getCurrentAdmin()==null)return "Please login as a Admin first";
 		Discount dis=new OverAll();			
 		dis.setDiscount(value);
 		controller.setOverAll(dis);
@@ -297,16 +317,17 @@ public class SystemForm {
 	}
 	
 	//admin add discounts
-	@PostMapping(value = "/addSpecificDiscount/{serviceName}/{value}")
+	@PostMapping(value = "/admin/addSpecificDiscount/{serviceName}/{value}")
 	public String addSpecificDiscount(@PathVariable("serviceName") String name, @PathVariable("value")double value)
 	{
+		if(controller.getCurrentAdmin()==null)return "Please login as a Admin first";
 		Discount dis=new Specific();
 		dis.setDiscount(value);
 		controller.setSpecific(name,dis);
 		return "added successfully";
 	}
 	//admin view refunds
-	@GetMapping(value = "/ListRefunds")
+	@GetMapping(value = "/admin/ListRefunds")
 	public ArrayList<Refund> listAllRefunds()
 	{
 		return controller.requestRefunds();
@@ -314,8 +335,9 @@ public class SystemForm {
 	
 	
 	//admin refund action
-	@PostMapping(value = "/refundAction/{index}/{state}")
+	@PostMapping(value = "/admin/refundAction/{index}/{state}")
 	public String refundAction(@PathVariable("index") int index, @PathVariable("state") int state) {
+		if(controller.getCurrentAdmin()==null)return "Please login as a Admin first";
 		if(index >= 1 && index <= controller.requestRefunds().size()){
 			
 			if(state  == 1) {
@@ -338,6 +360,9 @@ public class SystemForm {
 	public void rejectRefund(int index) {
 		controller.rejecRefund(index);
 	}
+	
+	
+	// Admin logout,, user logout,, update urls, new requirement.
 }
 
 

@@ -10,16 +10,11 @@ import com.fci.advanced.se.fawryservice.service.Discount;
 import com.fci.advanced.se.fawryservice.service.Service;
 
 public class FawrySystem {
-  private SystemData data;
-  private User currentUser;
-  private Admin currentAdmin; 
-  public static int ids = 0;
-  public static int refundID = 1;
-	private static FawrySystem instance = new FawrySystem();
-
-	FawrySystem(){
-		data=SystemData.getInstance();
-	}
+	  private User currentUser;
+	  private Admin currentAdmin; 
+	  public static int ids = 0;
+	  public static int refundID = 1;
+	  private static FawrySystem instance = new FawrySystem();
 
   //Get the only object available
 	public static FawrySystem  getInstance(){
@@ -27,6 +22,7 @@ public class FawrySystem {
 	}	
 	
 	public boolean validate_AdminAccount(String username,String password){
+		SystemData data = SystemData.getInstance();
 		ArrayList<Admin>admins = data.getAdmins();
 		for(Admin i :admins) {
 			if(i.getAccount().getUsername().equals(username) && i.getAccount().getPassword().equals(password)) {
@@ -38,8 +34,8 @@ public class FawrySystem {
 	}
 	
 	public boolean validate_UserAccount(String username,String password) {
-		
-		ArrayList<User> users = SystemData.getUsers();
+		SystemData data = SystemData.getInstance();
+		ArrayList<User> users = data.getUsers();
 		for(User i :users) {
 			if(i.getAccount().getUsername().equals(username) && i.getAccount().getPassword().equals(password)) {
 				this.setCurrentUser(i);
@@ -49,23 +45,25 @@ public class FawrySystem {
 		return false;
 	}
 	public ArrayList<Refund> requestRefunds(){
+		SystemData data = SystemData.getInstance();
 		return data.getRefunds();
 	}
 	
 	public void accRefund(int index) {
-		
+		SystemData data = SystemData.getInstance();
 		data.acceptRefund(index);
 		currentUser.getWallet().addBalance(currentUser.getTransactions().get(index-1).getAmount());
 	}
 	public void rejecRefund(int index) {
-		
+		SystemData data = SystemData.getInstance();
 		data.rejectRefund(index);
 	}
 	
 	public String addUser(Account acc) {
+		SystemData data = SystemData.getInstance();
 		String email = acc.getEmail();
 		String uname = acc.getUsername();
-		for(User i :SystemData.getUsers()) {
+		for(User i :data.getUsers()) {
 			if(i.getAccount().getEmail().equals(email)) 
 				return "this email in already exit";
 			
@@ -92,10 +90,10 @@ public class FawrySystem {
 	}
 	
 	public ArrayList<String> viewDiscounts() {
+		SystemData data = SystemData.getInstance();
 		ArrayList<String> disc = new ArrayList<>();
-		for(Service d:SystemData.getServices())
+		for(Service d:data.getServices())
 		{
-			if(d.getName()=="Donation")continue;
 			disc.add(d.getName()+": "+ d.getDiscount().getDiscount_amount() + " %");
 		}
 		return disc;
@@ -122,9 +120,9 @@ public class FawrySystem {
 	}
 
 	public String addRefund(int index) {
+		SystemData data = SystemData.getInstance();
 		if(currentUser.getTransactions().get(index).getState().equals("Pending"))
 			return "this refund already exist.";
-		
 		currentUser.getTransactions().get(index).setState("Pending");
 		Refund r = new Refund(currentUser.getTransactions().get(index));
 		data.addRefund(r);

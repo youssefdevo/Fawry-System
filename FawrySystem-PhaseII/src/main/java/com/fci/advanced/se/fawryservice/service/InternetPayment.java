@@ -13,6 +13,7 @@ public class InternetPayment implements Service {
 	private Provider provider ;
 	private double amount;
 	private Discount discount;
+	private static double internet_discount = 0;
 	public InternetPayment()
 	{
 		name="InternetPayment";
@@ -71,6 +72,16 @@ public class InternetPayment implements Service {
 	}
 	public void setProvider(Provider provider) {
 		this.provider = provider;
+	}
+
+	@Override
+	public void setDiscount_Amount(double amount) {
+		internet_discount = amount;
+		
+	}
+	@Override
+	public double getDiscount_Amount() {
+		return internet_discount;
 	}
 
 }

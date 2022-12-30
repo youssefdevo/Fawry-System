@@ -4,11 +4,11 @@ import com.fci.advanced.se.fawryservice.controllers.Admin;
 import com.fci.advanced.se.fawryservice.service.Service;
 
 public class SystemData {
-	private static ArrayList<Admin>admins;
-	private static ArrayList<User>users;
-	private static ArrayList<Refund>refunds;
+	private ArrayList<Admin>admins;
+	private ArrayList<User>users;
+	private ArrayList<Refund>refunds;
 	private static SystemData instance = new SystemData();
-	private static ArrayList<Service>services;
+	private ArrayList<Service>services;
 
 	//make the constructor private so that this class cannot be instantiated..
 	private SystemData(){
@@ -27,23 +27,23 @@ public class SystemData {
    
 
 	public void addAdmin(Admin admin) {
-	   SystemData.admins.add(admin);
+	   this.admins.add(admin);
 	}
    
 	public void addUser(User user) {
 		
-	   SystemData.users.add(user);
+	   this.users.add(user);
 	} 
 	
 	public void addRefund(Refund refund) {
-		   SystemData.refunds.add(refund);
+		   this.refunds.add(refund);
 	}
 	
 	public ArrayList<Admin> getAdmins(){
 		return admins;
 	}
 	
-	public static ArrayList<User> getUsers(){
+	public ArrayList<User> getUsers(){
 		return users;
 	}
 	
@@ -63,11 +63,11 @@ public class SystemData {
 		refunds.get((index-1)).getTrans().setState("Completed");
 		refunds.remove((index-1));
 	}
-	public static void addService(Service s)
+	public void addService(Service s)
 	{
-		services.add(s);
+		this.services.add(s);
 	}
-	public static ArrayList<Service> getServices(){
+	public ArrayList<Service> getServices(){
 		return services;
 	}
 	

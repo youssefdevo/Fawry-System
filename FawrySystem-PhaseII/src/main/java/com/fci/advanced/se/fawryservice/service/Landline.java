@@ -4,7 +4,7 @@ package com.fci.advanced.se.fawryservice.service;
 
 public class Landline implements Service {
 	private String name;
-
+	private static double landline_discount = 0;
 	private LandlineReceipt   receipt;
 	private double amount;
 	private Discount discount;
@@ -57,5 +57,15 @@ public class Landline implements Service {
 	}
 	public void setReceipt(LandlineReceipt receipt) {
 		this.receipt = receipt;
+	}
+	
+	@Override
+	public void setDiscount_Amount(double amount) {
+		landline_discount = amount;
+		
+	}
+	@Override
+	public double getDiscount_Amount() {
+		return landline_discount;
 	}
 }

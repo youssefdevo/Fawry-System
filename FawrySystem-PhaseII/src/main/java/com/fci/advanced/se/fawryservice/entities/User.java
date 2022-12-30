@@ -7,15 +7,14 @@ import com.fci.advanced.se.fawryservice.service.OverAll;
 public class User {
 
 	private Account myAccount;
-	private  Wallet wallet;
+	private Wallet wallet;
 	private Discount overall_discount;
-	private static ArrayList<Transaction> transactions;
-	
-	
+	private ArrayList<Transaction> transactions;
+
 	public User(Account acc){
 		this.setAccount(acc);
 		transactions = new ArrayList<>();
-		wallet  =  new Wallet();
+		wallet = new Wallet();
 		this.overall_discount = new OverAll();
 	}
 	
@@ -37,8 +36,8 @@ public class User {
 	public ArrayList<Transaction> getTransactions() {
 		return transactions;
 	}
-	public static void setTransactions(ArrayList<Transaction> transactions) {
-		User.transactions = transactions;
+	public void setTransactions(ArrayList<Transaction> transactions) {
+		this.transactions = transactions;
 	}
 	public void addTransaction(Transaction trans) {
 		transactions.add(trans);
@@ -47,4 +46,5 @@ public class User {
 	public Wallet getWallet() {
 		return wallet;
 	}
+
 }
