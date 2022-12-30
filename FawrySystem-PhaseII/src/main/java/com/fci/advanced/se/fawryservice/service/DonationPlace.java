@@ -5,3 +5,4 @@ public interface DonationPlace {
 	public double getAmount();
 	
 }
+

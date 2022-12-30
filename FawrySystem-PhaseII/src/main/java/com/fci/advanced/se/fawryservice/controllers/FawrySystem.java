@@ -9,8 +9,6 @@ import com.fci.advanced.se.fawryservice.entities.User;
 import com.fci.advanced.se.fawryservice.service.Discount;
 import com.fci.advanced.se.fawryservice.service.Service;
 
-
-
 public class FawrySystem {
   private SystemData data;
   private User currentUser;
@@ -98,16 +96,16 @@ public class FawrySystem {
 		for(Service d:SystemData.getServices())
 		{
 			if(d.getName()=="Donation")continue;
-			disc.add(d.getName()+": "+ d.getAmount() + " %");
+			disc.add(d.getName()+": "+ d.getDiscount().getDiscount_amount() + " %");
 		}
 		return disc;
 	}
 
-//	public void setOverAll(Discount dis) {
-//		currentAdmin.notifyOverAll(dis);
-//	}
+	public void setOverAll(Discount dis) {
+		currentAdmin.notifyOverAll(dis);
+	}
 	
-	public void setSpecific(String name, double dis) {
+	public void setSpecific(String name, Discount dis) {
 		currentAdmin.notifySpecific(name, dis);
 	}
 	

@@ -16,3 +16,4 @@ public class  Hospital implements DonationPlace {
 	    }
 
 }
+

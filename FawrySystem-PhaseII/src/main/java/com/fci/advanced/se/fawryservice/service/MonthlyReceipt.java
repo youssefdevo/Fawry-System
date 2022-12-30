@@ -1,7 +1,6 @@
 package com.fci.advanced.se.fawryservice.service;
 import java.util.Scanner;
 
-
 public class MonthlyReceipt implements LandlineReceipt {
 	private Scanner in = new Scanner(System.in);
 	private double amount;

@@ -1,13 +1,13 @@
 package com.fci.advanced.se.fawryservice.service;
-import java.util.Scanner;
 
 
-public class Landline extends Service {
+
+public class Landline implements Service {
 	private String name;
 
 	private LandlineReceipt   receipt;
 	private double amount;
-//	private Discount discount;
+	private Discount discount;
 	public Landline()
 	{
 		name="Landline";
@@ -36,16 +36,16 @@ public class Landline extends Service {
 	public double getAmount() {
 		return amount;
 	}
-//	@Override
-//	public Discount getDiscount() {
-//		// TODO Auto-generated method stub
-//		return discount;
-//	}
-//	@Override
-//	public void updateDiscount(Discount discount) {
-//		this.discount = discount;
-//		
-//	}
+	@Override
+	public Discount getDiscount() {
+		// TODO Auto-generated method stub
+		return discount;
+	}
+	@Override
+	public void updateDiscount(Discount discount) {
+		this.discount = discount;
+		
+	}
 	@Override
 	public String getName() {
 		// TODO Auto-generated method stub

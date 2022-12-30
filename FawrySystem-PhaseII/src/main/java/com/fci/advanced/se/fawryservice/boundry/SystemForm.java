@@ -14,7 +14,7 @@ import com.fci.advanced.se.fawryservice.entities.User;
 import com.fci.advanced.se.fawryservice.payment.Cash;
 import com.fci.advanced.se.fawryservice.payment.CreditCard;
 import com.fci.advanced.se.fawryservice.payment.Payment;
-import com.fci.advanced.se.fawryservice.payment.Wallet;
+
 import com.fci.advanced.se.fawryservice.service.Discount;
 import com.fci.advanced.se.fawryservice.service.Donation;
 import com.fci.advanced.se.fawryservice.service.InternetPayment;
@@ -30,6 +30,7 @@ public class SystemForm {
 	private Service service;
 	private Payment payment;
 	
+	// start function
 //	public void start() {
 //		
 //		System.out.println("1- Admin (press 1)\n2- User (press 2).\n3- Exist (press 3).");
@@ -96,13 +97,6 @@ public class SystemForm {
 //		System.out.println("7- Charge your wallet.");
 //		System.out.println("8- Log out");
 
-		
-	
-	
-	
-	
-	
-	
 	
 	public String completeProcess(double amount,String request, String payType) {
 		service.serviceForm( amount, request);
@@ -289,30 +283,26 @@ public class SystemForm {
 		}
 		
 		return controller.addRefund(index);
-		
 	}
-	
-	
-	
-	
-	 //admin add discounts
-//	@PostMapping(value = "/addOvarallDiscount/{value}")
-//	public String addOvarallDiscount(@PathVariable("value") double value)
-//	{ 
-//		Discount dis=new OverAll();			
-//		dis.setDiscount(value);
-//		controller.setOverAll(dis);
-//		return "added successfully";
-//	}
+	 
+	 
+	//admin add discounts
+	@PostMapping(value = "/addOvarallDiscount/{value}")
+	public String addOvarallDiscount(@PathVariable("value") double value)
+	{ 
+		Discount dis=new OverAll();			
+		dis.setDiscount(value);
+		controller.setOverAll(dis);
+		return "added successfully";
+	}
 	
 	//admin add discounts
 	@PostMapping(value = "/addSpecificDiscount/{serviceName}/{value}")
 	public String addSpecificDiscount(@PathVariable("serviceName") String name, @PathVariable("value")double value)
 	{
-//		ser dis=new Specific();
-//		dis.setDiscount(value);
-//		controller.setSpecific(name,dis);
-		controller.setSpecific(name,value);
+		Discount dis=new Specific();
+		dis.setDiscount(value);
+		controller.setSpecific(name,dis);
 		return "added successfully";
 	}
 	//admin view refunds
@@ -340,9 +330,11 @@ public class SystemForm {
 		}
 		return "Invalid ID, please try again.";
 	}
+	
 	public void acceptRefund(int index) {
 		controller.accRefund(index);
 	}
+	
 	public void rejectRefund(int index) {
 		controller.rejecRefund(index);
 	}

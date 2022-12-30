@@ -5,7 +5,7 @@ import com.fci.advanced.se.fawryservice.provider.Provider;
 import com.fci.advanced.se.fawryservice.provider.Vodafone;
 import com.fci.advanced.se.fawryservice.provider.We;
 
-public class MobileRecharge extends Service {
+public class MobileRecharge implements Service {
 	private String name;
 	private Provider provider ;
 	private double amount ;

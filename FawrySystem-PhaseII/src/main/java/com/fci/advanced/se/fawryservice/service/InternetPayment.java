@@ -1,5 +1,5 @@
 package com.fci.advanced.se.fawryservice.service;
-import java.util.Scanner;
+
 
 import com.fci.advanced.se.fawryservice.provider.Etisalat;
 import com.fci.advanced.se.fawryservice.provider.Orange;
@@ -8,11 +8,11 @@ import com.fci.advanced.se.fawryservice.provider.Vodafone;
 import com.fci.advanced.se.fawryservice.provider.We;
 
 
-public class InternetPayment extends Service {
+public class InternetPayment implements Service {
 	private String name;
 	private Provider provider ;
 	private double amount;
-	//private Discount discount;
+	private Discount discount;
 	public InternetPayment()
 	{
 		name="InternetPayment";
@@ -51,16 +51,16 @@ public class InternetPayment extends Service {
 	public double getAmount() {
 		return amount;
 	}
-//	@Override
-//	public Discount getDiscount() {
-//		// TODO Auto-generated method stub
-//		return discount;
-//	}
-//	@Override
-//	public void updateDiscount(Discount discount) {
-//		this.discount=discount;
-//		
-//	}
+	@Override
+	public Discount getDiscount() {
+		// TODO Auto-generated method stub
+		return discount;
+	}
+	@Override
+	public void updateDiscount(Discount discount) {
+		this.discount=discount;
+		
+	}
 	@Override
 	public String getName() {
 		// TODO Auto-generated method stub

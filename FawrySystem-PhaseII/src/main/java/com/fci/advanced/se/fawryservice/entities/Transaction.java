@@ -1,5 +1,4 @@
 package com.fci.advanced.se.fawryservice.entities;
-
 import com.fci.advanced.se.fawryservice.controllers.FawrySystem;
 
 public class Transaction {
@@ -9,7 +8,7 @@ public class Transaction {
 	private double amount;
 	private String state;
 	
-	
+	// transaction
 
 	public Transaction(String username,String serviceType,double amount){
 		this.setUsername(username);
@@ -57,6 +56,7 @@ public class Transaction {
 		System.out.println("Service type: "+this.getService_type()+".");
 		System.out.println("Amount: "+this.getAmount()+".");
 		System.out.println("Transaction state: "+this.getState()+".");
+		
 	}
 
 

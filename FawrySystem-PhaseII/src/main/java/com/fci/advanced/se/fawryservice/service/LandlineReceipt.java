@@ -5,5 +5,4 @@ public interface LandlineReceipt {
 	public double getAmount();
 	
 	
-
 }
