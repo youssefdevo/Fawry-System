@@ -10,10 +10,12 @@ public class User {
 	private Wallet wallet;
 	private Discount overall_discount;
 	private ArrayList<Transaction> transactions;
+	private ArrayList<Double> wallet_transactions;
 
 	public User(Account acc){
 		this.setAccount(acc);
 		transactions = new ArrayList<>();
+		wallet_transactions = new ArrayList<>();
 		wallet = new Wallet();
 		this.overall_discount = new OverAll();
 	}
@@ -32,6 +34,7 @@ public class User {
 	}
 	public void chargeMyWallet(double amount){
 		wallet.chargingWallet(amount);
+		this.wallet_transactions.add(amount);
 	}
 	public ArrayList<Transaction> getTransactions() {
 		return transactions;
@@ -46,5 +49,10 @@ public class User {
 	public Wallet getWallet() {
 		return wallet;
 	}
+
+	public ArrayList<Double> getWallet_transactions() {
+		return wallet_transactions;
+	}
+
 
 }

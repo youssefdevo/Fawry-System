@@ -48,7 +48,6 @@ public class Landline implements Service {
 	}
 	@Override
 	public String getName() {
-		// TODO Auto-generated method stub
 		return name;
 	}
 	
@@ -68,4 +67,5 @@ public class Landline implements Service {
 	public double getDiscount_Amount() {
 		return landline_discount;
 	}
+	
 }

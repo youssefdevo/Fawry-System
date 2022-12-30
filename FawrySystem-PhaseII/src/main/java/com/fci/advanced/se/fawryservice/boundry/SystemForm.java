@@ -284,7 +284,7 @@ public class SystemForm {
 	
 	
 	//  7
-	  @PostMapping(value = "/user/chargewallet/{amount}")
+	@PostMapping(value = "/user/chargewallet/{amount}")
 	public String chargeWallet(@PathVariable("amount") double amount)
 	{
 		  if(controller.getCurrentUser()==null)return "Please login as a user first";
@@ -353,6 +353,8 @@ public class SystemForm {
 		return "Invalid ID, please try again.";
 	}
 	
+	
+	
 	public void acceptRefund(int index) {
 		controller.accRefund(index);
 	}
@@ -361,8 +363,11 @@ public class SystemForm {
 		controller.rejecRefund(index);
 	}
 	
-	
-	// Admin logout,, user logout,, update urls, new requirement.
+	@GetMapping(value = "/admin/viewHistory")
+	public ArrayList<User> getHistory(){
+		if(controller.getCurrentAdmin()==null)return null;
+		return controller.getHistroy();
+	}
 }
 
 

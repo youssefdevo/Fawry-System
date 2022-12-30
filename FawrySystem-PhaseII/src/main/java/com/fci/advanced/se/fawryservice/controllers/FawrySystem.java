@@ -135,5 +135,10 @@ public class FawrySystem {
 		return "your balance now = " + currentUser.getWallet().getBalance();
 		
 	}
+
+	public ArrayList<User> getHistroy() {
+		SystemData data = SystemData.getInstance();
+		return data.getUsers();
+	}
 	
 }
