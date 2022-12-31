@@ -59,13 +59,15 @@ public class SystemData {
 	//to accept refund we delete it and set the state of this transaction in user arrayList "Canceled". 
 	public void acceptRefund(int index) {
 		// refund = delete, transaction = cancelled.
-		refunds.get((index-1)).getTrans().setState("Cancelled");
-		refunds.remove((index-1));
-		
-		String curName = refunds.get((index-1)).getTrans().getUsername();
+		index--;
+		refunds.get((index)).getTrans().setState("Cancelled");
+		refunds.remove(index);
+		String curName="";
+		if(index<refunds.size()) 
+			curName = refunds.get(index).getTrans().getUsername();
 		for(User u:this.users) {
 			if(u.getAccount().getUsername()==curName) {
-				u.getWallet().addBalance(u.getTransactions().get(index-1).getAmount());
+				u.getWallet().addBalance(u.getTransactions().get(index).getAmount());
 				break;
 			}
 		}
@@ -73,8 +75,9 @@ public class SystemData {
 	//to reject refund just delete it from refund list. 
 	public void rejectRefund(int index){
 		// refund = delete, transaction = still completed.
-		refunds.get((index-1)).getTrans().setState("Completed");
-		refunds.remove((index-1));
+		index--;
+		refunds.get(index--).getTrans().setState("Completed");
+		refunds.remove(index);
 	}
 	public void addService(Service s)
 	{

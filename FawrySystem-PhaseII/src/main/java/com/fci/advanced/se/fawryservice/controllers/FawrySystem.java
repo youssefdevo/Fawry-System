@@ -14,7 +14,7 @@ public class FawrySystem {
 	
 	 //current User that set when USer login.
 	 private Admin currentAdmin; 
-	 public static int ids = 0;
+	 public static int ids = 1;
 	 public static int refundID = 1;
 	 private static FawrySystem instance = new FawrySystem();
 
