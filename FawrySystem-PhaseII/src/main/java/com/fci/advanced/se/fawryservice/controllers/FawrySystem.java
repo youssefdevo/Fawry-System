@@ -56,7 +56,6 @@ public class FawrySystem {
 	public void accRefund(int index) {
 		SystemData data = SystemData.getInstance();
 		data.acceptRefund(index);
-		currentUser.getWallet().addBalance(currentUser.getTransactions().get(index-1).getAmount());
 	}
 	//when admin reject the refund.
 	public void rejecRefund(int index) {
