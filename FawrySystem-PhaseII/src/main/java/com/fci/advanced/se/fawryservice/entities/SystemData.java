@@ -75,7 +75,7 @@ public class SystemData {
 	public void rejectRefund(int index){
 		// refund = delete, transaction = still completed.
 		index--;
-		refunds.get(index--).getTrans().setState("Completed");
+		refunds.get(index).getTrans().setState("Completed");
 		refunds.remove(index);
 	}
 	public void addService(Service s)
