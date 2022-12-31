@@ -61,16 +61,15 @@ public class SystemData {
 		// refund = delete, transaction = cancelled.
 		index--;
 		refunds.get((index)).getTrans().setState("Cancelled");
-		refunds.remove(index);
-		String curName="";
-		if(index<refunds.size()) 
-			curName = refunds.get(index).getTrans().getUsername();
+		
+		String curName = refunds.get(index).getTrans().getUsername();
 		for(User u:this.users) {
 			if(u.getAccount().getUsername()==curName) {
 				u.getWallet().addBalance(u.getTransactions().get(index).getAmount());
 				break;
 			}
 		}
+		refunds.remove(index);
 	}
 	//to reject refund just delete it from refund list. 
 	public void rejectRefund(int index){
