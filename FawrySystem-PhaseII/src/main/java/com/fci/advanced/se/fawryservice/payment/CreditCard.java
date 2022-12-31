@@ -1,14 +1,13 @@
 package com.fci.advanced.se.fawryservice.payment;
-import com.fci.advanced.se.fawryservice.entities.User;
-import com.fci.advanced.se.fawryservice.service.Service;
-
+//Credit Card Class.
 public class CreditCard extends Payment{
 	
-	
+	//payment process.
 	public String pay(double amount) {
 		
 		return "Transaction completed successfully (paied via credit card).";
 	}
+	//setters and getters.
 	public boolean isFlag() {
 		return enoughMoney;
 	}

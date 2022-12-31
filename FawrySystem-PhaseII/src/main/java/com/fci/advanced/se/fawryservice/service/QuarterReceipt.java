@@ -1,18 +1,18 @@
 package com.fci.advanced.se.fawryservice.service;
 
-
+//when user choose to pay landline as quarter receipt.
 public class QuarterReceipt implements LandlineReceipt {
 	private double amount;
 	
-	public String quarterReceoptForm(double amuont ,String request )
+	public void quarterReceoptForm(double price ,String request )
 	{
-		this.amount=amount;
-		 return "Successfully paid for Quarter rececpit :";
+		this.amount=price;
+
 		
 	}
-	public String landLineReceiptForm(double amuont ,String request)
+	public void landLineReceiptForm(double amuont ,String request)
 	{
-		 return quarterReceoptForm(amuont,request);
+		 quarterReceoptForm(amuont,request);
 	}
 	
 	public double getAmount()

@@ -7,7 +7,7 @@ import com.fci.advanced.se.fawryservice.service.InternetPayment;
 import com.fci.advanced.se.fawryservice.service.Landline;
 import com.fci.advanced.se.fawryservice.service.MobileRecharge;
 import com.fci.advanced.se.fawryservice.service.Service;
-
+//Orange (provider)Class.
 public class Orange implements Provider{
 	public ArrayList<Service> services;
 

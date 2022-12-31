@@ -1,19 +1,21 @@
 package com.fci.advanced.se.fawryservice.service;
 
+//when user select to donate to NGOs.
 public class NGOs implements DonationPlace{
-
-	  private double amount;
-	    public void donationForm(double amount)
-	    {
-	         NGOsForm( amount );
-	    }
-	    public void NGOsForm(double amount)
-	    {
-	    	this.amount=amount;
-	      
-	    }
-	    
-	    public double getAmount() {
-	        return amount;
-	    }
+	//attributes
+    private double amount;
+    
+    //setters && getters
+    public void donationForm(double amount)
+    {
+         NGOsForm(amount);
+    }
+    public void NGOsForm(double price)
+    {
+    	this.amount = price;
+    }
+    
+    public double getAmount() {
+        return amount;
+    }
 }

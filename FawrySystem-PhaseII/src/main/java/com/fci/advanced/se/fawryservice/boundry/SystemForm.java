@@ -1,6 +1,5 @@
 package com.fci.advanced.se.fawryservice.boundry;
 import java.util.ArrayList;
-
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -14,7 +13,6 @@ import com.fci.advanced.se.fawryservice.entities.User;
 import com.fci.advanced.se.fawryservice.payment.Cash;
 import com.fci.advanced.se.fawryservice.payment.CreditCard;
 import com.fci.advanced.se.fawryservice.payment.Payment;
-
 import com.fci.advanced.se.fawryservice.service.Discount;
 import com.fci.advanced.se.fawryservice.service.Donation;
 import com.fci.advanced.se.fawryservice.service.InternetPayment;
@@ -26,166 +24,24 @@ import com.fci.advanced.se.fawryservice.service.Specific;
 
 @RestController
 public class SystemForm {
+	//Attributes.
 	private FawrySystem controller = FawrySystem.getInstance();
 	private Service service;
 	private Payment payment;
 	
-	// start function
-//	public void start() {
-//		
-//		System.out.println("1- Admin (press 1)\n2- User (press 2).\n3- Exist (press 3).");
-//		int request = in.nextInt();
-//		if(request == 1) {
-//			adminLogin();
-//		}
-//		else if(request == 2) {
-//			System.out.println("1- Log in (press 1)\n2- Sign Up (press 2).");
-//			int enter = in.nextInt();
-//			if(enter == 1) {
-//				userLogin();
-//			}
-//			else if(request == 2) {
-//				userSignup();			
-//			}
-//			else if(request == 3) {
-//				return;
-//			}
-//			else {
-//				start();
-//			}
-//		}
-//	}
+	//get user info
+	 @GetMapping(value = "/user/myInfo")
+    public User getUserAccount(){
+        return controller.getCurrentUser();
+    }
 	
-	
-	
-//	public void adminForm() {
-//		System.out.println("1- List all refunds.\n"
-//				+ "2- Add Discount\n3- log out.");
-//				
-//		int request = in.nextInt();
-//		if(request == 1) {
-//			ArrayList<Refund> refunds= controller.requestRefunds();
-//			
-//			
-//			
-//			for(Refund r:refunds) {
-//				printRefund(r);
-//			}
-//			refundAction(refunds);
-//			adminForm();
-//		}
-//		else if (request == 2) {
-//			discountForm();
-//			adminForm();
-//		}
-//		else if(request == 3) {
-//			start();
-//		}
-//		else {
-//			adminForm();
-//		}
-		
-//	}
-	
-                                                          
-//		System.out.println("1- Mobile recharge services");
-//		System.out.println("2- Internet Payment services");
-//		System.out.println("3- Landline services.");
-//		System.out.println("4- Donations.");
-//		System.out.println("5- View Discount.");
-//		System.out.println("6- Refund Request.");
-//		System.out.println("7- Charge your wallet.");
-//		System.out.println("8- Log out");
-
-	
-	public String completeProcess(double amount,String request, String payType) {
-		service.serviceForm( amount, request);
-		selectPayment(payType); 
-		payment.setFlag(true);
-		double price = payment.price(service,controller.getCurrentUser());
-		String pay = payment.pay(price);
-		if(payment.isFlag())completeTransaction(service.getName() ,price);
-		
-		return "\nThe cost of " + service.getName()+"= " + price + "\n" + pay;
-	}
-
-	public void completeTransaction(String type ,double amount) {
-		controller.addTransaction(type,amount);
-	}
-
-	public void selectPayment(String payType)
-	{
-		/*System.out.println("1- CreditCard");
-		System.out.println("2- Cash");
-		System.out.println("3- Wallet.");*/
-		payType = payType.toLowerCase();
-		if(payType.contains("creditcard"))
-		{
-			payment=new CreditCard();
-		}
-		else if(payType.contains("cash"))
-		{
-			payment=new Cash();
-		}
-		else if(payType.contains("wallet"))
-		{
-			//payment=new Wallet(service,controller.getCurrentUser());
-			payment = controller.getCurrentUser().getWallet();
-		}
-	}
-	
-	
-
-
-	
-//	public void addDiscountForm(int requset ,double value) { 
-//		Discount dis;
-//		Scanner in2 = new Scanner(System.in);
-//		System.out.println("1- Overall Discount\n2- Specific Discount");
-//		if(requset == 1) {
-//			dis = new OverAll();
-//			
-//			System.out.println("Enter the discount value: ");
-//			int value = in2.nextInt();
-//			//set discount value.
-//			
-//			dis.setDiscount(value);
-//			controller.setOverAll(dis);
-//		}
-//		else if(requset == 2) {
-//			dis = new Specific();
-			
-//			System.out.println("Enter the service name you want to apply discount: ");
-//			String name = in2.nextLine();
-//			System.out.println("Enter the discount value: ");
-//			int value = in2.nextInt();
-			
-			//set discount value.
-//			dis.setDiscount(value);
-//			
-//			controller.setSpecific(name,dis);
-//			
-//		}
-//		else {
-//			System.out.println("invalid input\n\n");
-//			discountForm();
-//		}
-//	
-//	}
-	
-
-
-	 @GetMapping(value = "/getuser")
-	    public User getUserAccount(){
-	        return controller.getCurrentUser();
-	    }
-	
+	 //user sign up.
 	@PostMapping(value = "/user/signup")
 	public String userSignup(@RequestBody Account acc) {
 		return controller.addUser(acc);
 	}
 	
-	
+	//user log in.
 	@PostMapping(value = "/user/login")
 	public String userLogin(@RequestBody Account acc) {
 		controller.setCurrentAdmin(null);
@@ -196,12 +52,14 @@ public class SystemForm {
 			return "Invalid account, Please try again..\n";
 		}
 	}
+	//user log out.
 	@PostMapping(value = "/user/logout")
 	public String userLogOut() {
 		controller.setCurrentUser(null);
 		return "User Logged out successfully";
 	}
 	
+	//admin log in.
 	@PostMapping(value = "/admin/login")
 	public String adminLogin(@RequestBody Account acc) {
 		controller.setCurrentUser(null);
@@ -213,6 +71,7 @@ public class SystemForm {
 		}
 	}
 	
+	//admin log out.
 	@PostMapping(value = "/admin/logout")
 	public String adminLogOut() {
 		controller.setCurrentAdmin(null);
@@ -221,7 +80,7 @@ public class SystemForm {
 	
 	
 	
-		// 1
+		// 1    mobileRecharge service.
 	@PostMapping(value = "/user/mobilerecharge/{provider}/{paymentMethod}")
 	public String mobileRecharge(@RequestBody MobileRecharge mb ,@PathVariable("paymentMethod") String pay,@PathVariable("provider") String prov)
 	{
@@ -231,7 +90,7 @@ public class SystemForm {
 	
 	}
 	
-	// 2
+	// 2  internetPayment service.
 	 @PostMapping(value = "/user/internetpaymment/{provider}/{paymentMethod}")
 	public String internetPayment(@RequestBody InternetPayment ip ,@PathVariable("paymentMethod") String pay,@PathVariable("provider") String prov)
 	{
@@ -241,7 +100,7 @@ public class SystemForm {
 		 return completeProcess(ip.getAmount(),prov,pay);
 	}
 	
-	    // 3
+	    // 3   Donation service.
 	@PostMapping(value = "/user/donation/{place}/{paymentMethod}")
 	public String donation(@RequestBody Donation d ,@PathVariable("paymentMethod") String pay,@PathVariable("place") String place)
 	{
@@ -249,8 +108,8 @@ public class SystemForm {
 		 this.service = d;
 		 return completeProcess(d.getAmount(),place,pay);
 	}
-	
-	// 4
+	     
+	// 4  Landline service.
 	@PostMapping(value = "/user/landline/{receipt}/{paymentMethod}")
 	public String landline(@RequestBody Landline li ,@PathVariable("paymentMethod") String pay,@PathVariable("receipt") String receipt)
 		{
@@ -262,19 +121,19 @@ public class SystemForm {
 	
 	   // 5  user view discounts.
 	@GetMapping(value = "/user/viewDiscounts")
-		public ArrayList<String> viewDiscounts()
-		{
-			ArrayList<String>temp = new ArrayList<>();
-			temp.add("Please login as a user first");
-			if(controller.getCurrentUser()==null)
-				return temp;
-			else
-				return controller.viewDiscounts();
-		}
+	public ArrayList<String> viewDiscounts()
+	{
+		ArrayList<String>temp = new ArrayList<>();
+		temp.add("Please login as a user first");
+		if(controller.getCurrentUser()==null)
+			return temp;
+		else
+			return controller.viewDiscounts();
+	}
 	
 	   
 	
-		// 6
+		// 6  user view transaction.
 	@GetMapping(value = "/user/viewTransactions")
 	public ArrayList<Transaction> viewTransactions()
 	{		
@@ -282,7 +141,7 @@ public class SystemForm {
 	}
 	
 	
-	//  7
+	//  7   user to charge his wallet.
 	@PostMapping(value = "/user/chargewallet/{amount}")
 	public String chargeWallet(@PathVariable("amount") double amount)
 	{
@@ -291,20 +150,21 @@ public class SystemForm {
 	}
 	
 	
-	// 8
+	// 8     user make refund 
 	 @PostMapping(value = "/user/makerefund/{index}")
 	public String makeRefund(@PathVariable("index") int index) {
-		 if(controller.getCurrentUser()==null)return "Please login as a user first";
-		int size = controller.getCurrentUser().getTransactions().size();
-		if(index>size || index < 1 ) {
+		 if(controller.getCurrentUser()==null)
+			 return "Please login as a user first";
+		 int size = controller.getCurrentUser().getTransactions().size();
+		 if(index>size || index < 1 ) {
 			 return "invalid request..\n\n";
-		}
+		 }
 		
 		return controller.addRefund(index);
 	}
 	 
 	 
-	//admin add discounts
+	//admin add overall discounts
 	@PostMapping(value = "/admin/addOvarallDiscount/{value}")
 	public String addOvarallDiscount(@PathVariable("value") double value)
 	{ 
@@ -315,7 +175,7 @@ public class SystemForm {
 		return "added successfully";
 	}
 	
-	//admin add discounts
+	//admin add specific discounts
 	@PostMapping(value = "/admin/addSpecificDiscount/{serviceName}/{value}")
 	public String addSpecificDiscount(@PathVariable("serviceName") String name, @PathVariable("value")double value)
 	{
@@ -351,8 +211,12 @@ public class SystemForm {
 		}
 		return "Invalid ID, please try again.";
 	}
-	
-	
+	//admin view history.
+	@GetMapping(value = "/admin/viewHistory")
+	public ArrayList<User> getHistory(){
+		if(controller.getCurrentAdmin()==null)return null;
+		return controller.getHistroy();
+	}
 	
 	public void acceptRefund(int index) {
 		controller.accRefund(index);
@@ -362,10 +226,38 @@ public class SystemForm {
 		controller.rejecRefund(index);
 	}
 	
-	@GetMapping(value = "/admin/viewHistory")
-	public ArrayList<User> getHistory(){
-		if(controller.getCurrentAdmin()==null)return null;
-		return controller.getHistroy();
+	
+	//complete process function that select payment Method, calculate the cost and pay it.
+	public String completeProcess(double amount,String request, String payType) {
+		service.serviceForm( amount, request);
+		selectPayment(payType); 
+		payment.setFlag(true);
+		double price = payment.price(service,controller.getCurrentUser());
+		String pay = payment.pay(price);
+		if(payment.isFlag())completeTransaction(service.getName() ,price);
+		
+		return "\nThe cost of " + service.getName()+"= " + price + "\n" + pay;
+	}
+
+	public void completeTransaction(String type ,double amount) {
+		controller.addTransaction(type,amount);
+	}
+
+	public void selectPayment(String payType)
+	{
+		payType = payType.toLowerCase();
+		if(payType.contains("creditcard"))
+		{
+			payment=new CreditCard();
+		}
+		else if(payType.contains("cash"))
+		{
+			payment=new Cash();
+		}
+		else if(payType.contains("wallet"))
+		{
+			payment = controller.getCurrentUser().getWallet();
+		}
 	}
 }
 

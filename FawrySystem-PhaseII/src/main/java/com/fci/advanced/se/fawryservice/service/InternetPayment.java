@@ -1,23 +1,28 @@
 package com.fci.advanced.se.fawryservice.service;
-
-
 import com.fci.advanced.se.fawryservice.provider.Etisalat;
 import com.fci.advanced.se.fawryservice.provider.Orange;
 import com.fci.advanced.se.fawryservice.provider.Provider;
 import com.fci.advanced.se.fawryservice.provider.Vodafone;
 import com.fci.advanced.se.fawryservice.provider.We;
 
-
+//when user select InternetPayment service.
 public class InternetPayment implements Service {
+	//the name of this service.
 	private String name;
+	//the provider of this service.
 	private Provider provider ;
+	//the cost of this service.
 	private double amount;
+	//the specific discount of this service.
 	private Discount discount;
 	private static double internet_discount = 0;
+	
+	//default constructor.
 	public InternetPayment()
 	{
 		name="InternetPayment";
 	}
+	//form that select provider depending on user request.
 	public void internetPaymenForm(double amount,String  request)
 	{	 
 		this.amount=amount;
@@ -44,6 +49,9 @@ public class InternetPayment implements Service {
 		}
 	
 	}
+	
+	//setter and getters.
+
 	public void serviceForm(double amount  ,String requests)
 	{
 		 internetPaymenForm( amount ,  requests);

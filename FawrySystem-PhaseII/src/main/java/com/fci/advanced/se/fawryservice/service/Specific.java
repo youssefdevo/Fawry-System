@@ -1,5 +1,5 @@
 package com.fci.advanced.se.fawryservice.service;
-
+// specific discount that inherits from discount(discount on service).
 public class Specific extends Discount{
 
 	public void setDiscount(double dis)

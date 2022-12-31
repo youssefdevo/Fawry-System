@@ -1,5 +1,6 @@
 package com.fci.advanced.se.fawryservice.service;
 
+//when user choose to donate to school.
 public class School implements DonationPlace {
     private double amount;
     public void donationForm(double amount)
@@ -9,8 +10,6 @@ public class School implements DonationPlace {
     public void schoolForm(double amount)
     {
     	this.amount=amount;
-      
-       // return  "Thanks for your Donation for Schools.";
     }
     
     public double getAmount() {

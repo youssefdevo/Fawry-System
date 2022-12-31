@@ -1,13 +1,22 @@
 package com.fci.advanced.se.fawryservice.service;
+
+//when user select Donation service.
 public class Donation implements Service {
+	//name of this service.
 	private String name;
+	//type of this donate (school,NGOs,Hospital).
 	private DonationPlace place;
+	//cost of this service.
 	private double amount;
 	private static double donation_discount = 0;
+	
+	//default constructor
 	public Donation ()
 	{
 		name="Donation";
 	}
+	
+	//select type of donationPalce.
 	public void donationForm(double amount,String  request)
 	{	 
 		this.amount=amount;
@@ -28,6 +37,7 @@ public class Donation implements Service {
 		}
 
 	}
+	//getters and setters.
 	public void serviceForm(double amount  ,String requests)
 	{
 		donationForm ( amount ,  requests);

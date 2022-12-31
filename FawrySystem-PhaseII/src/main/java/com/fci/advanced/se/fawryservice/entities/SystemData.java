@@ -4,10 +4,15 @@ import com.fci.advanced.se.fawryservice.controllers.Admin;
 import com.fci.advanced.se.fawryservice.service.Service;
 
 public class SystemData {
+	// Admins data
 	private ArrayList<Admin>admins;
+	// Users data
 	private ArrayList<User>users;
+	// arraylist that store list of refunds.
 	private ArrayList<Refund>refunds;
+	//Singleton pattern.
 	private static SystemData instance = new SystemData();
+	//arraylist to store each service with his discount.
 	private ArrayList<Service>services;
 
 	//make the constructor private so that this class cannot be instantiated..
@@ -25,7 +30,7 @@ public class SystemData {
       return instance;
 	}	
    
-
+	//setters and getters.
 	public void addAdmin(Admin admin) {
 	   this.admins.add(admin);
 	}
@@ -50,14 +55,14 @@ public class SystemData {
 	public ArrayList<Refund> getRefunds(){
 		return refunds;
 	}
+	
+	//to accept refund we delete it and set the state of this transaction in user arrayList "Canceled". 
 	public void acceptRefund(int index) {
 		// refund = delete, transaction = cancelled.
 		refunds.get((index-1)).getTrans().setState("Cancelled");
 		refunds.remove((index-1));
-
-		
-		
 	}
+	//to reject refund just delete it from refund list. 
 	public void rejectRefund(int index){
 		// refund = delete, transaction = still completed.
 		refunds.get((index-1)).getTrans().setState("Completed");

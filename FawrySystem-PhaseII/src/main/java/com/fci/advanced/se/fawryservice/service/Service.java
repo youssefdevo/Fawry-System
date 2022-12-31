@@ -1,5 +1,5 @@
 package com.fci.advanced.se.fawryservice.service;
-
+//service class that inherits from it (MobileRecharge, internet payment,donation,Landline).
 public interface Service {
 	public void serviceForm(double amount,String request);
 	public double getAmount();

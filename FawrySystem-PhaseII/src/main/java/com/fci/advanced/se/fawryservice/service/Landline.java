@@ -1,17 +1,18 @@
 package com.fci.advanced.se.fawryservice.service;
 
-
-
 public class Landline implements Service {
 	private String name;
 	private static double landline_discount = 0;
-	private LandlineReceipt   receipt;
+	private LandlineReceipt receipt;
 	private double amount;
 	private Discount discount;
+	//default constructor.
 	public Landline()
 	{
 		name="Landline";
 	}
+	
+	//form that handle request of receipt type.
 	public void landlineForm(double amount,String  request)
 	{	 
 		this.amount=amount;
@@ -32,7 +33,7 @@ public class Landline implements Service {
 		 landlineForm(amount,request);
 	}
 	
-	
+	//getter && setter
 	public double getAmount() {
 		return amount;
 	}

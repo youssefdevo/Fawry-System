@@ -1,11 +1,14 @@
 package com.fci.advanced.se.fawryservice.payment;
 
 public class Wallet extends Payment {
+	//user wallet balance 
 	private  double balance;
+	//default constructor.
 	public Wallet()
 	{
 		balance=0;
 	}
+	//pay process.
 	public String pay(double amount) {
 			
 		 if(balance>=amount) {
@@ -18,9 +21,11 @@ public class Wallet extends Payment {
 		 }
 		
 	}
+	//charging wallet.
 	public void chargingWallet(double amount){
 		setBalance(getBalance() + amount);
 	}
+	//setters and getters.
 	public double getBalance() {
 		return balance;
 	}

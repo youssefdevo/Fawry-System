@@ -5,16 +5,23 @@ import com.fci.advanced.se.fawryservice.provider.Provider;
 import com.fci.advanced.se.fawryservice.provider.Vodafone;
 import com.fci.advanced.se.fawryservice.provider.We;
 
+//When user select MobileRecharge service.
 public class MobileRecharge implements Service {
+	//Name of this service
 	private String name;
-	private Provider provider ;
-	private double amount ;
+	//the provider of this service.
+	private Provider provider;
+	//the cost of this service.
+	private double amount;
+	//specific discount of this service.
 	private Discount discount;
 	private static double mobile_discount = 0;
 	
+	//default constructor.
 	public MobileRecharge() {
 		this.name = "Mobile Recharge";
 	}
+	//creating provider object depending on user request.
 	public void mobileRecharageForm(double amount,String  request)
 	{	 
 		this.amount=amount;
@@ -41,6 +48,7 @@ public class MobileRecharge implements Service {
 		}
 	
 	}
+	//setter && getters.
 	public void serviceForm(double amount  ,String requests)
 	{
 		 mobileRecharageForm( amount ,  requests);

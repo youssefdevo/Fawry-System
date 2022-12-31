@@ -3,15 +3,20 @@ import java.util.ArrayList;
 import com.fci.advanced.se.fawryservice.payment.Wallet;
 import com.fci.advanced.se.fawryservice.service.Discount;
 import com.fci.advanced.se.fawryservice.service.OverAll;
-
+//User class.
 public class User {
-
+	//user account
 	private Account myAccount;
+	//user wallet
 	private Wallet wallet;
+	//user discount.
 	private Discount overall_discount;
+	//user transactions.
 	private ArrayList<Transaction> transactions;
+	//user wallet charge transactions.
 	private ArrayList<String> wallet_transactions;
 
+	//Parameterized constructor.
 	public User(Account acc){
 		this.setAccount(acc);
 		transactions = new ArrayList<>();
@@ -19,7 +24,7 @@ public class User {
 		wallet = new Wallet();
 		this.overall_discount = new OverAll();
 	}
-	
+	//setters and getters.
 	public Account getAccount() {
 		return myAccount;
 	}

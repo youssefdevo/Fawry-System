@@ -11,18 +11,22 @@ import com.fci.advanced.se.fawryservice.service.Service;
 
 
 public class Admin {
+	//attributes.
 	private Account acc;
+	
+	//Parameterized constructor.
 	public Admin(String name,String mail,String password){
 		this.acc = new Account(name,mail,password);
 	}
+	//get account.
 	public Account getAccount() {
 		return this.acc;
 	}
-	
+	//to add or update specific discount. 
 	public void notifySpecific(String serviceName,Discount discount) {
-		boolean found = false;
 		SystemData data = SystemData.getInstance();
 		serviceName = serviceName.toLowerCase();
+		//if service found before we delete it and at it again with updated value.
 		for(Service s: data.getServices()) {
 			String name = s.getName();
 			name = name.toLowerCase();
@@ -32,27 +36,27 @@ public class Admin {
 			}
 		}
 	
-			if(serviceName.contains("internet")) {
-				Service s = new InternetPayment();
-				s.setDiscount_Amount(discount.getDiscount_amount());
-				s.updateDiscount(discount);
-				data.addService(s);
-			}
-			else if(serviceName.contains("mobile")) {
-				Service s = new MobileRecharge();
-				s.setDiscount_Amount(discount.getDiscount_amount());
-				s.updateDiscount(discount);
-				data.addService(s);
-			}
-			else if(serviceName.contains("landline")) {
-				Service s = new Landline();
-				s.setDiscount_Amount(discount.getDiscount_amount());
-				s.updateDiscount(discount);
-				data.addService(s);
-			}
-		
+		if(serviceName.contains("internet")) {
+			Service s = new InternetPayment();
+			s.setDiscount_Amount(discount.getDiscount_amount());
+			s.updateDiscount(discount);
+			data.addService(s);
+		}
+		else if(serviceName.contains("mobile")) {
+			Service s = new MobileRecharge();
+			s.setDiscount_Amount(discount.getDiscount_amount());
+			s.updateDiscount(discount);
+			data.addService(s);
+		}
+		else if(serviceName.contains("landline")) {
+			Service s = new Landline();
+			s.setDiscount_Amount(discount.getDiscount_amount());
+			s.updateDiscount(discount);
+			data.addService(s);
+		}
 
 	}
+	//add overall discount to all users for the first transaction. 
 	public void notifyOverAll(Discount dis) {
 		SystemData data = SystemData.getInstance();
 		for(User u:data.getUsers()) {

@@ -1,15 +1,20 @@
 package com.fci.advanced.se.fawryservice.entities;
 import com.fci.advanced.se.fawryservice.controllers.FawrySystem;
 
+//Transaction Class.
 public class Transaction {
+	// Id of the transaction to be easy to access it by id.
 	private  int id;
+	//user's name that did this transaction
 	private String username;
+	//service name.
 	private String service_type;
+	//cost of this transaction.
 	private double amount;
+	//state of this transaction.
 	private String state;
 	
-	// transaction
-
+	// Parameterized constructor
 	public Transaction(String username,String serviceType,double amount){
 		this.setUsername(username);
 		this.setService_type(serviceType);
@@ -18,7 +23,7 @@ public class Transaction {
 		setId(FawrySystem.ids++);
 	}
 	
-	
+	//setters and getters.
 	public double getAmount() {
 		return amount;
 	}
@@ -51,15 +56,6 @@ public class Transaction {
 		this.service_type = type;
 	}
 	
-	public void printTransaction() {
-		System.out.println("User name: "+this.getUsername()+".\n");
-		System.out.println("Service type: "+this.getService_type()+".");
-		System.out.println("Amount: "+this.getAmount()+".");
-		System.out.println("Transaction state: "+this.getState()+".");
-		
-	}
-
-
 	public int getId() {
 		return id;
 	}

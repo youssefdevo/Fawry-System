@@ -7,7 +7,7 @@ import com.fci.advanced.se.fawryservice.service.InternetPayment;
 import com.fci.advanced.se.fawryservice.service.Landline;
 import com.fci.advanced.se.fawryservice.service.MobileRecharge;
 import com.fci.advanced.se.fawryservice.service.Service;
-
+//(WE)provider Class
 public class We implements Provider{
 	public ArrayList<Service> services;
 

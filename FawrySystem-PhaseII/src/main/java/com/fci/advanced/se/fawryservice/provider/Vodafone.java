@@ -7,7 +7,7 @@ import com.fci.advanced.se.fawryservice.service.InternetPayment;
 import com.fci.advanced.se.fawryservice.service.Landline;
 import com.fci.advanced.se.fawryservice.service.MobileRecharge;
 import com.fci.advanced.se.fawryservice.service.Service;
-
+//Vodafone (Provider)Class.
 public class Vodafone implements Provider{
 	public ArrayList<Service> services;
 	

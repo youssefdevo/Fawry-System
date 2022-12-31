@@ -2,7 +2,7 @@ package com.fci.advanced.se.fawryservice.entities;
 
 
 public class Account {
-	
+	//attributes.
 	private String username;
 	private String password;
 	private String email;
