@@ -102,7 +102,7 @@ public class SystemForm {
 		service.serviceForm( amount, request);
 		selectPayment(payType); 
 		payment.setFlag(true);
-		double price = payment.price();
+		double price = payment.price(service,controller.getCurrentUser());
 		String pay = payment.pay(price);
 		if(payment.isFlag())completeTransaction(service.getName() ,price);
 		
@@ -121,17 +121,16 @@ public class SystemForm {
 		payType = payType.toLowerCase();
 		if(payType.contains("creditcard"))
 		{
-			payment=new CreditCard(service,controller.getCurrentUser());
+			payment=new CreditCard();
 		}
 		else if(payType.contains("cash"))
 		{
-			payment=new Cash(service,controller.getCurrentUser());
+			payment=new Cash();
 		}
 		else if(payType.contains("wallet"))
 		{
 			//payment=new Wallet(service,controller.getCurrentUser());
 			payment = controller.getCurrentUser().getWallet();
-			payment.setService(service,controller.getCurrentUser());
 		}
 	}
 	

@@ -127,13 +127,11 @@ public class FawrySystem {
 		Refund r = new Refund(currentUser.getTransactions().get(index));
 		data.addRefund(r);
 		return "Refund has been requested";
-		
 	}
 
 	public String chargeWallet(double amount) {
 		currentUser.chargeMyWallet(amount);
 		return "your balance now = " + currentUser.getWallet().getBalance();
-		
 	}
 
 	public ArrayList<User> getHistroy() {
