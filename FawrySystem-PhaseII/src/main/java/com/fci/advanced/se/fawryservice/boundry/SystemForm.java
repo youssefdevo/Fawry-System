@@ -32,6 +32,9 @@ public class SystemForm {
 	//get user info
 	 @GetMapping(value = "/user/myInfo")
     public User getUserAccount(){
+		 if( controller.getCurrentUser()==null)
+			 return null;
+		 
         return controller.getCurrentUser();
     }
 	
@@ -137,6 +140,9 @@ public class SystemForm {
 	@GetMapping(value = "/user/viewTransactions")
 	public ArrayList<Transaction> viewTransactions()
 	{		
+		if(controller.getCurrentUser()==null)
+			return null;
+		
 		return controller.viewTransactions();
 	}
 	
@@ -209,6 +215,7 @@ public class SystemForm {
 				return "Refund cancelled successfully";
 			}
 		}
+		
 		return "Invalid ID, please try again.";
 	}
 	//admin view history.
