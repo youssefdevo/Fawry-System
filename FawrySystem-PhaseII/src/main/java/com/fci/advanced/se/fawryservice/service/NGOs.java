@@ -18,4 +18,8 @@ public class NGOs implements DonationPlace{
     public double getAmount() {
         return amount;
     }
+	@Override
+	public String getName() {
+		return "NGOs";
+	}
 }

@@ -166,7 +166,7 @@ public class SystemForm {
 			 return "invalid request..\n\n";
 		 }
 		
-		return controller.addRefund(index);
+		return controller.addRefund(index-1);
 	}
 	 
 	 
