@@ -1,8 +1,5 @@
-package com.fci.advanced.se.fawryservice.controllers;
+package com.fci.advanced.se.fawryservice.entities;
 
-import com.fci.advanced.se.fawryservice.entities.Account;
-import com.fci.advanced.se.fawryservice.entities.SystemData;
-import com.fci.advanced.se.fawryservice.entities.User;
 import com.fci.advanced.se.fawryservice.service.Discount;
 import com.fci.advanced.se.fawryservice.service.InternetPayment;
 import com.fci.advanced.se.fawryservice.service.Landline;
