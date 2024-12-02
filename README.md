@@ -50,9 +50,6 @@ The **Fawry System** replicates the functionalities of a payment system where us
 - **Programming Language:** Java
 - **Build Tool:** Maven
 - **Database:** MySQL (for transaction and user data storage)
-- **Frameworks:** 
-  - JavaFX (if GUI-based interface is implemented)
 - **Version Control:** Git & GitHub
-- **Testing Frameworks:** JUnit
 
 ---
